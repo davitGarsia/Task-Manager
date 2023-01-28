@@ -1,0 +1,56 @@
+.mat-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  padding-right: 20px;
+}
+
+.expand {
+  border: none;
+  background: none;
+  border-radius: 100%;
+  position: absolute;
+  left: 2%;
+  top: 4%;
+  cursor: pointer;
+}
+
+.ch-right {
+  background-size: 48px 48px;
+  background-color: #cacaca;
+  border-radius: 50%;
+}
+
+.ch-right:hover {
+  background-color: #afadad;
+}
+
+.ch-right:active {
+  background-color: #858282;
+}
+
+.sidenav-items {
+  margin-top: 50px;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dashboard {
+  width: 18px;
+  height: 18px;
+  justify-content: center;
+}
