@@ -1,0 +1,20 @@
+<div class="nav" [ngClass]="scrolled ? 'scrolled' : ''">
+  <a href="#header">
+    Logo
+  </a>
+  <div class="nav-links">
+    <a href="#header"> home</a>
+    <a href="#about"> about project</a>
+    <a href="#testimonials"> testimonials</a>
+    <a href="#authors"> authors</a>
+  </div>
+  <div class="auth-links">
+    <button type="button" (click)="signUp()">sign up</button>
+    <button type="button" (click)="navigateToLogin()">log in</button>
+  </div>
+  <div class="toggle-nav">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

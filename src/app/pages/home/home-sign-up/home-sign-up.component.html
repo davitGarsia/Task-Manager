@@ -1,0 +1,26 @@
+<div class="home-page-signup" [ngClass]="toggleSignup.visible ? 'visible' : ''">
+  <img src="assets/images/mail-cather__bg.svg">
+  <div class="container">
+    <span>
+      <h1>
+        Sign up for FREE
+      </h1>
+      <p>
+        and start using Name in seconds!
+      </p>
+    </span>
+    <form  (ngSubmit)="onSubmit()" [formGroup]="email">
+      <input type="email" placeholder="Enter your work email" formControlName="email">
+      <button type="submit">Get Name</button>
+      <p style="color: white; margin: 10px 0 -28px 0; font-size: 1rem;"
+         *ngIf="touched && email.get('email')?.invalid && email.get('email')?.touched && !email.get('email')?.getError('email')">
+        * Email is required!
+      </p>
+      <p style="color: white; margin: 10px 0 -28px 0; font-size: 1rem"
+         *ngIf="touched && email.get('email')?.getError('email') && email.get('email')?.touched">
+        * Please enter valid email!
+      </p>
+    </form>
+  </div>
+  <img class="close" src="assets/images/x-mark.png" (click)="toggleSignup.toggleVisible()">
+</div>
