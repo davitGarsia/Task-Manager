@@ -3,7 +3,7 @@
 .nav {
   @include flex(space-between, center);
   width: 100%;
-  padding: 40px 200px;
+  padding: 20px 200px;
   position: fixed;
   left: 0;
   top: 0;
@@ -81,5 +81,10 @@
         }
       }
     }
+  }
+  .logo{
+    height: 100px;
+    width: 150px;
+
   }
 }

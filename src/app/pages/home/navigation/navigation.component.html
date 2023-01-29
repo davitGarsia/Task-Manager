@@ -1,6 +1,6 @@
 <div class="nav" [ngClass]="scrolled ? 'scrolled' : ''">
   <a href="#header">
-    Logo
+    <img src="assets/image/logo12.png" alt="logo" class="logo"/>
   </a>
   <div class="nav-links">
     <a href="#header"> home</a>
@@ -11,6 +11,8 @@
   <div class="auth-links">
     <button type="button" (click)="signUp()">sign up</button>
     <button type="button" (click)="navigateToLogin()">log in</button>
+      <button routerLink="/register" style="margin-left: 20px"> register</button> <!--   შავლეგო ეს ღილაკი ჩავაგდე მაინც, რომ დავლაგდებით მერე ავირჩიოთ რა აჯობებს-->
+
   </div>
   <div class="toggle-nav">
     <div></div>
