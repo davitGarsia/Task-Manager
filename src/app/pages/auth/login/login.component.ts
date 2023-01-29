@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/services";
 import {Router} from "@angular/router";
 
@@ -14,13 +14,19 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
 
-
+  validateForm!: UntypedFormGroup;
   constructor(
     private authService: AuthService,
     private router: Router,
+    private fb: UntypedFormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+      remember: [true]
+    });
   }
   submit() {
     this.form.markAllAsTouched()

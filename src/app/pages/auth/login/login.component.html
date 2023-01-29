@@ -1,19 +1,39 @@
 <div class="container">
   <div class="registration">
     <h2>Login</h2>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <div class="inpField">
-        <label for="email">Last Name:</label><br>
-        <input type="email" id="email" name="email" placeholder="Email" formControlName="email" /><br>
-      </div>
-      <div class="inpField">
-        <label for="password">password:</label><br>
-        <input type="text" id="password" name="password" placeholder="password" formControlName="password" /><br>
-      </div>
+<!--    <form [formGroup]="form" (ngSubmit)="submit()">-->
+<!--      <div class="inpField">-->
+<!--        <label for="email">Last Name:</label><br>-->
+<!--        <input type="email" id="email" name="email" placeholder="Email" formControlName="email" /><br>-->
+<!--      </div>-->
+<!--      <div class="inpField">-->
+<!--        <label for="password">password:</label><br>-->
+<!--        <input type="text" id="password" name="password" placeholder="password" formControlName="password" /><br>-->
+<!--      </div>-->
 
 
-      <input type="submit" value="Submit"/>
+<!--      <input type="submit" value="Submit"/>-->
+<!--    </form>-->
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submit()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group nzPrefixIcon="user">
+            <input formControlName="userName" nz-input placeholder="Username" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group nzPrefixIcon="lock">
+            <input formControlName="password" nz-input type="password" placeholder="Password" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" [disabled]="!validateForm.valid">Log in</button>
+        </nz-form-control>
+      </nz-form-item>
     </form>
-
   </div>
 </div>
