@@ -1,3 +1,5 @@
+import {User} from "./user";
+
 export interface Register {
   firstName: string;
   lastName: string;
@@ -7,4 +9,16 @@ export interface Register {
 export interface Login {
   email: string;
   password: string;
+}
+
+
+export interface Token {
+  expiresIn: number;
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface LoginResponse {
+  user: User;
+  token: Token;
 }

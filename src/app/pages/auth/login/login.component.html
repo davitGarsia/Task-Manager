@@ -1,7 +1,7 @@
 <div class="container">
   <div class="registration">
     <h2>Login</h2>
-    <form>
+    <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="inpField">
         <label for="email">Last Name:</label><br>
         <input type="email" id="email" name="email" placeholder="Email" formControlName="email" /><br>
