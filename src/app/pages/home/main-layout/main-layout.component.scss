@@ -12,30 +12,7 @@
 
 .sidenav {
   padding-right: 20px;
-}
-
-.expand {
-  border: none;
-  background: none;
-  border-radius: 100%;
-  position: absolute;
-  left: 2%;
-  top: 4%;
-  cursor: pointer;
-}
-
-.ch-right {
-  background-size: 48px 48px;
-  background-color: #cacaca;
-  border-radius: 50%;
-}
-
-.ch-right:hover {
-  background-color: #afadad;
-}
-
-.ch-right:active {
-  background-color: #858282;
+  padding-left: 20px;
 }
 
 .sidenav-items {
@@ -53,4 +30,21 @@
   width: 18px;
   height: 18px;
   justify-content: center;
+}
+
+.add-project {
+  display: flex;
+  justify-content: center;
+  padding: 18px 10px 8px 10px;
+}
+
+.add-container {
+  border: 2px solid #d4d2d2;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ededed;
+}
+
+.add-container:hover {
+  background-color: #dbd8d8;
 }

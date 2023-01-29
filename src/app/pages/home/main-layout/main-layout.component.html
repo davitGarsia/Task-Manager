@@ -1,17 +1,17 @@
 <mat-drawer-container class="mat-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
-    <ul class="sidenav-items">
-      <li class="flex">
-        <span class="material-icons dashboard">space_dashboard</span>
-        <p routerLink="boards">boards</p>
-      </li>
-    </ul>
+  <mat-drawer #drawer class="sidenav" position="end" mode="side">
+    <app-sidenav-form></app-sidenav-form>
   </mat-drawer>
 
   <div class="sidenav-content">
-    <button class="expand" type="button" mat-button (click)="drawer.toggle()">
-      <span class="material-icons ch-right">chevron_right</span>
-    </button>
+    <div class="project-container">
+      <div class="add-container">
+        <div class="add-project" (click)="drawer.open()">
+          <span class="material-icons">add</span>
+          <p class="add">Add Project</p>
+        </div>
+      </div>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>
