@@ -35,11 +35,19 @@
 
       &:hover {
         box-shadow: 0px 21px 40px 6px rgba(0, 0, 0, 0.1);
+
+        &::placeholder {
+          opacity: .5;
+        }
       }
 
       &:focus {
         border-color: #7A1DE0;
         box-shadow: 0px 21px 40px 6px rgba(0, 0, 0, 0.2);
+
+        &::placeholder {
+          opacity: .5;
+        }
       }
     }
 
