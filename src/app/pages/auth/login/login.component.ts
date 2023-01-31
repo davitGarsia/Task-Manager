@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.form.markAllAsTouched()
     if (this.form.invalid) return
     this.authService.login(this.form.value).subscribe(res => {
-    this.router.navigate(['/ '])
+    this.router.navigate(['/home']);
       console.log(res)
     })
   }
