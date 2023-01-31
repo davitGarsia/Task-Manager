@@ -27,23 +27,46 @@
 }
 
 .dashboard {
-  width: 18px;
-  height: 18px;
+
   justify-content: center;
 }
+
+
 
 .add-project {
   display: flex;
-  justify-content: center;
-  padding: 18px 10px 8px 10px;
+
+  align-items: center;
+  font-size: 24px;
+  }
+
+.add {
+  margin-top: 10px;
 }
 
 .add-container {
-  border: 2px solid #d4d2d2;
+
   border-radius: 5px;
   cursor: pointer;
-  background-color: #ededed;
+  background-image: linear-gradient(to right, #1a1a59,
+  #1cb5e0);
+  width: 300px;
+  height: 160px;
+display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
+
+.add-container:hover {
+  background-image: linear-gradient(to right, #1a1a59,
+  #0e5b70);
+}
+
+.close {
+  font-size: 44px;
+}
+
 
 .add-container:hover {
   background-color: #dbd8d8;

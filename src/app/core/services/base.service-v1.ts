@@ -4,8 +4,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class BaseService {
-  apiUrl = environment.apiUrl;
+export class BaseServiceV1 {
+   apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

@@ -1,23 +1,24 @@
-<span class="material-icons close-btn">close</span>
-<form class="form">
+<span class="material-icons close-btn" (click)="closeDrawer()">close</span>
+<form class="form" [formGroup]="projectForm"
+      (ngSubmit)="onSubmit()">
   <div class="input-wrapper">
     <label for="name">Project Name</label>
-    <input class="input" type="text" />
+    <input class="input" type="text" formControlName="name" />
   </div>
 
   <div class="input-wrapper">
     <label for="abbr">Abbreviation</label>
-    <input class="input" type="text" />
+    <input class="input" type="text" formControlName="abbr" />
   </div>
 
   <div class="input-wrapper">
     <label for="desc">Description</label>
-    <textarea class="input" type="text"></textarea>
+    <textarea class="input" type="text" formControlName="description"></textarea>
   </div>
 
   <div class="input-wrapper">
     <label for="color">Color</label>
-    <input class="input" type="text" />
+    <input class="input" type="text" formControlName="color" />
   </div>
 
   <div class="btn-container">
