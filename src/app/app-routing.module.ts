@@ -1,4 +1,3 @@
-
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -25,7 +24,12 @@ const routes: Routes = [
       {
         path: 'auth',
         loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+      },
+      {
+        path: 'application',
+        loadChildren: () => import('./pages/application/application.module').then(m => m.ApplicationModule)
       }
+
     ]
 
 

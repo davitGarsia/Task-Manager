@@ -2,7 +2,7 @@
 
 .nav {
   @include flex(space-between, center);
-  width: 100%;
+  max-width: 100%;
   padding: 20px 200px;
   position: fixed;
   left: 0;
@@ -20,6 +20,7 @@
   .nav-links {
     display: flex;
     align-items: center;
+    flex-direction: row;
     a {
       font-size: 1.3rem;
       margin: 0 15px;
@@ -83,8 +84,11 @@
     }
   }
   .logo{
-    height: 100px;
-    width: 150px;
-
+    max-height: 100px;
+    max-width: 150px;
   }
+}
+.registerBtn {
+  position: fixed;
+  margin-left: 10px;
 }
