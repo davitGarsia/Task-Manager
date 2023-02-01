@@ -1,22 +1,23 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnDestroy} from '@angular/core';
 import {Router} from "@angular/router";
 import {ToggleSignupService} from "../../../core/services";
+import {DOCUMENT} from "@angular/common";
+import {fromEvent, Observable} from "rxjs";
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnDestroy {
 
   @Input('scrolled') scrolled!: boolean;
 
   constructor(
-    private router: Router,
-    private toggleSignup: ToggleSignupService
-  ) { }
-
-  ngOnInit() {
+    public router: Router,
+    private toggleSignup: ToggleSignupService,
+    @Inject(DOCUMENT) private document: Document
+  ) {
   }
 
   signUp() {
@@ -24,6 +25,36 @@ export class NavigationComponent implements OnInit {
   }
 
   navigateToLogin() {
-    this.router.navigate(['/auth'])
+    this.router.navigate(['/auth']);
+  }
+
+  menuIsOpened: boolean = false;
+
+  clicks$: Observable<Event> = fromEvent(this.document, 'click');
+  clicksSub: any;
+
+  toggleMenu() {
+    if(!this.menuIsOpened) {
+      this.clicksSub = this.clicks$.subscribe( (event: any) => {  // ???
+        if (!event.target.classList.contains('dont-close-from-outside')) {
+          this.menuIsOpened = false;
+          this.clicksSub.unsubscribe();
+        }
+      });
+    }
+
+    this.menuIsOpened = !this.menuIsOpened
+  }
+
+  closeMenu(event: any) {
+    if (event.target.tagName === 'A' || event.target.tagName === 'BUTTON' && event.currentTarget.classList.contains('visible')) {
+      this.menuIsOpened = false;
+    }
+  }
+
+  ngOnDestroy() {
+    if(this.menuIsOpened) {
+      this.clicksSub.unsubscribe();
+    }
   }
 }

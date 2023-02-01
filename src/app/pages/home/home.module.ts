@@ -11,8 +11,14 @@ import {AboutProjectComponent} from './about-project/about-project.component';
 import {ScrollToTopComponent} from './scroll-to-top/scroll-to-top.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {AuthModule} from "../auth/auth.module";
-import { TestimonialsComponent } from './testimonials/testimonials.component';
-import { AuthorsComponent } from './authors/authors.component';
+import {TestimonialsComponent} from './testimonials/testimonials.component';
+import {AuthorsComponent} from './authors/authors.component';
+import {FontAwesomeModule, FaIconLibrary} from "@fortawesome/angular-fontawesome";
+import {
+  faFacebook,
+  faGithub
+} from '@fortawesome/free-brands-svg-icons';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -24,15 +30,23 @@ import { AuthorsComponent } from './authors/authors.component';
     AboutProjectComponent,
     ScrollToTopComponent,
     TestimonialsComponent,
-    AuthorsComponent
+    AuthorsComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
     MatTabsModule,
-    AuthModule
+    AuthModule,
+    FontAwesomeModule
   ]
 })
 export class HomeModule {
+  constructor(public library: FaIconLibrary) {
+    library.addIcons(
+      faGithub,
+      faFacebook
+    )
+  }
 }
