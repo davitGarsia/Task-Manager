@@ -42,4 +42,11 @@ export class AuthService extends BaseService {
   logout() {
     localStorage.clear();
   }
+  signOut() {
+    return this.post('auth/signout', {});
+  }
+
+  refreshToken(): Observable<LoginResponse> {
+    return this.post<LoginResponse>('auth/refresh', {});
+  }
 }
