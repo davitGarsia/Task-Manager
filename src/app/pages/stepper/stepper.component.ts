@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatStepper } from '@angular/material/stepper';
+import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
@@ -21,7 +23,15 @@ export class StepperComponent implements OnInit {
   });
   isEditable = true;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private stepperService: StepperNextService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.stepperService.nextStepOpen$.subscribe((res: boolean) => {
+      if (res) {
+      }
+    });
+  }
 }

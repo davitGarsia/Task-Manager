@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { StepperNextService } from 'src/app/core/services/stepper.next.service';
+
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-create-project',
@@ -7,7 +10,10 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./create-project.component.scss'],
 })
 export class CreateProjectComponent implements OnInit {
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private stepperService: StepperNextService
+  ) {}
 
   ngOnInit(): void {}
 
