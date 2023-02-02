@@ -46,7 +46,12 @@ export class AuthService extends BaseService {
     return this.post('auth/signout', {});
   }
 
-  refreshToken(): Observable<LoginResponse> {
-    return this.post<LoginResponse>('auth/refresh', {});
+  refreshToken(refreshToken:string): Observable<LoginResponse> {
+    return this.post<LoginResponse>('auth/refresh', {refreshToken});
+  }
+
+  getRefreshToken(): string | null {
+    return localStorage.getItem('refreshToken');
+
   }
 }

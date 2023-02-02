@@ -29,9 +29,10 @@ import {HeaderComponent} from "./header/header.component";
     RouterModule,
     AuthModule,
   ],
-  exports: [
-    HomeComponent,
-  ]
+    exports: [
+        HomeComponent,
+        NavigationComponent,
+    ]
 })
 export class HomeModule {
 }
