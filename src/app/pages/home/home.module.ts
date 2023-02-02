@@ -9,7 +9,7 @@ import { IndividualBoardComponent } from './main-layout/individual-board/individ
 import { CreateBoardComponent } from './main-layout/create-board/create-board.component';
 import { SidenavFormComponent } from './main-layout/sidenav-form/sidenav-form.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import {AuthInterceptor} from "../../core/interceptors/auth.interceptor";
+//import {AuthInterceptor} from "../../core/interceptors/auth.interceptor";
 import {ReactiveFormsModule} from "@angular/forms";
 
 
@@ -17,11 +17,7 @@ import {ReactiveFormsModule} from "@angular/forms";
   declarations: [HomeComponent, MainLayoutComponent, IndividualBoardComponent, CreateBoardComponent, SidenavFormComponent],
   imports: [CommonModule, HomeRoutingModule, MatSidenavModule, HttpClientModule, ReactiveFormsModule],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+
   ]
 })
 export class HomeModule {}
