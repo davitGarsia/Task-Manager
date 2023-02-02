@@ -1,25 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
-
+import { FormBuilder, Validators } from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
-  styleUrls: ['./stepper.component.scss']
+  styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent implements OnInit {
-
-
-  ngOnInit(): void {
-  }
-
   firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
+    name: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
+    abbr: ['', Validators.required],
   });
-  isEditable = false;
+  thirdFormGroup = this._formBuilder.group({
+    description: ['', Validators.required],
+  });
+  fourthFormGroup = this._formBuilder.group({
+    color: ['', Validators.required],
+  });
+  isEditable = true;
 
   constructor(private _formBuilder: FormBuilder) {}
 
+  ngOnInit(): void {}
 }
