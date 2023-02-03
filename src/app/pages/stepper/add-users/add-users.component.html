@@ -1,1 +1,31 @@
-<p>add-users works!</p>
+<form [formGroup]="usersFormGroup" class="flex">
+  <mat-form-field appearance="fill" class="step-form-field">
+    <mat-label>First name</mat-label>
+    <input matInput formControlName="firstName" placeholder="" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="step-form-field">
+    <mat-label>Last name</mat-label>
+    <input matInput formControlName="lastName" placeholder="" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="step-form-field">
+    <mat-label>Id number</mat-label>
+    <input matInput formControlName="idNumber" placeholder="" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="step-form-field">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="step-form-field">
+    <mat-label>Mobile</mat-label>
+    <input matInput formControlName="mobNumber" placeholder="" required />
+  </mat-form-field>
+  <div>
+    <button mat-button matStepperNext type="button" (click)="Submit()">
+      Next
+    </button>
+  </div>
+</form>
