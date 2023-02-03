@@ -3,11 +3,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class StepperNextService {
-  nextStep = new BehaviorSubject<boolean>(false);
+  nextStep = new BehaviorSubject<number>(0);
 
-  nextStepOpen$: Observable<boolean> = this.nextStep.asObservable();
+  nextStepOpen$: Observable<number> = this.nextStep.asObservable();
 
-  openNextStep() {
-    this.nextStep.next(true);
+  openNextStep(step: number) {
+    this.nextStep.next(step);
+    console.log(this.nextStep);
   }
 }

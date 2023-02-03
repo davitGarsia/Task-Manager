@@ -12,6 +12,10 @@ import { CreateBoardComponent } from './create-board/create-board.component';
 import { CreateIssueTypesComponent } from './create-issue-types/create-issue-types.component';
 import { AddUsersComponent } from './add-users/add-users.component';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatIconModule,
   ],
   providers: [
     {

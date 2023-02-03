@@ -24,4 +24,8 @@ export class CreateProjectComponent implements OnInit {
     color: ['', Validators.required],
   });
   isEditable = true;
+
+  Submit() {
+    this.stepperService.openNextStep(1);
+  }
 }
