@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Observable, tap} from "rxjs";
 import {Login, LoginResponse, Register, User} from "../interfaces";
 import {BaseService} from "./base.service";
+import * as http from "http";
+import {HttpClient} from "@angular/common/http";
+import {CookieService} from "./cookie.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends BaseService {
-
+cookieService: CookieService = inject(CookieService);
 
   get token(): string | null {
     return localStorage.getItem('token');
@@ -53,5 +56,21 @@ export class AuthService extends BaseService {
   getRefreshToken(): string | null {
     return localStorage.getItem('refreshToken');
 
+  }
+
+  login2(payload: Login): Observable<LoginResponse>  {
+    return this.post<LoginResponse>('auth/login', payload)
+      .pipe(
+        tap((response: LoginResponse) => {
+          const expiereTime = 24*60*60*1000;
+          const cookieExpire:any = new Date(Date.now() + expiereTime);
+
+
+          this.cookieService.setCookie('token', response.token.accessToken, cookieExpire);
+          this.cookieService.setCookie('refreshToken', response.token.refreshToken, cookieExpire );
+          this.setUser(response.user);
+          }
+        )
+      )
   }
 }
