@@ -13,7 +13,7 @@ export class AddUsersComponent implements OnInit {
   ngOnInit(): void {}
 
   usersFormGroup = this._formBuilder.group({
-    firsName: ['', Validators.required],
+    firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     idNumber: ['', Validators.required],
     email: ['', Validators.required],

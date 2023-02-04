@@ -9,6 +9,6 @@ export class StepperNextService {
 
   openNextStep(step: number) {
     this.nextStep.next(step);
-    console.log(this.nextStep);
   }
+
 }

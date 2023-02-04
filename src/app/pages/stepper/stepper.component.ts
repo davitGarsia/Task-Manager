@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  DoCheck,
   OnInit,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -30,6 +31,7 @@ export class StepperComponent implements OnInit {
   isEditable = true;
 
   nextStepOpen$: Observable<number> = this.stepperService.nextStepOpen$;
+  //index = this.stepperService.index;
 
   constructor(
     private _formBuilder: FormBuilder,

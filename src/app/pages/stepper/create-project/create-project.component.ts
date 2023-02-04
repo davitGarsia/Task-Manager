@@ -25,7 +25,7 @@ export class CreateProjectComponent implements OnInit {
   });
   isEditable = true;
 
-  Submit() {
+  nextStep(index: number) {
     this.stepperService.openNextStep(1);
   }
 }
