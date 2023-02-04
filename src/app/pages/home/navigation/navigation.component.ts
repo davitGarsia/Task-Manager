@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnDestroy} from '@angular/core';
+import {Component, Inject, Input, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ToggleSignupService} from "../../../core/services";
 import {DOCUMENT} from "@angular/common";
@@ -9,7 +9,7 @@ import {fromEvent, Observable} from "rxjs";
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnDestroy {
+export class NavigationComponent implements OnDestroy, OnInit {
 
   @Input('scrolled') scrolled!: boolean;
 
@@ -18,6 +18,9 @@ export class NavigationComponent implements OnDestroy {
     private toggleSignup: ToggleSignupService,
     @Inject(DOCUMENT) private document: Document
   ) {
+  }
+
+  ngOnInit() {
   }
 
   signUp() {
