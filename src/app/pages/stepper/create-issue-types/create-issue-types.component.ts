@@ -4,6 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { map, Observable, startWith } from 'rxjs';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 
 @Component({
   selector: 'app-create-issue-types',
@@ -11,7 +12,10 @@ import { MatChipInputEvent } from '@angular/material/chips';
   styleUrls: ['./create-issue-types.component.scss'],
 })
 export class CreateIssueTypesComponent implements OnInit {
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private stepperService: StepperNextService
+  ) {}
 
   issueFormGroup = this._formBuilder.group({
     name: ['', Validators.required],
@@ -77,5 +81,18 @@ export class CreateIssueTypesComponent implements OnInit {
     );
   }
 
-  Submit() {}
+  onSubmit() {
+    this.stepperService.changeFromLinear();
+
+    this.stepperService.openNextStep(3);
+
+    setTimeout(() => {
+      this.stepperService.changeToLinear();
+    }, 1000);
+  }
+
+  goBack() {
+    this.stepperService.changeFromLinear();
+    this.stepperService.openNextStep(1);
+  }
 }

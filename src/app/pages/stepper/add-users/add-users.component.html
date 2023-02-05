@@ -24,7 +24,8 @@
     <input matInput formControlName="mobNumber" placeholder="" required />
   </mat-form-field>
   <div>
-    <button mat-button matStepperNext type="button" (click)="Submit()">
+    <button mat-button matStepperPrevious (click)="goBack()">Back</button>
+    <button mat-button matStepperNext type="button" (click)="onSubmit()">
       Next
     </button>
   </div>

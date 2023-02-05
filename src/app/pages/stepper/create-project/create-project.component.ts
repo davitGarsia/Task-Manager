@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 
-import { MatStepper } from '@angular/material/stepper';
+import { MatStepper, MatStepperNext } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-create-project',
@@ -25,7 +25,17 @@ export class CreateProjectComponent implements OnInit {
   });
   isEditable = true;
 
-  nextStep(index: number) {
+  // nextStep(index: number) {
+  //   this.stepperService.openNextStep(1);
+  // }
+
+  onSubmit() {
+    this.stepperService.changeFromLinear();
+
     this.stepperService.openNextStep(1);
+
+    setTimeout(() => {
+      this.stepperService.changeToLinear();
+    }, 1000);
   }
 }

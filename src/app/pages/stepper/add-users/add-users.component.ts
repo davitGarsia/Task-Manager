@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 
 @Component({
   selector: 'app-add-users',
@@ -7,8 +8,10 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./add-users.component.scss'],
 })
 export class AddUsersComponent implements OnInit {
-  stepperService: any;
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private stepperService: StepperNextService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -21,7 +24,18 @@ export class AddUsersComponent implements OnInit {
   });
   isEditable = true;
 
-  Submit() {
-    this.stepperService.openNextStep(1);
+  onSubmit() {
+    this.stepperService.changeFromLinear();
+
+    this.stepperService.openNextStep(4);
+
+    setTimeout(() => {
+      this.stepperService.changeToLinear();
+    }, 1000);
+  }
+
+  goBack() {
+    this.stepperService.changeFromLinear();
+    this.stepperService.openNextStep(2);
   }
 }

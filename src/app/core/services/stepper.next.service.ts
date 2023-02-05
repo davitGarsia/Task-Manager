@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class StepperNextService {
+  // Next Step
   nextStep = new BehaviorSubject<number>(0);
 
   nextStepOpen$: Observable<number> = this.nextStep.asObservable();
@@ -11,4 +12,15 @@ export class StepperNextService {
     this.nextStep.next(step);
   }
 
+  // Linear
+  linear = new BehaviorSubject<boolean>(true);
+  isLinear$: Observable<boolean> = this.linear.asObservable();
+
+  changeToLinear() {
+    this.linear.next(true);
+  }
+
+  changeFromLinear() {
+    this.linear.next(false);
+  }
 }

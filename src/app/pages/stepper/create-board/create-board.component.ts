@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 
 @Component({
   selector: 'app-create-board',
@@ -12,7 +13,10 @@ import {
   styleUrls: ['./create-board.component.scss'],
 })
 export class CreateBoardComponent implements OnInit {
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private stepperService: StepperNextService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -28,4 +32,19 @@ export class CreateBoardComponent implements OnInit {
       taskStatus: 'ToDo',
     }),
   });
+
+  onSubmit() {
+    this.stepperService.changeFromLinear();
+
+    this.stepperService.openNextStep(2);
+
+    setTimeout(() => {
+      this.stepperService.changeToLinear();
+    }, 1000);
+  }
+
+  goBack() {
+    this.stepperService.changeFromLinear();
+    this.stepperService.openNextStep(0);
+  }
 }

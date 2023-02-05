@@ -1,11 +1,11 @@
 <!-- <button mat-raised-button (click)="isEditable = !isEditable">
   {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
 </button> -->
-<p>{{ nextStepOpen$ | async }}</p>
+{{ linear | async }}
 <mat-stepper
-  linear
   #stepper
   class="stepper"
+  [linear]="linear | async"
   [selectedIndex]="nextStepOpen$ | async"
 >
   <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
@@ -32,7 +32,7 @@
     <ng-template matStepLabel>Done</ng-template>
     <p>Great, your project is now being created!</p>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperPrevious (click)="goBack()">Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>

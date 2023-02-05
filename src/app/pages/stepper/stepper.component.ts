@@ -31,7 +31,8 @@ export class StepperComponent implements OnInit {
   isEditable = true;
 
   nextStepOpen$: Observable<number> = this.stepperService.nextStepOpen$;
-  //index = this.stepperService.index;
+
+  linear = this.stepperService.isLinear$;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -39,4 +40,9 @@ export class StepperComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  goBack() {
+    this.stepperService.changeFromLinear();
+    this.stepperService.openNextStep(3);
+  }
 }
