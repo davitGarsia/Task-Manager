@@ -94,5 +94,9 @@ export class CreateIssueTypesComponent implements OnInit {
   goBack() {
     this.stepperService.changeFromLinear();
     this.stepperService.openNextStep(1);
+
+    setTimeout(() => {
+      this.stepperService.changeToLinear();
+    }, 500);
   }
 }

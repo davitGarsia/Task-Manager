@@ -37,5 +37,9 @@ export class AddUsersComponent implements OnInit {
   goBack() {
     this.stepperService.changeFromLinear();
     this.stepperService.openNextStep(2);
+
+    setTimeout(() => {
+      this.stepperService.changeToLinear();
+    }, 500);
   }
 }

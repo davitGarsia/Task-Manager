@@ -44,5 +44,9 @@ export class StepperComponent implements OnInit {
   goBack() {
     this.stepperService.changeFromLinear();
     this.stepperService.openNextStep(3);
+
+    setTimeout(() => {
+      this.stepperService.changeToLinear();
+    }, 500);
   }
 }

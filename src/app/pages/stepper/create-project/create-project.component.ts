@@ -36,6 +36,6 @@ export class CreateProjectComponent implements OnInit {
 
     setTimeout(() => {
       this.stepperService.changeToLinear();
-    }, 1000);
+    }, 500);
   }
 }

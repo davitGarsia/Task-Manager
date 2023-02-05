@@ -46,5 +46,9 @@ export class CreateBoardComponent implements OnInit {
   goBack() {
     this.stepperService.changeFromLinear();
     this.stepperService.openNextStep(0);
+
+    setTimeout(() => {
+      this.stepperService.changeToLinear();
+    }, 500);
   }
 }
