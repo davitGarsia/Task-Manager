@@ -5,5 +5,12 @@
 }
 
 .step-form-field {
-  width: 20%;
+  width: 300px;
+}
+
+.margin-auto {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -1,83 +1,85 @@
 <form [formGroup]="issueFormGroup" class="flex">
-  <mat-form-field appearance="fill" class="step-form-field">
-    <mat-label>Name</mat-label>
-    <input matInput formControlName="name" placeholder="" required />
-  </mat-form-field>
-
-  <mat-form-field appearance="fill" class="step-form-field">
-    <mat-label>Description</mat-label>
-    <input matInput formControlName="description" placeholder="" required />
-  </mat-form-field>
-
-  <mat-form-field appearance="fill" class="step-form-field">
-    <mat-label>Icon</mat-label>
-    <input matInput formControlName="icon" placeholder="" required />
-  </mat-form-field>
-
-  <mat-form-field appearance="fill" class="step-form-field">
-    <mat-label>Color</mat-label>
-    <input matInput formControlName="color" placeholder="" required />
-  </mat-form-field>
-
-  <mat-form-field appearance="fill" class="step-form-field">
-    <mat-label>Status</mat-label>
-    <mat-select formControlName="status">
-      <mat-option>Active</mat-option>
-      <mat-option>Inactive</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill" class="step-form-field">
-    <mat-label>Tasks</mat-label>
-    <mat-chip-list #chipList aria-label="Task Selection">
-      <mat-chip *ngFor="let task of tasks" (removed)="remove(task)">
-        {{ task }}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip>
-      <input
-        placeholder="New Task"
-        #taskInput
-        [formControl]="taskControl"
-        formControlName="tasks"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="add($event)"
-      />
-    </mat-chip-list>
-    <mat-autocomplete
-      #auto="matAutocomplete"
-      (optionSelected)="selected($event)"
-    >
-      <mat-option *ngFor="let task of filteredTasks | async" [value]="task">
-        {{ task }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
-  <div formGroupName="issueColumns" class="flex">
+  <div class="margin-auto">
     <mat-form-field appearance="fill" class="step-form-field">
-      <mat-label>Column name</mat-label>
-      <input matInput formControlName="colName" placeholder="" required />
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="" required />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
-      <mat-label>Filed name</mat-label>
-      <input matInput formControlName="filedName" placeholder="" required />
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" placeholder="" required />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
-      <mat-label>Issue ID</mat-label>
-      <input matInput formControlName="issueID" placeholder="" required />
+      <mat-label>Icon</mat-label>
+      <input matInput formControlName="icon" placeholder="" required />
     </mat-form-field>
-  </div>
 
-  <div>
-    <button mat-button matStepperPrevious (click)="goBack()">Back</button>
-    <button mat-button matStepperNext type="button" (click)="onSubmit()">
-      Next
-    </button>
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Color</mat-label>
+      <input matInput formControlName="color" placeholder="" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option>Active</mat-option>
+        <mat-option>Inactive</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Tasks</mat-label>
+      <mat-chip-list #chipList aria-label="Task Selection">
+        <mat-chip *ngFor="let task of tasks" (removed)="remove(task)">
+          {{ task }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+          placeholder="New Task"
+          #taskInput
+          [formControl]="taskControl"
+          formControlName="tasks"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-list>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selected($event)"
+      >
+        <mat-option *ngFor="let task of filteredTasks | async" [value]="task">
+          {{ task }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div formGroupName="issueColumns" class="">
+      <mat-form-field appearance="fill" class="step-form-field">
+        <mat-label>Column name</mat-label>
+        <input matInput formControlName="colName" placeholder="" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="step-form-field">
+        <mat-label>Filed name</mat-label>
+        <input matInput formControlName="filedName" placeholder="" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="step-form-field">
+        <mat-label>Issue ID</mat-label>
+        <input matInput formControlName="issueID" placeholder="" required />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-button matStepperPrevious (click)="goBack()">Back</button>
+      <button mat-button matStepperNext type="button" (click)="onSubmit()">
+        Next
+      </button>
+    </div>
   </div>
 </form>
