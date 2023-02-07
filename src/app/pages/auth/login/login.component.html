@@ -7,10 +7,10 @@
     <form [formGroup]="form" (ngSubmit)="submit()">
       <input type="email" placeholder="email" id="email" class="inputs" formControlName="email"/>
       <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
-       class="validationMessage">Please Enter Email!</div>
+       class="validationMessage">Please enter Email!</div>
       <input type="password" placeholder="password" id="password" class="inputs" formControlName="password"/>
       <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
-           class="validationMessage">Please Enter Password!</div>
+           class="validationMessage">Please enter Password!</div>
       <input type="submit" value="Submit" class="inputs subBtn"/>
       <h4>Don't have an account? <a routerLink="/register"> Register</a></h4>
     </form>

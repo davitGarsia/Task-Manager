@@ -49,30 +49,6 @@ body {
   }
 }
 
-//.top {
-//  &:before {
-//    transform: rotate(45deg);
-//    background: #7B68EE;;
-//  }
-//
-//  &:after {
-//    transform: rotate(135deg);
-//    background: #7B68EE;;
-//  }
-//}
-
-//.bottom {
-////  &:before {
-////    transform: rotate(-45deg);
-////    background: #7B68EE;;
-////  }
-////
-////  &:after {
-////    transform: rotate(-135deg);
-////    background: #7B68EE;;
-////  }
-////}
-
 .center {
   position: fixed;
   width: 400px;
@@ -102,7 +78,7 @@ body {
   }
   .validationMessage{
     color: red;
-    font-size: 16px;
+    font-size: 14px;
   }
   .subBtn{
     display: flex;
