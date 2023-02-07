@@ -16,7 +16,6 @@ body {
   overflow: hidden;
   left: 0;
   top: 0;
-
   &:hover, &:active {
     .top, .bottom {
       &:before, &:after {
@@ -97,7 +96,7 @@ body {
     width: 300px;
     padding: 15px;
     margin: 5px;
-    border-radius: 1px;
+    border-radius: 5px;
     border: 1px solid #ccc;
     font-family: inherit;
 
@@ -124,6 +123,22 @@ body {
     &:hover {
       background: #fff;
       color: #7B68EE;
+    }
+  }
+  h4 {
+    display: flex;
+    font-size: 15px;
+    color: #7B68EE;
+    justify-content: center;
+    align-items: center;
+    a{
+      color: #7B68EE;
+      text-decoration: none;
+      margin-left: 5px;
+      font-size: 17px;
+      &:hover{
+        text-decoration: underline;
+      }
     }
   }
 }

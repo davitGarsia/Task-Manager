@@ -16,10 +16,10 @@ import {NgIf} from "@angular/common";
     declarations: [
         AuthComponent,
         LoginComponent,
-        RegisterComponent
+         RegisterComponent
     ],
   exports: [
-    RegisterComponent,
+
     LoginComponent
   ],
   imports: [
