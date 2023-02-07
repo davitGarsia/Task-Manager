@@ -1,19 +1,24 @@
 <div class="nav" [ngClass]="scrolled ? 'scrolled' : ''">
-  <a href="#header">
+  <a href="#header" (click)="menuIsOpened = false; router.navigate(['/#header'])" class="dont-close-from-outside">
     <img src="assets/image/logo.svg" alt="logo" class="logo"/>
   </a>
-  <div class="nav-links">
-    <a href="#header"> home</a>
-    <a href="#about"> about project</a>
-    <a href="#testimonials"> testimonials</a>
-    <a href="#authors"> authors</a>
+  <div class="nav-links dont-close-from-outside" [ngClass]="menuIsOpened ? 'visible' : ''" (click)="closeMenu($event)">
+    <div></div>
+    <a href="#header" class="dont-close-from-outside"> home</a>
+    <a href="#about" class="dont-close-from-outside"> about project</a>
+    <a href="#testimonials" class="dont-close-from-outside"> testimonials</a>
+    <a href="#authors" class="nav-link"> authors</a>
+    <section class="auth-links">
+      <button type="button" (click)="signUp()" class="dont-close-from-outside">sign up</button>
+      <button type="button" (click)="navigateToLogin()">log in</button>
+    </section>
   </div>
   <div class="auth-links">
     <button type="button" (click)="signUp()">sign up</button>
     <button type="button" (click)="navigateToLogin()">Log in</button>
     <button routerLink="/register" class="registerBtn">Register</button> <!--   შავლეგო ეს ღილაკი ჩავაგდე მაინც, რომ დავლაგდებით მერე ავირჩიოთ რა აჯობებს-->
   </div>
-  <div class="toggle-nav">
+  <div class="toggle-nav dont-close-from-outside" [ngClass]="menuIsOpened ? 'opened' : ''" (click)="toggleMenu()">
     <div></div>
     <div></div>
     <div></div>

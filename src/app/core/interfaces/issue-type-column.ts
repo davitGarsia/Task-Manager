@@ -1,5 +1,3 @@
-
-
 export interface IssueTypeColumn {
   name: string;
   filedName: string;

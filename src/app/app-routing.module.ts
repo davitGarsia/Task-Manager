@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 //თუ მომხმარებელი ავტორიზირებულია ჰოუმ პეიჯის ნაცვლად პირდაპირ აპლიკაციაზე გადაამისამართებს
 //თუ არა ჰოუმ პეიჯზე გაუშვებს სადაც იქნება ავტორიზაცია - რეგისტრაციის ლინკები
 //ავტორიზაციის წარმატებით გავლის შემდეგ ამ ცვლადს შევცვლით
-let isAuthorised = false;
+let isAuthorised = true;
 
 import {HomeComponent} from "./pages/home/home.component";
 
@@ -46,4 +46,7 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
 
+  constructor() {
+    isAuthorised = false;
+  }
 }

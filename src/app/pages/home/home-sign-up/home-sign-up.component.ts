@@ -1,22 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {ToggleSignupService} from "../../../core/services/toggle-signup.service";
+import {ToggleSignupService} from "../../../core/services";
 
 @Component({
   selector: 'app-home-sign-up',
   templateUrl: './home-sign-up.component.html',
   styleUrls: ['./home-sign-up.component.scss']
 })
-export class HomeSignUpComponent implements OnInit {
+export class HomeSignUpComponent {
 
   constructor(
     private router: Router,
     public toggleSignup: ToggleSignupService
   ) { }
-
-  ngOnInit(): void {
-  }
 
   email: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email] )
