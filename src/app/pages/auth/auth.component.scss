@@ -6,6 +6,16 @@
   border-radius: 5px;
   box-shadow: 0 0 10px #000;
   width: 450px;
-  height: 300px;
+  min-height: 600px;
   margin: 50px auto;
+}
+.logo {
+  position: absolute;
+  width: 300px;
+  z-index: 10;
+  top: 20px;
+  cursor: pointer;
+  &:hover{
+    opacity: 0.8;
+ }
 }
