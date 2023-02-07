@@ -1,6 +1,6 @@
 <div class="nav" [ngClass]="scrolled ? 'scrolled' : ''">
   <a href="#header" (click)="menuIsOpened = false; router.navigate(['/#header'])" class="dont-close-from-outside">
-    Logo
+    <img src="assets/image/logo.svg" alt="logo" class="logo"/>
   </a>
   <div class="nav-links dont-close-from-outside" [ngClass]="menuIsOpened ? 'visible' : ''" (click)="closeMenu($event)">
     <div></div>

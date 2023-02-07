@@ -4,5 +4,5 @@ export interface User {
   "identityNumber": string,
   "email": string,
   "mobileNumber": string,
-  "isActive": boolean
+  "isActive": boolean,
 }

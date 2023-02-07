@@ -13,9 +13,18 @@ let isRegistered: boolean = true;
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: AuthComponent,
     children: [
-      {path: '', redirectTo: isRegistered ? 'login' : 'register', pathMatch: 'full'},
+      {
+        path: '',
+        redirectTo: isRegistered ? 'login' : 'register',
+        pathMatch: 'full'
+      },
       {
         path: 'login',
         component: LoginComponent,

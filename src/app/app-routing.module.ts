@@ -6,15 +6,34 @@ import {RouterModule, Routes} from '@angular/router';
 //ავტორიზაციის წარმატებით გავლის შემდეგ ამ ცვლადს შევცვლით
 let isAuthorised = true;
 
+import {HomeComponent} from "./pages/home/home.component";
+
+
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => isAuthorised ? import('./pages/application/application.module').then(m => m.ApplicationModule) : import('./pages/home/home.module').then(m => m.HomeModule)
+
+    // loadChildren: () => isAuthorised ? import('./pages/application/application.module').then(m => m.ApplicationModule) :
+    //   import('./pages/home/home.module').then(m => m.HomeModule),
+
+
+    children: [{
+      path: '',
+      loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+    },
+      {
+        path: 'auth',
+        loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+      },
+      {
+        path: 'application',
+        loadChildren: () => import('./pages/application/application.module').then(m => m.ApplicationModule)
+      }
+
+    ]
+
+
   },
-  {
-    path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
-  }
 ];
 
 @NgModule({

@@ -17,6 +17,8 @@ export class HomeComponent implements AfterViewInit {
       let firstElPos = this.home.nativeElement.firstChild.getBoundingClientRect().top;
       firstElPos <= -10 ? this.scrolled = true : this.scrolled = false;
       firstElPos <= -window.innerHeight ? this.scrolledTop = true : this.scrolledTop = false;
+
+      console.log(555)
     })
   }
 }

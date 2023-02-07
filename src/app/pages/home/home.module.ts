@@ -5,6 +5,7 @@ import {HomeRoutingModule} from './home-routing.module';
 import {HomeComponent} from './home.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import {HeaderComponent} from './header/header.component';
+
 import {ReactiveFormsModule} from "@angular/forms";
 import {HomeSignUpComponent} from './home-sign-up/home-sign-up.component';
 import {AboutProjectComponent} from './about-project/about-project.component';
@@ -25,13 +26,13 @@ import { FooterComponent } from './footer/footer.component';
   declarations: [
     HomeComponent,
     NavigationComponent,
-    HeaderComponent,
     HomeSignUpComponent,
     AboutProjectComponent,
     ScrollToTopComponent,
     TestimonialsComponent,
     AuthorsComponent,
-    FooterComponent
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
