@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 
 import { MatStepper, MatStepperNext } from '@angular/material/stepper';
+import { ProjectFacadeService } from 'src/app/core/services/project-facade.service';
 
 @Component({
   selector: 'app-create-project',
@@ -12,7 +13,8 @@ import { MatStepper, MatStepperNext } from '@angular/material/stepper';
 export class CreateProjectComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
-    private stepperService: StepperNextService
+    private stepperService: StepperNextService,
+    private projectFacadeService: ProjectFacadeService
   ) {}
 
   ngOnInit(): void {}
@@ -25,10 +27,6 @@ export class CreateProjectComponent implements OnInit {
   });
   isEditable = true;
 
-  // nextStep(index: number) {
-  //   this.stepperService.openNextStep(1);
-  // }
-
   onSubmit() {
     this.stepperService.changeFromLinear();
 
@@ -37,5 +35,15 @@ export class CreateProjectComponent implements OnInit {
     setTimeout(() => {
       this.stepperService.changeToLinear();
     }, 500);
+
+    console.log(this.projectFormGroup.value);
+
+    this.projectFacadeService
+      .createProject(this.projectFormGroup.value)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+      });
   }
 }
