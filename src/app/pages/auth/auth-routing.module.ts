@@ -4,12 +4,18 @@ import {AuthComponent} from "./auth.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 
+
+// შევამოწმოთ თუ უკვე რეგისტრირებულია მეილი ავტორიზაციაზე გავუშვებთ, თუ არა
+// რეგისტრაციაზე. მთავარ გვერდზე შეყვანილი მეილი ავტომატურად ჩაიწერება auth მეილის ველში
+
+let isRegistered: boolean = true;
+
 const routes: Routes = [
   {
     path: '',
     component: AuthComponent,
     children: [
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
+      {path: '', redirectTo: isRegistered ? 'login' : 'register', pathMatch: 'full'},
       {
         path: 'login',
         component: LoginComponent,
