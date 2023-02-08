@@ -38,12 +38,12 @@ export class CreateProjectComponent implements OnInit {
 
     console.log(this.projectFormGroup.value);
 
-    this.projectFacadeService
-      .createProject(this.projectFormGroup.value)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-      });
+    // this.projectFacadeService
+    //   .createProject(this.projectFormGroup.value)
+    //   .subscribe({
+    //     next: (res) => {
+    //       console.log(res);
+    //     },
+    //   });
   }
 }
