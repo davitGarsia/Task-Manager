@@ -32,7 +32,12 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
-      }
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('./pages/stepper/stepper.module').then((m) => m.StepperModule),
+      },
 
     ]
 
@@ -42,7 +47,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 
@@ -50,3 +55,4 @@ export class AppRoutingModule {
     isAuthorised = false;
   }
 }
+

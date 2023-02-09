@@ -1,0 +1,29 @@
+<form [formGroup]="boardFormGroup" class="flex step-form-field">
+  <div class="margin-auto">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" placeholder="" required />
+    </mat-form-field>
+
+    <div formGroupName="columns" class="">
+      <mat-form-field appearance="fill" class="step-form-field">
+        <mat-label>Column name</mat-label>
+        <input matInput formControlName="name" placeholder="" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="step-form-field">
+        <mat-label>Column description</mat-label>
+        <input matInput formControlName="description" placeholder="" required />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-button matStepperPrevious (click)="goBack()">Back</button>
+      <button mat-button matStepperNext (click)="onSubmit()">Next</button>
+    </div>
+  </div>
+</form>

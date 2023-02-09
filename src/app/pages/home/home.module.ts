@@ -20,6 +20,14 @@ import {
   faGithub
 } from '@fortawesome/free-brands-svg-icons';
 import { FooterComponent } from './footer/footer.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { IndividualBoardComponent } from './main-layout/individual-board/individual-board.component';
+import { CreateBoardComponent } from './main-layout/create-board/create-board.component';
+import { SidenavFormComponent } from './main-layout/sidenav-form/sidenav-form.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+//import {AuthInterceptor} from "../../core/interceptors/auth.interceptor";
+
 
 
 @NgModule({
@@ -43,6 +51,8 @@ import { FooterComponent } from './footer/footer.component';
     FontAwesomeModule
   ]
 })
+
+
 export class HomeModule {
   constructor(public library: FaIconLibrary) {
     library.addIcons(
