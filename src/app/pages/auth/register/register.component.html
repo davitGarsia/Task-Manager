@@ -22,10 +22,11 @@
            class="validationMessage">Please enter Email!</div>
       <input type="password" placeholder="Enter your password" id="password" class="inputs" formControlName="password"/>
       <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
-           class="validationMessage">Please enter Password!</div>
-
+           class="validationMessage">Please enter Password (min 6 symbol)!</div>
       <input type="password" id="confirmPassword" name="password" placeholder="Confirm your password" formControlName="confirmPassword" class="inputs"/><br>
       <div *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched" class="validationMessage">Please enter confirmation Password!</div>
+      <div *ngIf="this.form.errors?.['notSame']  && this.form?.touched"
+           class="validationMessage">Password not match!</div>
       <input type="submit" value="Submit" class="inputs subBtn"/>
       <h4>Already have a account? <a routerLink="/login">Login</a></h4>
     </form>
