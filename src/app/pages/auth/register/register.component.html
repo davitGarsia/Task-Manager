@@ -26,6 +26,7 @@
 
       <input type="password" id="confirmPassword" name="password" placeholder="Confirm your password" formControlName="confirmPassword" class="inputs"/><br>
       <div *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched" class="validationMessage">Please enter confirmation Password!</div>
+<!--      <div *ngIf="form.get">Password not match</div>-->
       <input type="submit" value="Submit" class="inputs subBtn"/>
       <h4>Already have a account? <a routerLink="/login">Login</a></h4>
     </form>
