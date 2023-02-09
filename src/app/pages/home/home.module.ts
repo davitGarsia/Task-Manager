@@ -40,7 +40,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     TestimonialsComponent,
     AuthorsComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    MainLayoutComponent,
+    SidenavFormComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatTabsModule,
     AuthModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatSidenavModule
   ]
 })
 
