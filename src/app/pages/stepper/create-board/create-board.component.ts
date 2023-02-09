@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ControlProjectsService } from 'src/app/core/services/control-projects.service';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 
 @Component({
@@ -15,7 +16,8 @@ import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 export class CreateBoardComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
-    private stepperService: StepperNextService
+    private stepperService: StepperNextService,
+    private controlProjectsService: ControlProjectsService
   ) {}
 
   ngOnInit(): void {}
@@ -50,5 +52,10 @@ export class CreateBoardComponent implements OnInit {
     setTimeout(() => {
       this.stepperService.changeToLinear();
     }, 500);
+
+    // Create Board
+    this.controlProjectsService.addBoard(this.boardFormGroup.value).subscribe({
+      next: (res) => console.log(res),
+    });
   }
 }
