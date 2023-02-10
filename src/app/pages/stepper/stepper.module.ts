@@ -16,7 +16,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
-import {MatLegacyChipsModule} from "@angular/material/legacy-chips";
 
 @NgModule({
   declarations: [
@@ -26,21 +25,20 @@ import {MatLegacyChipsModule} from "@angular/material/legacy-chips";
     CreateIssueTypesComponent,
     AddUsersComponent,
   ],
-    imports: [
-        CommonModule,
-        StepperRoutingModule,
-        MatStepperModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        MatIconModule,
-        MatLegacyChipsModule,
-    ],
+  imports: [
+    CommonModule,
+    StepperRoutingModule,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatIconModule,
+  ],
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,

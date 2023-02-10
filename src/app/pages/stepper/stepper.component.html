@@ -1,11 +1,13 @@
 <!-- <button mat-raised-button (click)="isEditable = !isEditable">
   {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
-</button> -->
+</button>
+
+-->
 
 <mat-stepper
   #stepper
-  class="stepper"
   [linear]="linear | async"
+  class="stepper"
   [selectedIndex]="nextStepOpen$ | async"
 >
   <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
