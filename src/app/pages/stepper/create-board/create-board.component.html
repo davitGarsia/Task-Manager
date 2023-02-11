@@ -1,23 +1,70 @@
 <form [formGroup]="boardFormGroup" class="flex step-form-field">
   <div class="margin-auto">
     <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
+      <mat-label>Board Name</mat-label>
       <input matInput formControlName="name" placeholder="" required />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Description</mat-label>
+      <mat-label>Board Description</mat-label>
       <input matInput formControlName="description" placeholder="" required />
     </mat-form-field>
 
-    <div formGroupName="columns" class="">
+    <!-- <mat-form-field> </mat-form-field> -->
+
+    <p>Todo Column</p>
+    <div formGroupName="todoColumn">
       <mat-form-field appearance="fill" class="step-form-field">
         <mat-label>Column name</mat-label>
-        <input matInput formControlName="name" placeholder="" required />
+        <input matInput formControlName="todoColName" placeholder="" required />
       </mat-form-field>
       <mat-form-field appearance="fill" class="step-form-field">
         <mat-label>Column description</mat-label>
-        <input matInput formControlName="description" placeholder="" required />
+        <input
+          matInput
+          formControlName="todoColDescription"
+          placeholder=""
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <p>In Progress Column</p>
+    <div formGroupName="inProgressColumn">
+      <mat-form-field appearance="fill" class="step-form-field">
+        <mat-label>Column name</mat-label>
+        <input
+          matInput
+          formControlName="progressColName"
+          placeholder=""
+          required
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="step-form-field">
+        <mat-label>Column description</mat-label>
+        <input
+          matInput
+          formControlName="progressColDescription"
+          placeholder=""
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <p>Done Column</p>
+    <div formGroupName="doneColumn">
+      <mat-form-field appearance="fill" class="step-form-field">
+        <mat-label>Column name</mat-label>
+        <input matInput formControlName="doneColName" placeholder="" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="step-form-field">
+        <mat-label>Column description</mat-label>
+        <input
+          matInput
+          formControlName="doneColDescription"
+          placeholder=""
+          required
+        />
       </mat-form-field>
     </div>
 

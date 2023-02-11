@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ControlProjectsService } from 'src/app/core/services/control-projects.service';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 
 @Component({
@@ -15,7 +16,8 @@ import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 export class CreateBoardComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
-    private stepperService: StepperNextService
+    private stepperService: StepperNextService,
+    private controlProjectsService: ControlProjectsService
   ) {}
 
   ngOnInit(): void {}
@@ -24,16 +26,28 @@ export class CreateBoardComponent implements OnInit {
     name: ['', Validators.required],
     description: ['', Validators.required],
     position: 0,
-    columns: this._formBuilder.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
+    todoColumn: this._formBuilder.group({
+      todoColName: ['', Validators.required],
+      todoColDescription: ['', Validators.required],
       position: 0,
-      boardId: 0,
       taskStatus: 'ToDo',
+    }),
+    inProgressColumn: this._formBuilder.group({
+      progressColName: ['', Validators.required],
+      progressColDescription: ['', Validators.required],
+      position: 1,
+      taskStatus: 'In Progress',
+    }),
+    doneColumn: this._formBuilder.group({
+      doneColName: ['', Validators.required],
+      doneColDescription: ['', Validators.required],
+      position: 2,
+      taskStatus: 'Done',
     }),
   });
 
   onSubmit() {
+    // Next btn
     this.stepperService.changeFromLinear();
 
     this.stepperService.openNextStep(2);
@@ -41,8 +55,15 @@ export class CreateBoardComponent implements OnInit {
     setTimeout(() => {
       this.stepperService.changeToLinear();
     }, 1000);
+
+    //Creating Board
+    console.log(this.boardFormGroup.value);
+    this.controlProjectsService.addBoard(this.boardFormGroup.value).subscribe({
+      next: (res) => console.log(res),
+    });
   }
 
+  // Prev Btn
   goBack() {
     this.stepperService.changeFromLinear();
     this.stepperService.openNextStep(0);

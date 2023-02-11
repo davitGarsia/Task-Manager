@@ -19,11 +19,11 @@ import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    StepperComponent,
     CreateProjectComponent,
     CreateBoardComponent,
     CreateIssueTypesComponent,
     AddUsersComponent,
+    StepperComponent,
   ],
   imports: [
     CommonModule,
