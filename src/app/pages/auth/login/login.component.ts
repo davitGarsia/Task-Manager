@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   FormControl,
   FormGroup,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../../core/services';
-import { Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import {AuthService} from '../../../core/services';
+import {Router} from '@angular/router';
+import {Subject, takeUntil} from 'rxjs';
+import {CookieService} from "../../../core/services/cookie.service";
 
 @Component({
   selector: 'app-login',
@@ -25,9 +26,15 @@ export class LoginComponent implements OnInit {
   sub$ = new Subject();
   validateForm!: UntypedFormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private cookieService: CookieService,
+  ) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   submit() {
     this.form.markAllAsTouched();
@@ -36,6 +43,10 @@ export class LoginComponent implements OnInit {
       .login(this.form.value)
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
+        this.cookieService.setCookie('accessToken', res.token.accessToken, 1);
+        this.cookieService.setCookie('refreshToken', res.token.refreshToken, 1);
+
+        localStorage.setItem('user', JSON.stringify(res.user));
         this.router.navigate(['/stepper']);
       });
   }

@@ -26,6 +26,7 @@ specifiers:
   karma-coverage: ~2.2.0
   karma-jasmine: ~5.1.0
   karma-jasmine-html-reporter: ~2.0.0
+  ngx-cookie-service: ^15.0.0
   postcss: ^8.4.21
   rxjs: ~7.5.0
   tailwindcss: ^2.2.19
@@ -48,6 +49,7 @@ dependencies:
   '@fortawesome/fontawesome-svg-core': 6.3.0
   '@fortawesome/free-brands-svg-icons': 6.3.0
   '@fortawesome/free-solid-svg-icons': 6.3.0
+  ngx-cookie-service: 15.0.0_7ja4ey4czlmo7rvvxywvjqjcby
   rxjs: 7.5.7
   tslib: 2.5.0
   zone.js: 0.11.8
@@ -5755,6 +5757,17 @@ packages:
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
+
+  /ngx-cookie-service/15.0.0_7ja4ey4czlmo7rvvxywvjqjcby:
+    resolution: {integrity: sha512-KU1JCjfpDTvD6L0FhHN9W/oP3Sue8yMAAK6XY3h/MEhrPS7vx6t3+h0ulY8l8R/9d1cmlQVyTHn1Jd1Jdf5K+g==}
+    peerDependencies:
+      '@angular/common': ^15.0.0
+      '@angular/core': ^15.0.0
+    dependencies:
+      '@angular/common': 15.1.4_dvdedfppyzvqzripn7o7dhxzvi
+      '@angular/core': 15.1.4_rxjs@7.5.7+zone.js@0.11.8
+      tslib: 2.5.0
+    dev: false
 
   /nice-napi/1.0.2:
     resolution: {integrity: sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA==}

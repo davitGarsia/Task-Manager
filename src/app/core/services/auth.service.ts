@@ -12,13 +12,13 @@ import {CookieService} from "./cookie.service";
 export class AuthService extends BaseService {
 cookieService: CookieService = inject(CookieService);
 
-  get token(): string | null {
-    return localStorage.getItem('token');
-  }
-  get user(): User | null {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
-  }
+  // get token(): string | null {
+  //   return localStorage.getItem('token');
+  // }
+  // get user(): User | null {
+  //   const user = localStorage.getItem('user');
+  //   return user ? JSON.parse(user) : null;
+  // }
 
   login(payload: Login): Observable<LoginResponse>  {
     return this.post<LoginResponse>('auth/login', payload)
@@ -50,12 +50,15 @@ cookieService: CookieService = inject(CookieService);
   }
 
   refreshToken(refreshToken:string): Observable<LoginResponse> {
-    return this.post<LoginResponse>('auth/refresh', {refreshToken});
+    return this.post<LoginResponse>('auth/token', {refreshToken});
   }
 
   getRefreshToken(): string | null {
     return localStorage.getItem('refreshToken');
 
+  }
+  checkEmail(email: string): Observable<any> {
+    return this.post('auth/checkEmail', {email});
   }
 
   login2(payload: Login): Observable<LoginResponse>  {
@@ -72,5 +75,11 @@ cookieService: CookieService = inject(CookieService);
           }
         )
       )
+  }
+  getToken(): string | null {
+return localStorage.getItem('token');
+  }
+  isAuthenticated(): boolean {
+    return !!this.getToken();
   }
 }

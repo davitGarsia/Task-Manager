@@ -15,9 +15,8 @@ export class CookieService {
       date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
       expires = "; expires=" + date.toUTCString();
     }
-    const domain = window.location.hostname;
-    document.cookie = name + "=" + (value || "") + expires + ";" +
-      " path=/" + "; SameSite=Strict" + "; Secure" + ";Domain=." + domain;
+
+    document.cookie = name + "=" + (value || "") + expires + ";" + " path=/";
   }
 
   getCookie(name: string) {

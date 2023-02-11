@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/services";
 import {Router} from "@angular/router";
 import {checkPasswordValidator} from "../../../core/validators/form.validators";
+import {Subject, takeUntil} from "rxjs";
 
 
 @Component({
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
   );
 
-
+  sub$ = new Subject();
 
   constructor(
     private authService: AuthService,
@@ -38,6 +39,7 @@ export class RegisterComponent implements OnInit {
     this.form.markAllAsTouched()
     if (this.form.invalid) return
     this.authService.register(this.form.value)
+      .pipe(takeUntil(this.sub$))
       .subscribe(res => {
         this.router.navigate(['/auth/login']);
         console.log(res)
