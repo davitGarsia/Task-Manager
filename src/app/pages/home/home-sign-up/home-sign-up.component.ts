@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {ToggleSignupService} from "../../../core/services";
+import {AuthService, ToggleSignupService} from "../../../core/services";
 
 @Component({
   selector: 'app-home-sign-up',
@@ -12,7 +12,7 @@ export class HomeSignUpComponent {
 
   constructor(
     private router: Router,
-    public toggleSignup: ToggleSignupService
+    public toggleSignup: ToggleSignupService,
   ) { }
 
   email: FormGroup = new FormGroup({
@@ -32,7 +32,7 @@ export class HomeSignUpComponent {
 
     let email = this.email.get('email')?.value
 
-    this.email.valid ? this.router.navigate(['../auth'], {queryParams: {email: email}}) : null ;
+    this.email.valid ? this.router.navigate(['../auth/register'], {queryParams: {email: email}}) : null ;
   }
 
   focus() {
