@@ -11,21 +11,15 @@
     </mat-form-field>
 
     <!-- <mat-form-field> </mat-form-field> -->
-
     <p>Todo Column</p>
     <div formGroupName="todoColumn">
       <mat-form-field appearance="fill" class="step-form-field">
         <mat-label>Column name</mat-label>
-        <input matInput formControlName="todoColName" placeholder="" required />
+        <input matInput formControlName="name" placeholder="" required />
       </mat-form-field>
       <mat-form-field appearance="fill" class="step-form-field">
         <mat-label>Column description</mat-label>
-        <input
-          matInput
-          formControlName="todoColDescription"
-          placeholder=""
-          required
-        />
+        <input matInput formControlName="description" placeholder="" required />
       </mat-form-field>
     </div>
 
@@ -33,21 +27,11 @@
     <div formGroupName="inProgressColumn">
       <mat-form-field appearance="fill" class="step-form-field">
         <mat-label>Column name</mat-label>
-        <input
-          matInput
-          formControlName="progressColName"
-          placeholder=""
-          required
-        />
+        <input matInput formControlName="name" placeholder="" required />
       </mat-form-field>
       <mat-form-field appearance="fill" class="step-form-field">
         <mat-label>Column description</mat-label>
-        <input
-          matInput
-          formControlName="progressColDescription"
-          placeholder=""
-          required
-        />
+        <input matInput formControlName="description" placeholder="" required />
       </mat-form-field>
     </div>
 
@@ -55,16 +39,11 @@
     <div formGroupName="doneColumn">
       <mat-form-field appearance="fill" class="step-form-field">
         <mat-label>Column name</mat-label>
-        <input matInput formControlName="doneColName" placeholder="" required />
+        <input matInput formControlName="name" placeholder="" required />
       </mat-form-field>
       <mat-form-field appearance="fill" class="step-form-field">
         <mat-label>Column description</mat-label>
-        <input
-          matInput
-          formControlName="doneColDescription"
-          placeholder=""
-          required
-        />
+        <input matInput formControlName="description" placeholder="" required />
       </mat-form-field>
     </div>
 
@@ -74,3 +53,6 @@
     </div>
   </div>
 </form>
+
+<!--
+     -->

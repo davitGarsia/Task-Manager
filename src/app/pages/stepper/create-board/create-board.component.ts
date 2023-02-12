@@ -26,25 +26,52 @@ export class CreateBoardComponent implements OnInit {
     name: ['', Validators.required],
     description: ['', Validators.required],
     position: 0,
+
     todoColumn: this._formBuilder.group({
-      todoColName: ['', Validators.required],
-      todoColDescription: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
       position: 0,
       taskStatus: 'ToDo',
     }),
+
     inProgressColumn: this._formBuilder.group({
-      progressColName: ['', Validators.required],
-      progressColDescription: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
       position: 1,
       taskStatus: 'In Progress',
     }),
+
     doneColumn: this._formBuilder.group({
-      doneColName: ['', Validators.required],
-      doneColDescription: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
       position: 2,
       taskStatus: 'Done',
     }),
   });
+
+  get name() {
+    return this.boardFormGroup.get('name')?.value;
+  }
+
+  get description() {
+    return this.boardFormGroup.get('description')?.value;
+  }
+
+  get position() {
+    return this.boardFormGroup.get('position')?.value;
+  }
+
+  get todoCol() {
+    return this.boardFormGroup.get('todoColumn')?.value;
+  }
+
+  get progressCol() {
+    return this.boardFormGroup.get('inProgressColumn')?.value;
+  }
+
+  get doneCol() {
+    return this.boardFormGroup.get('doneColumn')?.value;
+  }
 
   onSubmit() {
     // Next btn
@@ -57,8 +84,20 @@ export class CreateBoardComponent implements OnInit {
     }, 1000);
 
     //Creating Board
+
+    const board = {
+      name: this.name,
+      description: this.description,
+      position: this.position,
+      columns: [
+        Object.entries(this.todoCol!),
+        Object.entries(this.progressCol!),
+        Object.entries(this.doneCol!),
+      ],
+    };
+
     console.log(this.boardFormGroup.value);
-    this.controlProjectsService.addBoard(this.boardFormGroup.value).subscribe({
+    this.controlProjectsService.addBoard(board).subscribe({
       next: (res) => console.log(res),
     });
   }
