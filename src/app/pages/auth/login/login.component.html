@@ -1,20 +1,19 @@
-
-<div class="container" onclick="onclick">
+<div class="container" [ngClass]="mobile ? 'mobile' : ''" onclick="onclick">
   <div class="top"></div>
   <div class="bottom"></div>
   <div class="center">
     <h2>Please Sign In</h2>
     <form [formGroup]="form" (ngSubmit)="submit()">
+      <div *ngIf="isRegistered" class="validationMessage">User with this Email already exists! Please sign in.</div>
       <input type="email" placeholder="email" id="email" class="inputs" formControlName="email"/>
       <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
-       class="validationMessage">Please enter Email!</div>
-      <input type="password" placeholder="password" id="password" class="inputs" formControlName="password"/>
+           class="validationMessage">Please enter Email!</div>
+      <input type="password" placeholder="password" id="password" class="inputs" formControlName="password" #password/>
       <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
            class="validationMessage">Please enter Password!</div>
       <input type="submit" value="Submit" class="inputs subBtn"/>
       <h4>Don't have an account? <a routerLink="/register"> Register</a></h4>
     </form>
-
   </div>
 </div>
 

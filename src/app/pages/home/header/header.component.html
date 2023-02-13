@@ -1,13 +1,12 @@
-
 <div class="header" id="header">
   <div class="container" [formGroup]="email">
     <h1>
-      One app to <br><br> manage all Projects.
+      One app to <br> manage all Projects.
     </h1>
     <p>
       All of your work in one place
     </p>
-    <input type="email" placeholder="Enter your work email" formControlName="email" (focus)="focus()">
+    <input type="email" placeholder="Enter your work email" formControlName="email" (focus)="focus()"  (keyup.enter)="submit()">
     <p style="color: red; margin: -10px 0 20px 0; font-size: 1rem;"
        *ngIf="touched && email.get('email')?.invalid && email.get('email')?.touched && !email.get('email')?.getError('email')">
       * Email is required!

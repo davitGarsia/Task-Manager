@@ -1,21 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {
   FormControl,
   FormGroup,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import {AuthService} from '../../../core/services';
-import {Router} from '@angular/router';
-import {Subject, takeUntil} from 'rxjs';
-import {CookieService} from "../../../core/services/cookie.service";
+import { AuthService } from '../../../core/services';
+import {ActivatedRoute, Router} from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements AfterViewInit {
   form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -29,11 +28,20 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private cookieService: CookieService,
-  ) {
-  }
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {
+  isRegistered: boolean = false;
+  mobile: boolean = false;
+
+  @ViewChild('password') password!: ElementRef;
+
+  ngAfterViewInit(): void {
+    window.innerWidth <= 1024 ? this.mobile = true : this.mobile = false;
+    this.route.queryParamMap.subscribe(params => {
+      params.get('email') ? (this.form.get('email')?.setValue(params.get('email')), this.isRegistered = true) : null;
+    });
+    this.isRegistered ? this.password.nativeElement.focus() : null;
   }
 
   submit() {
@@ -43,10 +51,6 @@ export class LoginComponent implements OnInit {
       .login(this.form.value)
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
-        this.cookieService.setCookie('accessToken', res.token.accessToken, 1);
-        this.cookieService.setCookie('refreshToken', res.token.refreshToken, 1);
-
-        localStorage.setItem('user', JSON.stringify(res.user));
         this.router.navigate(['/stepper']);
       });
   }
