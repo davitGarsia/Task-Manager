@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 //თუ მომხმარებელი ავტორიზირებულია ჰოუმ პეიჯის ნაცვლად პირდაპირ აპლიკაციაზე გადაამისამართებს
@@ -7,6 +7,7 @@ import {RouterModule, Routes} from '@angular/router';
 let isAuthorised = true;
 
 import {HomeComponent} from "./pages/home/home.component";
+import {PageNotFoundComponent} from "./pages/404-error/page-not-found/page-not-found.component";
 
 
 const routes: Routes = [
@@ -37,12 +38,12 @@ const routes: Routes = [
         path: '',
         loadChildren: () =>
           import('./pages/stepper/stepper.module').then((m) => m.StepperModule),
-      },
-
-    ]
-
-
+      }]
   },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
