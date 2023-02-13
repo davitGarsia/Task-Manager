@@ -10,7 +10,7 @@ import {CookieService} from "./cookie.service";
   providedIn: 'root'
 })
 export class AuthService extends BaseService {
-cookieService: CookieService = inject(CookieService);
+  cookieService: CookieService = inject(CookieService);
 
   // get token(): string | null {
   //   return localStorage.getItem('token');
@@ -20,7 +20,7 @@ cookieService: CookieService = inject(CookieService);
   //   return user ? JSON.parse(user) : null;
   // }
 
-  login(payload: Login): Observable<LoginResponse>  {
+  login(payload: Login): Observable<LoginResponse> {
     return this.post<LoginResponse>('auth/login', payload)
       .pipe(
         tap((response: LoginResponse) => {
@@ -31,54 +31,62 @@ cookieService: CookieService = inject(CookieService);
       )
   }
 
-  register(payload: Register): Observable<User>  {
+  register(payload: Register): Observable<User> {
     return this.post<User>('auth/signup', payload);
   }
 
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
+
   setUser(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  getUser() {
+   return  JSON.parse(localStorage.getItem('user')!)
   }
 
   logout() {
     localStorage.clear();
   }
+
   signOut() {
     return this.post('auth/signout', {});
   }
 
-  refreshToken(refreshToken:string): Observable<LoginResponse> {
+  refreshToken(refreshToken: string): Observable<LoginResponse> {
     return this.post<LoginResponse>('auth/token', {refreshToken});
   }
 
   getRefreshToken(): string | null {
     return localStorage.getItem('refreshToken');
-
   }
+
   checkEmail(email: string): Observable<any> {
     return this.post('auth/checkEmail', {email});
   }
 
-  login2(payload: Login): Observable<LoginResponse>  {
+  login2(payload: Login): Observable<LoginResponse> {
     return this.post<LoginResponse>('auth/login', payload)
       .pipe(
         tap((response: LoginResponse) => {
-          const expiereTime = 24*60*60*1000;
-          const cookieExpire:any = new Date(Date.now() + expiereTime);
+            const expiereTime = 24 * 60 * 60 * 1000;
+            const cookieExpire: any = new Date(Date.now() + expiereTime);
 
 
-          this.cookieService.setCookie('token', response.token.accessToken, cookieExpire);
-          this.cookieService.setCookie('refreshToken', response.token.refreshToken, cookieExpire );
-          this.setUser(response.user);
+            this.cookieService.setCookie('token', response.token.accessToken, cookieExpire);
+            this.cookieService.setCookie('refreshToken', response.token.refreshToken, cookieExpire);
+            this.setUser(response.user);
           }
         )
       )
   }
+
   getToken(): string | null {
-return localStorage.getItem('token');
+    return localStorage.getItem('token');
   }
+
   isAuthenticated(): boolean {
     return !!this.getToken();
   }

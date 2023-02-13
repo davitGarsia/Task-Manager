@@ -1,6 +1,8 @@
 @import "../../../../mixins";
 
 footer {
+  position: relative;
+  z-index: 0;
   padding: 20px 0;
   width: 100%;
   background: rgb(133, 33, 243);

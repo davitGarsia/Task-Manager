@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {AuthService, ToggleSignupService} from "../../../core/services";
+import {CheckMailService, ToggleSignupService} from "../../../core/services";
 
 @Component({
   selector: 'app-home-sign-up',
@@ -13,6 +13,7 @@ export class HomeSignUpComponent {
   constructor(
     private router: Router,
     public toggleSignup: ToggleSignupService,
+    private checkMail: CheckMailService
   ) { }
 
   email: FormGroup = new FormGroup({
@@ -20,6 +21,13 @@ export class HomeSignUpComponent {
   })
 
   touched: boolean = false;
+  exists?: boolean;
+
+  checkEmail(email: string) {
+    this.checkMail.checkMail({email: email}).subscribe(res => {
+      res.exists ? this.router.navigate(['../auth/login'], {queryParams: {email: email}}) : this.router.navigate(['../auth/register'], {queryParams: {email: email}})
+    })
+  }
 
   onSubmit() {
     this.touched = true;
@@ -32,7 +40,9 @@ export class HomeSignUpComponent {
 
     let email = this.email.get('email')?.value
 
-    this.email.valid ? this.router.navigate(['../auth/register'], {queryParams: {email: email}}) : null ;
+    if(this.email.valid) {
+      this.checkEmail(email);
+    }
   }
 
   focus() {

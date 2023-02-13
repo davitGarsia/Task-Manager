@@ -1,6 +1,6 @@
 import {Component, Inject, Input, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {ToggleSignupService} from "../../../core/services";
+import {AuthService, ToggleSignupService} from "../../../core/services";
 import {DOCUMENT} from "@angular/common";
 import {fromEvent, Observable} from "rxjs";
 
@@ -16,7 +16,8 @@ export class NavigationComponent implements OnDestroy, OnInit {
   constructor(
     public router: Router,
     private toggleSignup: ToggleSignupService,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    public auth: AuthService
   ) {
   }
 
