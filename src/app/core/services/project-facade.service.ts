@@ -9,4 +9,7 @@ export class ProjectFacadeService extends BaseService {
   createProject(payload: any): Observable<any> {
     return this.post<any>('project', payload);
   }
+  getProjects(): Observable<any> {
+    return this.get<any>('project');
+  }
 }

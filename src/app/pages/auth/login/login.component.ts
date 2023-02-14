@@ -8,6 +8,8 @@ import {
 import { AuthService } from '../../../core/services';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import {CookieService} from "../../../core/services/cookie.service";
+
 
 @Component({
   selector: 'app-login',
@@ -27,6 +29,7 @@ export class LoginComponent implements AfterViewInit {
 
   constructor(
     private authService: AuthService,
+    private cookieService: CookieService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -53,5 +56,6 @@ export class LoginComponent implements AfterViewInit {
       .subscribe((res) => {
         this.router.navigate(['/stepper']);
       });
+
   }
 }

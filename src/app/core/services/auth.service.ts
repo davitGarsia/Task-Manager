@@ -26,6 +26,7 @@ export class AuthService extends BaseService {
         tap((response: LoginResponse) => {
             this.setToken(response.token.accessToken);
             this.setUser(response.user);
+            this.setUserInCookie(response.user, response);
           }
         )
       )
@@ -43,8 +44,16 @@ export class AuthService extends BaseService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
+  setUserInCookie(user: User, Response: LoginResponse) {
+    const expiereTime = 24 * 60 * 60 * 1000;
+    const cookieExpire: any = new Date(Date.now() + expiereTime);
+    this.cookieService.setCookie('user', JSON.stringify(user), cookieExpire);
+    this.cookieService.setCookie('token', Response.token.accessToken, cookieExpire);
+    this.cookieService.setCookie('refreshToken', Response.token.refreshToken, cookieExpire);
+  }
+
   getUser() {
-   return  JSON.parse(localStorage.getItem('user')!)
+    return JSON.parse(localStorage.getItem('user')!)
   }
 
   logout() {

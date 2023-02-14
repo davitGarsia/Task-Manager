@@ -5,26 +5,44 @@
     <h2>Please Sign Up</h2>
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="inpField">
-        <input type="text" id="firstName" name="first name" placeholder="First Name" formControlName="firstName" class="inputs"/>
-        <div *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched"
-             class="validationMessage">Please enter First Name!</div>
+        <input type="text" id="firstName" name="first name" placeholder="First Name" formControlName="firstName"
+               class="inputs"/>
+        <div *ngIf="form.get('firstName')?.getError('required') && form.get('firstName')?.touched"
+             class="validationMessage">First Name required!</div>
+        <div *ngIf="form.get('firstName')?.hasError('whitespace') && form.get('firstName')?.touched"
+             class="validationMessage">Please enter valid data without spaces!</div>
       </div>
       <div class="inpField">
 
-        <input type="text" id="lastName" name="last name" placeholder="Last Name" formControlName="lastName" class="inputs" />
+        <input type="text" id="lastName" name="last name" placeholder="Last Name" formControlName="lastName"
+               class="inputs"/>
         <div *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched"
              class="validationMessage">Please enter Last Name!</div>
+        <div *ngIf="form.get('lastName')?.hasError('whitespace') && form.get('lastName')?.touched"
+             class="validationMessage">Please enter valid data without spaces!</div>
       </div>
-      <input type="email" placeholder="email" id="email" class="inputs" formControlName="email" />
-      <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
-           class="validationMessage">Please enter Email!</div>
-      <input type="password" placeholder="Enter your password" id="password" class="inputs" formControlName="password"/>
-      <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
-           class="validationMessage">Please enter Password!</div>
 
-      <input type="password" id="confirmPassword" name="password" placeholder="Confirm your password" formControlName="confirmPassword" class="inputs"/>
-      <div *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched" class="validationMessage">Please enter confirmation Password!</div>
-      <!--      <div *ngIf="form.get">Password not match</div>-->
+      <input type="email" placeholder="email" id="email" class="inputs" formControlName="email"/>
+      <div *ngIf="form.get('email')?.getError('email') && form.get('email')?.touched"
+           class="validationMessage">Please enter Email!</div>
+      <div *ngIf="form.get('email')?.getError('required') && form.get('email')?.touched"
+           class="validationMessage">Email required!</div>
+
+      <input type="password" placeholder="Enter your password" id="password" class="inputs" formControlName="password"/>
+      <div *ngIf="form.get('password')?.getError('required') && form.get('password')?.touched"
+           class="validationMessage">Password required!</div>
+      <div *ngIf="form.get('password')?.getError('whitespace') && form.get('password')?.touched"
+           class="validationMessage">Please enter valid data without spaces!</div>
+      <div *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched" class="validationMessage">Enter min 6 symbol</div>
+
+      <input type="password" id="confirmPassword" name="password" placeholder="Confirm your password"
+             formControlName="confirmPassword" class="inputs"/>
+      <div *ngIf="form.get('confirmPassword')?.getError('required') && form.get('confirmPassword')?.touched"
+           class="validationMessage">Please enter confirmation Password!</div>
+      <div *ngIf="form.get('confirmPassword')?.hasError('whitespace') && form.get('confirmPassword')?.touched"
+           class="validationMessage">Please enter valid data without spaces!</div>
+      <div *ngIf="this.form.errors?.['notSame']&& form.get('confirmPassword')?.touched" class="validationMessage">password not match!</div>
+
       <input type="submit" value="Submit" class="inputs subBtn"/>
       <h4>Already have a account? <a routerLink="/login">Login</a></h4>
     </form>

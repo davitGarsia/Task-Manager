@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UsersFacadeService} from "../../core/services/facade/users-facade.service";
 import {UsersService} from "../../core/services/users.service";
 import {User} from "../../core/interfaces";
+import {ProjectFacadeService} from "../../core/services/project-facade.service";
 
 @Component({
   selector: 'app-application',
@@ -13,7 +14,9 @@ export class ApplicationComponent implements OnInit {
   constructor(
     private userService: UsersFacadeService,
     private projectService: UsersFacadeService,
-    private usersServices: UsersService
+    private usersServices: UsersService,
+    private projectFacadeService: ProjectFacadeService
+
 
   ) { }
 users: User[] = [];
@@ -21,11 +24,21 @@ users: User[] = [];
     this.usersServices.getUsers().subscribe({
       next: (res) => {
         console.log(res);
-        this.users = res;
-        localStorage.setItem('users', JSON.stringify(res));
       }
-    })
+    });
+    console.log(this.users);
   }
+
+
+getProjects() {
+  this.projectFacadeService.getProjects().subscribe({
+    next: (res) => {
+      console.log(res);
+    }
+  });
+  };
+
+
 
 
 
