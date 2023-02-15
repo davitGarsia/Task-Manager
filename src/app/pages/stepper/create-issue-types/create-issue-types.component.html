@@ -12,7 +12,26 @@
 
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Icon</mat-label>
-      <input matInput formControlName="icon" placeholder="" required />
+      <mat-select formControlName="icon">
+        <mat-option value="icon-1">
+          <span class="material-icons">task_alt</span>
+        </mat-option>
+        <mat-option value="icon-2">
+          <span class="material-icons">change_history</span>
+        </mat-option>
+        <mat-option value="icon-3">
+          <span class="material-icons">timeline</span>
+        </mat-option>
+        <mat-option value="icon-4">
+          <span class="material-icons">rebase_edit</span>
+        </mat-option>
+        <!-- <mat-option value="icon-5">
+          <span class="material-icons">magic_exchange</span>
+        </mat-option>
+        <mat-option value="icon-6">
+          <span class="material-icons">data_check</span>
+        </mat-option> -->
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
