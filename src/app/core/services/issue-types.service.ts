@@ -1,22 +1,19 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {IssueType} from "../interfaces";
-import {Observable} from "rxjs";
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { IssueType } from '../interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IssueTypesService {
-
   apiUrl = environment.apiUrl + 'issue-type';
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
-  setIssueType(issueType: IssueType) {
-    return this.http.post(this.apiUrl, issueType)
+  setIssueType(issueType: any) {
+    return this.http.post(this.apiUrl, issueType);
   }
 
   getIssueType(): Observable<any> {

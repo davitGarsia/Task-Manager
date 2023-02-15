@@ -10,8 +10,104 @@
       <input matInput formControlName="description" placeholder="" required />
     </mat-form-field>
 
+    <!---->
+    <div formArrayName="columns" class="step-form-field">
+      <div *ngFor="let column of colsArray.controls; let i = index">
+        <div [formGroupName]="i">
+          <mat-form-field class="step-form-field">
+            <input
+              matInput
+              type="text"
+              formControlName="name"
+              placeholder="Column name"
+            />
+          </mat-form-field>
+          <mat-form-field matInput class="step-form-field">
+            <input
+              matInput
+              type="text"
+              formControlName="description"
+              placeholder="Column description"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="step-form-field">
+            <mat-label>Task Status</mat-label>
+            <mat-select formControlName="taskStatus">
+              <mat-option value="ToDo">Todo</mat-option>
+              <mat-option value="InProgress">In Progress</mat-option>
+              <mat-option value="Done">Done</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <button type="button" mat-button color="primary" (click)="addCol()">
+        Add Column
+      </button>
+    </div>
+
     <!-- <mat-form-field> </mat-form-field> -->
-    <p>Todo Column</p>
+    <!-- <p>Todo Column</p>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Column name</mat-label>
+      <input matInput formControlName="todoColName" placeholder="" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Column description</mat-label>
+      <input
+        matInput
+        formControlName="todoColDescription"
+        placeholder=""
+        required
+      />
+    </mat-form-field>
+
+    <p>In Progress Column</p>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Column name</mat-label>
+      <input
+        matInput
+        formControlName="progressColName"
+        placeholder=""
+        required
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Column description</mat-label>
+      <input
+        matInput
+        formControlName="progressColDescription"
+        placeholder=""
+        required
+      />
+    </mat-form-field>
+
+    <p>Done Column</p>
+
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Column name</mat-label>
+      <input matInput formControlName="doneColName" placeholder="" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="step-form-field">
+      <mat-label>Column description</mat-label>
+      <input
+        matInput
+        formControlName="doneColDescription"
+        placeholder=""
+        required
+      />
+    </mat-form-field> -->
+
+    <div>
+      <button mat-button matStepperPrevious (click)="goBack()">Back</button>
+      <button mat-button matStepperNext (click)="onSubmit()">Next</button>
+    </div>
+  </div>
+</form>
+
+<!--<p>Todo Column</p>
     <div formGroupName="todoColumn">
       <mat-form-field appearance="fill" class="step-form-field">
         <mat-label>Column name</mat-label>
@@ -46,13 +142,29 @@
         <input matInput formControlName="description" placeholder="" required />
       </mat-form-field>
     </div>
-
-    <div>
-      <button mat-button matStepperPrevious (click)="goBack()">Back</button>
-      <button mat-button matStepperNext (click)="onSubmit()">Next</button>
-    </div>
-  </div>
-</form>
+     -->
 
 <!--
+      <div formArrayName="columns">
+      <div *ngFor="let column of colsArray.controls; let i = index">
+        <ng-container formGroupName="column">
+          <mat-form-field>
+            <input matInput type="text" formControlName="colName" />
+          </mat-form-field>
+          <mat-form-field matInput>
+            <input matInput type="text" formControlName="colDescription" />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" formControlName="position" />
+          </mat-form-field>
+          <mat-form-field matInput>
+            <mat-select>
+              <mat-option value="ToDo">Todo</mat-option>
+              <mat-option value="In Progress">In Progress</mat-option>
+              <mat-option value="Done">Done</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+      </div>
+    </div>
      -->

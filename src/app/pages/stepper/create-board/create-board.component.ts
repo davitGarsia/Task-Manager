@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { BoardService } from 'src/app/core/services/board.service';
 import { ControlProjectsService } from 'src/app/core/services/control-projects.service';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 
@@ -17,7 +19,7 @@ export class CreateBoardComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private stepperService: StepperNextService,
-    private controlProjectsService: ControlProjectsService
+    private boardService: BoardService
   ) {}
 
   ngOnInit(): void {}
@@ -27,50 +29,28 @@ export class CreateBoardComponent implements OnInit {
     description: ['', Validators.required],
     position: 0,
 
-    todoColumn: this._formBuilder.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      position: 0,
-      taskStatus: 'ToDo',
-    }),
-
-    inProgressColumn: this._formBuilder.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      position: 1,
-      taskStatus: 'In Progress',
-    }),
-
-    doneColumn: this._formBuilder.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      position: 2,
-      taskStatus: 'Done',
-    }),
+    columns: this._formBuilder.array([]),
   });
 
-  get name() {
-    return this.boardFormGroup.get('name')?.value;
+  get colsArray() {
+    return <FormArray>this.boardFormGroup.get('columns');
   }
 
-  get description() {
-    return this.boardFormGroup.get('description')?.value;
-  }
-
-  get position() {
-    return this.boardFormGroup.get('position')?.value;
-  }
-
-  get todoCol() {
-    return this.boardFormGroup.get('todoColumn')?.value;
-  }
-
-  get progressCol() {
-    return this.boardFormGroup.get('inProgressColumn')?.value;
-  }
-
-  get doneCol() {
-    return this.boardFormGroup.get('doneColumn')?.value;
+  addCol() {
+    this.colsArray.push(
+      new FormGroup(
+        {
+          name: new FormControl('', Validators.required),
+          description: new FormControl('', Validators.required),
+          position: new FormControl(
+            this.colsArray.length + 1,
+            Validators.required
+          ),
+          taskStatus: new FormControl('', Validators.required),
+        },
+        Validators.required
+      )
+    );
   }
 
   onSubmit() {
@@ -85,19 +65,8 @@ export class CreateBoardComponent implements OnInit {
 
     //Creating Board
 
-    const board = {
-      name: this.name,
-      description: this.description,
-      position: this.position,
-      columns: [
-        Object.entries(this.todoCol!),
-        Object.entries(this.progressCol!),
-        Object.entries(this.doneCol!),
-      ],
-    };
-
     console.log(this.boardFormGroup.value);
-    this.controlProjectsService.addBoard(board).subscribe({
+    this.boardService.addBoard(this.boardFormGroup.value).subscribe({
       next: (res) => console.log(res),
     });
   }

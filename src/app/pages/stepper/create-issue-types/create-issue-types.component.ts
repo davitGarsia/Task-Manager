@@ -1,10 +1,18 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { map, Observable, startWith } from 'rxjs';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
+import { IssueTypeService } from 'src/app/core/services/issue-type.service';
+import { IssueTypesService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-create-issue-types',
@@ -14,7 +22,8 @@ import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 export class CreateIssueTypesComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
-    private stepperService: StepperNextService
+    private stepperService: StepperNextService,
+    private issueTypesService: IssueTypesService
   ) {}
 
   issueFormGroup = this._formBuilder.group({
@@ -24,11 +33,7 @@ export class CreateIssueTypesComponent implements OnInit {
     color: ['', Validators.required],
     status: ['', Validators.required],
     tasks: ['', Validators.required],
-    issueColumns: this._formBuilder.group({
-      colName: ['', Validators.required],
-      filedName: ['', Validators.required],
-      issueID: ['', Validators.required],
-    }),
+    columns: this._formBuilder.array([]),
   });
   isEditable = true;
 
@@ -81,6 +86,24 @@ export class CreateIssueTypesComponent implements OnInit {
     );
   }
 
+  // Adding Issue Type
+  get colsArray() {
+    return <FormArray>this.issueFormGroup.get('columns');
+  }
+
+  addCol() {
+    this.colsArray.push(
+      new FormGroup(
+        {
+          name: new FormControl('', Validators.required),
+          filedName: new FormControl('', Validators.required),
+          isRequired: new FormControl('', Validators.required),
+        },
+        Validators.required
+      )
+    );
+  }
+
   onSubmit() {
     this.stepperService.changeFromLinear();
 
@@ -89,6 +112,10 @@ export class CreateIssueTypesComponent implements OnInit {
     setTimeout(() => {
       this.stepperService.changeToLinear();
     }, 1000);
+
+    this.issueTypesService.setIssueType(this.issueFormGroup.value).subscribe({
+      next: (res) => console.log(res),
+    });
   }
 
   goBack() {

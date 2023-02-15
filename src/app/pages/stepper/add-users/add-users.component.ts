@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
+import { UsersService } from 'src/app/core/services/users.service';
 
 @Component({
   selector: 'app-add-users',
@@ -10,7 +11,8 @@ import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 export class AddUsersComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
-    private stepperService: StepperNextService
+    private stepperService: StepperNextService,
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {}
@@ -32,6 +34,11 @@ export class AddUsersComponent implements OnInit {
     setTimeout(() => {
       this.stepperService.changeToLinear();
     }, 1000);
+
+    //
+    this.usersService.setUser(this.usersFormGroup.value).subscribe({
+      next: (res) => console.log(res),
+    });
   }
 
   goBack() {
