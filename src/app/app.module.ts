@@ -9,6 +9,7 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 import {PageNotFoundComponent} from './pages/404-error/page-not-found/page-not-found.component';
 import { ProjectInterceptor } from './core/interceptors/project.interceptor';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
