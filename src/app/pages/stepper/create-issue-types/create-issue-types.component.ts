@@ -11,7 +11,7 @@ import { map, Observable, startWith } from 'rxjs';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
-import { IssueTypeService } from 'src/app/core/services/issue-type.service';
+
 import { IssueTypesService } from 'src/app/core/services';
 
 @Component({

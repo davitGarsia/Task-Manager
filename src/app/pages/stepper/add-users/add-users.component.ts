@@ -20,9 +20,9 @@ export class AddUsersComponent implements OnInit {
   usersFormGroup = this._formBuilder.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    idNumber: ['', Validators.required],
+    identityNumber: ['', Validators.required],
     email: ['', Validators.required],
-    mobNumber: ['', Validators.required],
+    mobileNumber: ['', Validators.required],
   });
   isEditable = true;
 
