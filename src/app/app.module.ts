@@ -31,9 +31,8 @@ import { ProjectInterceptor } from './core/interceptors/project.interceptor';
     {
       provide: Window,
       useValue: window
-    }
-      multi: true,
     },
+
     { provide: HTTP_INTERCEPTORS, useClass: ProjectInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

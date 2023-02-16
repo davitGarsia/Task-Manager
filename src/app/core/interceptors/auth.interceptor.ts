@@ -4,24 +4,12 @@ import {HttpRequest, HttpHandler, HttpInterceptor, HttpEvent
 import {BehaviorSubject,
   catchError,
   filter, finalize, Observable, of,
-  switchMap, take, throwError} from 'rxjs';
+  switchMap, take, } from 'rxjs';
 import {AuthService} from "../services";
 import {CookieService} from "../services/cookie.service";
 
-import { Injectable } from '@angular/core';
-import {HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent,
-} from '@angular/common/http';
-import {
-  BehaviorSubject,
-  catchError,
-  filter,
-  finalize,
-  of,
-  switchMap,
-  take,
-  throwError,
-} from 'rxjs';
-import { AuthService } from '../services';
+
+
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

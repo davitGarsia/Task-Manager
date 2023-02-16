@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersFacadeService} from "../../core/services/facade/users-facade.service";
 import {UsersService} from "../../core/services/users.service";
 import {User} from "../../core/interfaces";
 import {ProjectFacadeService} from "../../core/services/project-facade.service";
+import {UsersFacadeService} from "../../facades/users-facade.service";
 
 @Component({
   selector: 'app-application',

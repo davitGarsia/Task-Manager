@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {IssueTypesService} from "../issue-types.service";
-import {IssueType} from "../../interfaces";
+
 import {Observable} from "rxjs";
+import {IssueTypesService} from "../core/services";
+import {IssueType} from "../core/interfaces";
 
 @Injectable({
   providedIn: 'root'
