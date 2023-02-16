@@ -30,12 +30,13 @@ users: User[] = [];
   }
 
 
-getProjects() {
+getProjects( ) {
   this.projectFacadeService.getProjects().subscribe({
     next: (res) => {
       console.log(res);
     }
   });
+
   };
 
 

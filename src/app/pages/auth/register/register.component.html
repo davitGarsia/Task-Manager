@@ -9,16 +9,18 @@
                class="inputs"/>
         <div *ngIf="form.get('firstName')?.getError('required') && form.get('firstName')?.touched"
              class="validationMessage">First Name required!</div>
-        <div *ngIf="form.get('firstName')?.hasError('whitespace') && form.get('firstName')?.touched"
+        <div *ngIf="form.get('firstName')?.hasError('whitespace') && form.get('firstName')?.touched
+        &&!form.get('firstName')?.getError('required')"
              class="validationMessage">Please enter valid data without spaces!</div>
       </div>
       <div class="inpField">
 
         <input type="text" id="lastName" name="last name" placeholder="Last Name" formControlName="lastName"
                class="inputs"/>
-        <div *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched"
-             class="validationMessage">Please enter Last Name!</div>
-        <div *ngIf="form.get('lastName')?.hasError('whitespace') && form.get('lastName')?.touched"
+        <div *ngIf="form.get('lastName')?.getError('required') && form.get('lastName')?.touched"
+             class="validationMessage">Last Name required!</div>
+        <div *ngIf="form.get('lastName')?.hasError('whitespace') && form.get('lastName')?.touched
+        &&!form.get('lastName')?.getError('required')"
              class="validationMessage">Please enter valid data without spaces!</div>
       </div>
 
@@ -31,17 +33,19 @@
       <input type="password" placeholder="Enter your password" id="password" class="inputs" formControlName="password"/>
       <div *ngIf="form.get('password')?.getError('required') && form.get('password')?.touched"
            class="validationMessage">Password required!</div>
-      <div *ngIf="form.get('password')?.getError('whitespace') && form.get('password')?.touched"
+      <div *ngIf="form.get('password')?.getError('whitespace') && form.get('password')?.touched
+      &&!form.get('password')?.getError('required')"
            class="validationMessage">Please enter valid data without spaces!</div>
-      <div *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched" class="validationMessage">Enter min 6 symbol</div>
+      <div *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched"
+           class="validationMessage">Enter min 6 symbol</div>
 
       <input type="password" id="confirmPassword" name="password" placeholder="Confirm your password"
              formControlName="confirmPassword" class="inputs"/>
       <div *ngIf="form.get('confirmPassword')?.getError('required') && form.get('confirmPassword')?.touched"
            class="validationMessage">Please enter confirmation Password!</div>
-      <div *ngIf="form.get('confirmPassword')?.hasError('whitespace') && form.get('confirmPassword')?.touched"
-           class="validationMessage">Please enter valid data without spaces!</div>
-      <div *ngIf="this.form.errors?.['notSame']&& form.get('confirmPassword')?.touched" class="validationMessage">password not match!</div>
+
+      <div *ngIf="this.form.errors?.['notSame']&& form.get('confirmPassword')?.touched"
+           class="validationMessage">password not match!</div>
 
       <input type="submit" value="Submit" class="inputs subBtn"/>
       <h4>Already have a account? <a routerLink="/login">Login</a></h4>

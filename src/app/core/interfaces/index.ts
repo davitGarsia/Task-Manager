@@ -6,3 +6,4 @@ export * from "./users-password-update";
 export * from './auth'
 export * from './user'
 export * from './token'
+export * from './project'
