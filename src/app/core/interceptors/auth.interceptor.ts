@@ -1,13 +1,15 @@
+import {Injectable} from '@angular/core';
+import {HttpRequest, HttpHandler, HttpInterceptor, HttpEvent
+} from '@angular/common/http';
+import {BehaviorSubject,
+  catchError,
+  filter, finalize, Observable, of,
+  switchMap, take, throwError} from 'rxjs';
+import {AuthService} from "../services";
+import {CookieService} from "../services/cookie.service";
+
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpInterceptor,
-  HttpSentEvent,
-  HttpHeaderResponse,
-  HttpProgressEvent,
-  HttpResponse,
-  HttpUserEvent,
+import {HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent,
 } from '@angular/common/http';
 import {
   BehaviorSubject,
@@ -23,6 +25,7 @@ import { AuthService } from '../services';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+
   isRefreshingToken = false;
   tokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<
     string | null
@@ -40,25 +43,20 @@ export class AuthInterceptor implements HttpInterceptor {
     return request;
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private cookieService: CookieService
+  ) {
+  }
 
-  intercept(
-    request: HttpRequest<unknown>,
-    next: HttpHandler
-  ):
-    | HttpSentEvent
-    | HttpHeaderResponse
-    | HttpProgressEvent
-    | HttpResponse<any>
-    | HttpUserEvent<any>
-    | any {
-    if (this.authService.token) {
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>>
+  | any
+  {
+    const accessToken = this.cookieService.getCookie('accessToken');
+    if (accessToken) {
       request = request.clone({
-        headers: request.headers.set(
-          'Authorization',
-          `Bearer ${this.authService.token}`
-        ),
-      });
+        headers: request.headers.set('Authorization', `Bearer ${accessToken}`)
+      })
     }
     return next.handle(request).pipe(
       catchError((err) => {
@@ -112,3 +110,4 @@ export class AuthInterceptor implements HttpInterceptor {
     }
   }
 }
+
