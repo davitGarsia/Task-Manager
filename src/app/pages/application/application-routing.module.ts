@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ApplicationComponent} from "./application.component";
+import {AuthGuard} from "../../core/guards";
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     component: ApplicationComponent,
   }
 ];

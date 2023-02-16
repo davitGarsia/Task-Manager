@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 //თუ მომხმარებელი ავტორიზირებულია ჰოუმ პეიჯის ნაცვლად პირდაპირ აპლიკაციაზე გადაამისამართებს
@@ -7,6 +7,8 @@ import {RouterModule, Routes} from '@angular/router';
 let isAuthorised = true;
 
 import {HomeComponent} from "./pages/home/home.component";
+import {PageNotFoundComponent} from "./pages/404-error/page-not-found/page-not-found.component";
+import {AuthGuard} from "./core/guards";
 
 
 const routes: Routes = [
@@ -32,17 +34,28 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
-      }
-
-    ]
-
-
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('./pages/stepper/stepper.module').then((m) => m.StepperModule),
+      },
+      {
+        path: 'application',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./pages/application/application.module').then(m => m.ApplicationModule),
+      }]
   },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 
@@ -50,3 +63,4 @@ export class AppRoutingModule {
     isAuthorised = false;
   }
 }
+

@@ -8,15 +8,21 @@
     <a href="#about" class="dont-close-from-outside"> about project</a>
     <a href="#testimonials" class="dont-close-from-outside"> testimonials</a>
     <a href="#authors" class="nav-link"> authors</a>
-    <section class="auth-links">
+    <a routerLink="../application" class="nav-link" *ngIf="auth.getToken()"> Task Manager</a>
+    <section class="auth-links" *ngIf="!auth.getToken()">
       <button type="button" (click)="signUp()" class="dont-close-from-outside">sign up</button>
-      <button type="button" (click)="navigateToLogin()">log in</button>
+      <button type="button" (click)="navigateToLogin()" style="color: aliceblue">log in</button>
     </section>
+    <span *ngIf="auth.getToken()">
+      <p>{{auth.getUser().firstName}} {{auth.getUser().lastName}}</p>
+      <h4 (click)="auth.logout()">Log Out</h4>
+    </span>
   </div>
-  <div class="auth-links">
+  <div class="auth-links" *ngIf="!auth.getToken(); else userInfo">
     <button type="button" (click)="signUp()">sign up</button>
     <button type="button" (click)="navigateToLogin()">Log in</button>
-    <button routerLink="/register" class="registerBtn">Register</button> <!--   შავლეგო ეს ღილაკი ჩავაგდე მაინც, რომ დავლაგდებით მერე ავირჩიოთ რა აჯობებს-->
+    <button routerLink="/register" class="registerBtn">Register</button>
+    <!--   შავლეგო ეს ღილაკი ჩავაგდე მაინც, რომ დავლაგდებით მერე ავირჩიოთ რა აჯობებს-->
   </div>
   <div class="toggle-nav dont-close-from-outside" [ngClass]="menuIsOpened ? 'opened' : ''" (click)="toggleMenu()">
     <div></div>
@@ -24,3 +30,19 @@
     <div></div>
   </div>
 </div>
+
+<ng-template #userInfo>
+  <div class="user-info">
+    <div>
+      <p>{{auth.getUser().email}}</p>
+    </div>
+    <div>
+      <span>
+        <p>{{auth.getUser().firstName}}</p>
+        <p>{{auth.getUser().lastName}}</p>
+      </span>
+      <p routerLink="../application">Task Manager</p>
+      <h4 (click)="auth.logout()">Log Out</h4>
+    </div>
+  </div>
+</ng-template>

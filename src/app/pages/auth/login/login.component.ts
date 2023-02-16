@@ -1,40 +1,61 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, UntypedFormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../../core/services";
-import {Router} from "@angular/router";
-import {Subject, takeUntil} from "rxjs";
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { AuthService } from '../../../core/services';
+import {ActivatedRoute, Router} from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import {CookieService} from "../../../core/services/cookie.service";
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements AfterViewInit {
   form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
   });
-  sub$ = new Subject()
+  sub$ = new Subject();
   validateForm!: UntypedFormGroup;
 
   constructor(
     private authService: AuthService,
+    private cookieService: CookieService,
     private router: Router,
-  ) {
-  }
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {
+  isRegistered: boolean = false;
+  mobile: boolean = false;
 
+  @ViewChild('password') password!: ElementRef;
+
+  ngAfterViewInit(): void {
+    window.innerWidth <= 1024 ? this.mobile = true : this.mobile = false;
+    this.route.queryParamMap.subscribe(params => {
+      params.get('email') ? (this.form.get('email')?.setValue(params.get('email')), this.isRegistered = true) : null;
+    });
+    this.isRegistered ? this.password.nativeElement.focus() : null;
   }
 
   submit() {
-    this.form.markAllAsTouched()
-    if (this.form.invalid) return
-    this.authService.login(this.form.value)
+    this.form.markAllAsTouched();
+    if (this.form.invalid) return;
+    this.authService
+      .login(this.form.value)
       .pipe(takeUntil(this.sub$))
-      .subscribe(res => {
-        this.router.navigate(['./application']);
+      .subscribe((res) => {
+        this.router.navigate(['/stepper']);
+      });
 
-      })
   }
 }

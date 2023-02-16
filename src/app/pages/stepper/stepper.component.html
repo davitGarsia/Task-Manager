@@ -1,0 +1,45 @@
+<!-- <button mat-raised-button (click)="isEditable = !isEditable">
+  {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+</button>
+
+-->
+
+<mat-stepper
+  #stepper
+  [linear]="linear | async"
+  class="stepper"
+  [selectedIndex]="nextStepOpen$ | async"
+>
+  <mat-step [editable]="isEditable">
+    <ng-template matStepLabel>Project</ng-template>
+    <app-create-project></app-create-project>
+  </mat-step>
+
+  <mat-step [editable]="isEditable">
+    <ng-template matStepLabel>Board</ng-template>
+    <app-create-board></app-create-board>
+  </mat-step>
+
+  <mat-step [editable]="isEditable">
+    <ng-template matStepLabel>Issue Type</ng-template>
+    <app-create-issue-types></app-create-issue-types>
+  </mat-step>
+
+  <mat-step [editable]="isEditable">
+    <ng-template matStepLabel>Users</ng-template>
+    <app-add-users></app-add-users>
+  </mat-step>
+
+  <mat-step class="done">
+    <div class="flex">
+      <div class="margin-auto">
+        <ng-template matStepLabel>Done</ng-template>
+        <p class="para">Great, your project is now being created!</p>
+        <div>
+          <button mat-button matStepperPrevious (click)="goBack()">Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </div>
+    </div>
+  </mat-step>
+</mat-stepper>

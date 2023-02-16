@@ -1,33 +1,30 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {User, UsersRoles} from "../interfaces";
-import {Observable} from "rxjs";
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { User, UsersRoles } from '../interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
+  apiUrl = environment.apiUrl + 'users';
 
-  apiUrl = environment.apiUrl + "users";
-
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   getUsers(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
 
   getUsersAll(): Observable<any> {
-    return this.http.get(this.apiUrl + "/all");
+    return this.http.get(this.apiUrl + '/all');
   }
 
   getUserByID(id: number) {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
 
-  setUser(user: User) {
+  setUser(user: any) {
     return this.http.post(this.apiUrl, user);
   }
 
@@ -42,5 +39,4 @@ export class UsersService {
   deleteUserById(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
-
 }
