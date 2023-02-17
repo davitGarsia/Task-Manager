@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { Router} from "@angular/router";
+import {CheckMailService} from "../../../core/services";
+
 
 @Component({
   selector: 'app-header',
@@ -9,19 +11,30 @@ import { Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
+
   constructor(
-    private router: Router
+    private router: Router,
+    private checkMail: CheckMailService
   ) { }
+
 
 
   ngOnInit(): void {
   }
+
 
   email: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email] )
   })
 
   touched: boolean = false;
+  exists?: boolean;
+
+  checkEmail(email: string) {
+    this.checkMail.checkMail({email: email}).subscribe(res => {
+      res.exists ? this.router.navigate(['../auth/login'], {queryParams: {email: email}}) : this.router.navigate(['../auth/register'], {queryParams: {email: email}})
+    })
+  }
 
   submit() {
     this.touched = true;
@@ -34,10 +47,13 @@ export class HeaderComponent implements OnInit {
 
     let email = this.email.get('email')?.value
 
-    this.email.valid ? this.router.navigate(['../auth'], {queryParams: {email: email}}) : null ;
+    if(this.email.valid) {
+      this.checkEmail(email);
+    }
   }
 
   focus() {
     this.touched = false;
   }
+
 }

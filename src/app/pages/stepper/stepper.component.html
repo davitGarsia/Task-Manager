@@ -1,29 +1,31 @@
 <!-- <button mat-raised-button (click)="isEditable = !isEditable">
   {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
-</button> -->
+</button>
+
+-->
 
 <mat-stepper
   #stepper
-  class="stepper"
   [linear]="linear | async"
+  class="stepper"
   [selectedIndex]="nextStepOpen$ | async"
 >
-  <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+  <mat-step [editable]="isEditable">
     <ng-template matStepLabel>Project</ng-template>
     <app-create-project></app-create-project>
   </mat-step>
 
-  <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+  <mat-step [editable]="isEditable">
     <ng-template matStepLabel>Board</ng-template>
     <app-create-board></app-create-board>
   </mat-step>
 
-  <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+  <mat-step [editable]="isEditable">
     <ng-template matStepLabel>Issue Type</ng-template>
     <app-create-issue-types></app-create-issue-types>
   </mat-step>
 
-  <mat-step [stepControl]="fourthFormGroup" [editable]="isEditable">
+  <mat-step [editable]="isEditable">
     <ng-template matStepLabel>Users</ng-template>
     <app-add-users></app-add-users>
   </mat-step>

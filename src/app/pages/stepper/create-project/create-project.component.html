@@ -1,3 +1,4 @@
+<a routerLink="">Go To Home</a>
 <form [formGroup]="projectFormGroup" class="flex">
   <div class="margin-auto">
     <mat-form-field appearance="fill" class="step-form-field">
@@ -7,7 +8,7 @@
 
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Abbreviation</mat-label>
-      <input matInput formControlName="abbr" placeholder="" required />
+      <input matInput formControlName="abbreviation" placeholder="" required />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
@@ -17,8 +18,15 @@
 
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Color</mat-label>
-      <input matInput formControlName="color" placeholder="" required />
+      <input
+        matInput
+        type="color"
+        formControlName="color"
+        value="#910D9B"
+        required
+      />
     </mat-form-field>
+
     <div>
       <button mat-button matStepperNext (click)="onSubmit()">Next</button>
     </div>

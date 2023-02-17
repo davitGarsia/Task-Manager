@@ -11,6 +11,7 @@ a {
   @include flex(flex-start, center);
   flex-direction: column;
   transform: scale(0);
+  overflow: hidden;
   transition: .3s;
 
   img {
@@ -47,5 +48,28 @@ a {
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  a {
+    right: 10px;
+    bottom: 10px;
+    width: 40px;
+    height: 40px;
+
+    img {
+      margin-top: 5px;
+    }
+
+    &:hover {
+      background-color: #7B68EE;
+    }
+
+    &.visible {
+      &:hover {
+        transform: scale(1);
+      }
+    }
   }
 }

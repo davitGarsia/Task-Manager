@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UsersService} from "../../core/services/users.service";
+import {User} from "../../core/interfaces";
+import {ProjectFacadeService} from "../../core/services/project-facade.service";
+import {UsersFacadeService} from "../../facades/users-facade.service";
 
 @Component({
   selector: 'app-application',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplicationComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+
   }
+
 
 }

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ToggleSignupService } from './toggle-signup.service';
+import { CheckMailService } from './check-mail.service';
 
-describe('ToggleSignupService', () => {
-  let service: ToggleSignupService;
+describe('CheckMailService', () => {
+  let service: CheckMailService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ToggleSignupService);
+    service = TestBed.inject(CheckMailService);
   });
 
   it('should be created', () => {

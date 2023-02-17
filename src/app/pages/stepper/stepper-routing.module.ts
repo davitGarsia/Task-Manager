@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {StepperComponent} from "./stepper.component";
+import {AuthGuard} from "../../core/guards";
 
 
 const routes: Routes = [
   {
     path: 'stepper',
+    canActivate: [AuthGuard],
     component: StepperComponent,
   },
 
