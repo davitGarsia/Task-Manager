@@ -5,14 +5,18 @@ import {AuthGuard} from "../../core/guards";
 import {ProjectComponent} from "./project/project.component";
 
 const routes: Routes = [
+
   {
-    path: '',
-    canActivate: [AuthGuard],
+    path:'',
     component: ApplicationComponent,
-  },
-  {
-    path:'project',
-    component: ProjectComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'project',
+        canActivate: [AuthGuard],
+        component: ProjectComponent
+      },
+    ],
   }
 ];
 
