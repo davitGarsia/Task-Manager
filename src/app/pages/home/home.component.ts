@@ -1,16 +1,16 @@
-<<<<<<< HEAD
+
 import { Component, HostListener, OnInit } from '@angular/core';
-=======
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
+
+import {AfterViewInit, ElementRef, ViewChild} from '@angular/core';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-<<<<<<< HEAD
-export class HomeComponent implements OnInit {
+
+export class HomeComponent implements AfterViewInit  {
   scrolled: boolean = false;
   scrolledTop: boolean = false;
 
@@ -25,11 +25,8 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-=======
-export class HomeComponent implements AfterViewInit {
 
-  scrolled: boolean = false;
-  scrolledTop: boolean = false;
+
 
   @ViewChild('home') home!: ElementRef;
 
@@ -42,5 +39,5 @@ export class HomeComponent implements AfterViewInit {
       console.log(555)
     })
   }
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
+
 }

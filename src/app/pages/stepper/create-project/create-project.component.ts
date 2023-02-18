@@ -42,7 +42,7 @@ export class CreateProjectComponent implements OnInit {
 
     console.log(this.projectFormGroup.value);
 
-<<<<<<< HEAD
+
     // this.projectFacadeService
     //   .createProject(this.projectFormGroup.value)
     //   .subscribe({
@@ -50,7 +50,7 @@ export class CreateProjectComponent implements OnInit {
     //       console.log(res);
     //     },
     //   });
-=======
+
     this.controlProjectsService
       .addProject(this.projectFormGroup.value)
       .pipe(
@@ -65,6 +65,6 @@ export class CreateProjectComponent implements OnInit {
           console.log(res);
         },
       });
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
+
   }
 }

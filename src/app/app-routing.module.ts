@@ -14,14 +14,8 @@ import {AuthGuard} from "./core/guards";
 const routes: Routes = [
   {
     path: '',
-<<<<<<< HEAD
-    loadChildren: () =>
-      isAuthorised
-        ? import('./pages/application/application.module').then(
-            (m) => m.ApplicationModule
-          )
-        : import('./pages/home/home.module').then((m) => m.HomeModule),
-=======
+
+
 
     // loadChildren: () => isAuthorised ? import('./pages/application/application.module').then(m => m.ApplicationModule) :
     //   import('./pages/home/home.module').then(m => m.HomeModule),
@@ -54,7 +48,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/application/application.module').then(m => m.ApplicationModule),
       }]
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
+
   },
   {
     path: '**',
@@ -66,9 +60,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-<<<<<<< HEAD
-export class AppRoutingModule {}
-=======
+
+
 export class AppRoutingModule {
 
   constructor() {
@@ -76,4 +69,4 @@ export class AppRoutingModule {
   }
 }
 
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
+

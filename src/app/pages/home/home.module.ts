@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-<<<<<<< HEAD
+
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -10,21 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeSignUpComponent } from './home-sign-up/home-sign-up.component';
 import { AboutProjectComponent } from './about-project/about-project.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
-import {
-  MatDrawerContainer,
-  MatSidenavModule,
-} from '@angular/material/sidenav';
+import {MatDrawerContainer,} from '@angular/material/sidenav';
 
-=======
-import {HomeRoutingModule} from './home-routing.module';
-import {HomeComponent} from './home.component';
-import {NavigationComponent} from './navigation/navigation.component';
-import {HeaderComponent} from './header/header.component';
 
-import {ReactiveFormsModule} from "@angular/forms";
-import {HomeSignUpComponent} from './home-sign-up/home-sign-up.component';
-import {AboutProjectComponent} from './about-project/about-project.component';
-import {ScrollToTopComponent} from './scroll-to-top/scroll-to-top.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {AuthModule} from "../auth/auth.module";
 import {TestimonialsComponent} from './testimonials/testimonials.component';
@@ -36,36 +24,32 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { FooterComponent } from './footer/footer.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { IndividualBoardComponent } from './main-layout/individual-board/individual-board.component';
 import { CreateBoardComponent } from './main-layout/create-board/create-board.component';
 import { SidenavFormComponent } from './main-layout/sidenav-form/sidenav-form.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
+
 
 //import {AuthInterceptor} from "../../core/interceptors/auth.interceptor";
 
-=======
 //import {AuthInterceptor} from "../../core/interceptors/auth.interceptor";
 
 
 
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
+
 @NgModule({
   declarations: [
     HomeComponent,
     NavigationComponent,
-<<<<<<< HEAD
     HeaderComponent,
     HomeSignUpComponent,
     AboutProjectComponent,
     ScrollToTopComponent,
-    HomeComponent,
     MainLayoutComponent,
     IndividualBoardComponent,
     CreateBoardComponent,
-=======
+
     HomeSignUpComponent,
     AboutProjectComponent,
     ScrollToTopComponent,
@@ -74,24 +58,23 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HeaderComponent,
     MainLayoutComponent,
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
+    IndividualBoardComponent,
     SidenavFormComponent,
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
+    MatTabsModule,
     MatSidenavModule,
     HttpClientModule,
   ],
-=======
+exports: [
     MatTabsModule,
     AuthModule,
     FontAwesomeModule,
     MatSidenavModule
   ]
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
 })
 
 

@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, QueryList, ViewChildren} from '@angular/core';
 import {IconName} from "@fortawesome/fontawesome-svg-core";
 
+
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
