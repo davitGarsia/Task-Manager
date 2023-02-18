@@ -21,10 +21,11 @@ export class ProjectInterceptor implements HttpInterceptor {
     if (project) {
       return next.handle(
         request.clone({
-          setHeaders: { project: String(project.id) },
+          setHeaders: { project: String(project.id) }
         })
       );
     }
+
     return next.handle(request);
   }
 }
