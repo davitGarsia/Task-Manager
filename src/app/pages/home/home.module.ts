@@ -1,18 +1,14 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {HomeRoutingModule} from './home-routing.module';
+import {HomeComponent} from './home.component';
+import {NavigationComponent} from './navigation/navigation.component';
+import {HeaderComponent} from './header/header.component';
 
-
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { HeaderComponent } from './header/header.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HomeSignUpComponent } from './home-sign-up/home-sign-up.component';
-import { AboutProjectComponent } from './about-project/about-project.component';
-import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
-import {MatDrawerContainer,} from '@angular/material/sidenav';
-
-
+import {ReactiveFormsModule} from "@angular/forms";
+import {HomeSignUpComponent} from './home-sign-up/home-sign-up.component';
+import {AboutProjectComponent} from './about-project/about-project.component';
+import {ScrollToTopComponent} from './scroll-to-top/scroll-to-top.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {AuthModule} from "../auth/auth.module";
 import {TestimonialsComponent} from './testimonials/testimonials.component';
@@ -30,17 +26,14 @@ import { CreateBoardComponent } from './main-layout/create-board/create-board.co
 import { SidenavFormComponent } from './main-layout/sidenav-form/sidenav-form.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-
 //import {AuthInterceptor} from "../../core/interceptors/auth.interceptor";
 
 //import {AuthInterceptor} from "../../core/interceptors/auth.interceptor";
-
 
 
 
 @NgModule({
   declarations: [
-    HomeComponent,
     NavigationComponent,
     HeaderComponent,
     HomeSignUpComponent,
@@ -49,7 +42,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     MainLayoutComponent,
     IndividualBoardComponent,
     CreateBoardComponent,
-
     HomeSignUpComponent,
     AboutProjectComponent,
     ScrollToTopComponent,
@@ -58,22 +50,18 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HeaderComponent,
     MainLayoutComponent,
-    IndividualBoardComponent,
     SidenavFormComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
-    MatTabsModule,
     MatSidenavModule,
     HttpClientModule,
-  ],
-exports: [
     MatTabsModule,
     AuthModule,
     FontAwesomeModule,
-    MatSidenavModule
   ]
 })
 

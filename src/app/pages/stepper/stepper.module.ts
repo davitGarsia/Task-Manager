@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
     CreateIssueTypesComponent,
     AddUsersComponent,
     StepperComponent,
+
+
   ],
   imports: [
     CommonModule,
@@ -38,6 +41,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatChipsModule,
     MatAutocompleteModule,
     MatIconModule,
+    MatOptionModule,
   ],
   providers: [
     {

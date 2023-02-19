@@ -18,11 +18,25 @@ export class AddUsersComponent implements OnInit {
   ngOnInit(): void {}
 
   usersFormGroup = this._formBuilder.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    identityNumber: ['', Validators.required],
-    email: ['', Validators.required],
-    mobileNumber: ['', Validators.required],
+    firstName: ['', [Validators.required, Validators.minLength(2)]],
+    lastName: ['', [Validators.required, Validators.minLength(2)]],
+    identityNumber: ['', [Validators.required, Validators.minLength(11)]],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+      ],
+    ],
+    mobileNumber: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(9),
+        Validators.maxLength(12),
+        Validators.pattern('[0-9]+'),
+      ],
+    ],
   });
   isEditable = true;
 

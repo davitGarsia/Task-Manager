@@ -6,7 +6,7 @@ import { MatStepper, MatStepperNext } from '@angular/material/stepper';
 
 import { ProjectFacade } from 'src/app/facades/project-facade.service';
 import { ControlProjectsService } from 'src/app/core/services/control-projects.service';
-import { tap } from 'rxjs';
+import { tap, timeout } from 'rxjs';
 
 @Component({
   selector: 'app-create-project',
@@ -24,10 +24,10 @@ export class CreateProjectComponent implements OnInit {
   ngOnInit(): void {}
 
   projectFormGroup = this._formBuilder.group({
-    name: ['', Validators.required],
+    name: ['', [Validators.required, Validators.minLength(2)]],
     abbreviation: ['', Validators.required],
-    description: ['', Validators.required],
-    color: ['', Validators.required],
+    description: ['', [Validators.required, Validators.minLength(4)]],
+    color: ['#910D9B', Validators.required],
   });
   isEditable = true;
 
@@ -41,30 +41,15 @@ export class CreateProjectComponent implements OnInit {
     }, 500);
 
     console.log(this.projectFormGroup.value);
-
-
-    // this.projectFacadeService
-    //   .createProject(this.projectFormGroup.value)
-    //   .subscribe({
-    //     next: (res) => {
-    //       console.log(res);
-    //     },
-    //   });
-
     this.controlProjectsService
       .addProject(this.projectFormGroup.value)
       .pipe(
         tap((res) => {
-          if (res) {
-            this.projectFacade.setProject(res);
-          }
+          this.projectFacade.setProject(res);
         })
       )
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-        },
+      .subscribe((res) => {
+        console.log(res);
       });
-
   }
 }

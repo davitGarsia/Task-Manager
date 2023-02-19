@@ -28,7 +28,14 @@
     </mat-form-field>
 
     <div>
-      <button mat-button matStepperNext (click)="onSubmit()">Next</button>
+      <button
+        [disabled]="!projectFormGroup.valid"
+        mat-button
+        matStepperNext
+        (click)="onSubmit()"
+      >
+        Next
+      </button>
     </div>
   </div>
 </form>

@@ -26,6 +26,7 @@ export class AuthService extends BaseService {
         tap((response: LoginResponse) => {
             this.setToken(response.token.accessToken);
             this.setUser(response.user);
+            this.setRefreshToken(response.token.refreshToken)
             this.setUserInCookie(response.user, response);
           }
         )
@@ -36,8 +37,13 @@ export class AuthService extends BaseService {
     return this.post<User>('auth/signup', payload);
   }
 
+
   setToken(token: string) {
     localStorage.setItem('token', token);
+  }
+
+  setRefreshToken(refreshToken: string ) {
+    localStorage.setItem('refreshToken', refreshToken)
   }
 
   setUser(user: User) {

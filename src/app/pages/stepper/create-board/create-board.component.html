@@ -48,7 +48,14 @@
 
     <div>
       <button mat-button matStepperPrevious (click)="goBack()">Back</button>
-      <button mat-button matStepperNext (click)="onSubmit()">Next</button>
+      <button
+        [disabled]="!boardFormGroup.valid"
+        mat-button
+        matStepperNext
+        (click)="onSubmit()"
+      >
+        Next
+      </button>
     </div>
   </div>
 </form>

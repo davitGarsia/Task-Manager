@@ -10,6 +10,7 @@ export class ProjectFacade {
 
   getProject() {
     const project = localStorage.getItem('project');
+
     return project ? JSON.parse(project) : null;
   }
 }

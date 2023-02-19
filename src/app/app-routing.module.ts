@@ -15,8 +15,6 @@ const routes: Routes = [
   {
     path: '',
 
-
-
     // loadChildren: () => isAuthorised ? import('./pages/application/application.module').then(m => m.ApplicationModule) :
     //   import('./pages/home/home.module').then(m => m.HomeModule),
 
@@ -48,7 +46,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/application/application.module').then(m => m.ApplicationModule),
       }]
-
   },
   {
     path: '**',
@@ -61,12 +58,10 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 
-
 export class AppRoutingModule {
 
   constructor() {
     isAuthorised = false;
   }
 }
-
 
