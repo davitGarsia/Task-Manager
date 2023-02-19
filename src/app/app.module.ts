@@ -10,6 +10,7 @@ import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 import {PageNotFoundComponent} from './pages/404-error/page-not-found/page-not-found.component';
 import { ProjectInterceptor } from './core/interceptors/project.interceptor';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ControlProjectsService} from "./core/services/control-projects.service";
 
 
 @NgModule({
@@ -33,6 +34,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
       provide: Window,
       useValue: window
     },
+
+    ControlProjectsService,
 
     { provide: HTTP_INTERCEPTORS, useClass: ProjectInterceptor, multi: true },
   ],

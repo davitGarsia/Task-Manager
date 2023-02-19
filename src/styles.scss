@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-/* You can add global styles to this file, and also import other style files */
-=======
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
 
 * {
   box-sizing: border-box;
@@ -34,16 +30,14 @@ html {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-<<<<<<< HEAD
   background: #ce42bc;
 }
-=======
-  background: #CE42BC;
+
+html,
+body {
+  height: 100%;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
->>>>>>> adc1ee5e21e535c77ad63b57cf50504d29e74851
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

@@ -40,7 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>>
   | any
   {
-    const accessToken = this.cookieService.getCookie('accessToken');
+    const accessToken = this.cookieService.getCookie('token');  //accesTokenit ar inaxavdi cookieshi magitom ar atanda tokens
     if (accessToken) {
       request = request.clone({
         headers: request.headers.set('Authorization', `Bearer ${accessToken}`)
