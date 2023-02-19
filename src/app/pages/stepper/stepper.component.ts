@@ -15,6 +15,8 @@ export class StepperComponent implements OnInit {
 
   linear = this.stepperService.isLinear$;
 
+  completed = this.stepperService.isCompleted$;
+
   constructor(private stepperService: StepperNextService) {}
 
   ngOnInit(): void {}

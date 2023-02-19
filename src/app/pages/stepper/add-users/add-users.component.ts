@@ -62,5 +62,9 @@ export class AddUsersComponent implements OnInit {
     setTimeout(() => {
       this.stepperService.changeToLinear();
     }, 500);
+    if (this.usersFormGroup.valid) {
+      this.stepperService.complete.next(true);
+    }
+    this.stepperService.complete.next(false);
   }
 }
