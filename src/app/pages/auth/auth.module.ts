@@ -8,6 +8,7 @@ import {RegisterComponent} from './register/register.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HomeModule} from "../home/home.module";
 import {NgClass, NgIf} from "@angular/common";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -20,12 +21,13 @@ import {NgClass, NgIf} from "@angular/common";
 
     LoginComponent
   ],
-  imports: [
-    AuthRoutingModule,
-    ReactiveFormsModule,
-    NgIf,
-    NgClass,
-  ]
+    imports: [
+        AuthRoutingModule,
+        ReactiveFormsModule,
+        NgIf,
+        NgClass,
+        MatProgressSpinnerModule,
+    ]
 })
 export class AuthModule {
 }

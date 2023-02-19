@@ -22,6 +22,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  spinner: boolean = false;
+  diameter: number = 30;
+
 
   email: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email] )
@@ -48,6 +51,7 @@ export class HeaderComponent implements OnInit {
     let email = this.email.get('email')?.value
 
     if(this.email.valid) {
+      this.spinner = true;
       this.checkEmail(email);
     }
   }
