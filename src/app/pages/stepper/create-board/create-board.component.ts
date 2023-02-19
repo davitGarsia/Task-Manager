@@ -85,5 +85,9 @@ export class CreateBoardComponent implements OnInit {
     setTimeout(() => {
       this.stepperService.changeToLinear();
     }, 500);
+    if (this.boardFormGroup.valid) {
+      this.stepperService.complete.next(true);
+    }
+    this.stepperService.complete.next(false);
   }
 }

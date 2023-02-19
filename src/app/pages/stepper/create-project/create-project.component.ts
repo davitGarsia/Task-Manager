@@ -51,5 +51,9 @@ export class CreateProjectComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
       });
+    if (this.projectFormGroup.valid) {
+      this.stepperService.complete.next(true);
+    }
+    this.stepperService.complete.next(false);
   }
 }

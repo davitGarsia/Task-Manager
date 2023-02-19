@@ -23,4 +23,8 @@ export class StepperNextService {
   changeFromLinear() {
     this.linear.next(false);
   }
+
+  // complete state
+  complete = new BehaviorSubject<boolean>(false);
+  isCompleted$: Observable<boolean> = this.complete.asObservable();
 }

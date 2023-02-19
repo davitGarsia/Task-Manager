@@ -125,5 +125,9 @@ export class CreateIssueTypesComponent implements OnInit {
     setTimeout(() => {
       this.stepperService.changeToLinear();
     }, 500);
+    if (this.issueFormGroup.valid) {
+      this.stepperService.complete.next(true);
+    }
+    this.stepperService.complete.next(false);
   }
 }
