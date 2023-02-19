@@ -27,10 +27,10 @@ export class CreateIssueTypesComponent implements OnInit {
   ) {}
 
   issueFormGroup = this._formBuilder.group({
-    name: ['', Validators.required],
-    description: ['', Validators.required],
+    name: ['', [Validators.required, Validators.minLength(2)]],
+    description: ['', [Validators.required, Validators.minLength(4)]],
     icon: ['', Validators.required],
-    color: ['#FDFEFE', Validators.required],
+    color: ['#910D9B', Validators.required],
     status: ['', Validators.required],
     tasks: ['', Validators.required],
     columns: this._formBuilder.array([]),

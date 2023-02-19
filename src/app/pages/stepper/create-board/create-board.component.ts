@@ -25,8 +25,8 @@ export class CreateBoardComponent implements OnInit {
   ngOnInit(): void {}
 
   boardFormGroup = this._formBuilder.group({
-    name: ['', Validators.required],
-    description: ['', Validators.required],
+    name: ['', [Validators.required, Validators.minLength(4)]],
+    description: ['', [Validators.required, Validators.minLength(4)]],
     position: 0,
 
     columns: this._formBuilder.array([]),
@@ -40,8 +40,14 @@ export class CreateBoardComponent implements OnInit {
     this.colsArray.push(
       new FormGroup(
         {
-          name: new FormControl('', Validators.required),
-          description: new FormControl('', Validators.required),
+          name: new FormControl('', [
+            Validators.required,
+            Validators.minLength(4),
+          ]),
+          description: new FormControl('', [
+            Validators.required,
+            Validators.minLength(4),
+          ]),
           position: new FormControl(
             this.colsArray.length + 1,
             Validators.required
