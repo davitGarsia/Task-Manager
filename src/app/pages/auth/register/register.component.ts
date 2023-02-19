@@ -37,6 +37,8 @@ export class RegisterComponent implements AfterViewInit {
   }
 
   mobile: boolean = false;
+  diameter: number = 30;
+  spinner: boolean = false;
 
   ngAfterViewInit(): void {
     window.innerWidth <= 1024 ? this.mobile = true : this.mobile = false;
@@ -48,9 +50,10 @@ export class RegisterComponent implements AfterViewInit {
   submit() {
     this.form.markAllAsTouched()
     if (this.form.invalid) return
+    this.spinner = true;
     this.authService.register(this.form.value)
       .subscribe(res => {
-        this.router.navigate(['/auth/login'], {queryParams: {email: this.form.get('email')!.value}});
+        this.router.navigate(['/auth/login'], {queryParams: {email: this.form.get('email')!.value, fromRegistration: true}});
         console.log(res)
       })
   }

@@ -15,7 +15,10 @@
       <div *ngIf="form.get('password')?.getError('required') && form.get('password')?.touched"
            class="validationMessage">Password required!</div>
       <div *ngIf="form.get('password')?.getError('minlength') && form.get('password')?.touched">Please enter Password with min 6 symbol!</div>
-      <input type="submit" value="Submit" class="inputs subBtn"/>
+      <button type="submit" class="inputs subBtn">
+        <span *ngIf="!spinner">Submit</span>
+        <mat-spinner class="spinner" *ngIf="spinner" [diameter]="diameter" color="accent"></mat-spinner>
+      </button>
       <h4>Don't have an account? <a routerLink="/register"> Register</a></h4>
     </form>
   </div>

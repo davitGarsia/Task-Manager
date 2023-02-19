@@ -25,6 +25,7 @@ import { IndividualBoardComponent } from './main-layout/individual-board/individ
 import { CreateBoardComponent } from './main-layout/create-board/create-board.component';
 import { SidenavFormComponent } from './main-layout/sidenav-form/sidenav-form.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 //import {AuthInterceptor} from "../../core/interceptors/auth.interceptor";
 
@@ -53,16 +54,17 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     SidenavFormComponent,
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
-    HttpClientModule,
-    MatTabsModule,
-    AuthModule,
-    FontAwesomeModule,
-  ]
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        ReactiveFormsModule,
+        MatSidenavModule,
+        HttpClientModule,
+        MatTabsModule,
+        AuthModule,
+        FontAwesomeModule,
+        MatProgressSpinnerModule,
+    ]
 })
 
 

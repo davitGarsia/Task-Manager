@@ -47,7 +47,10 @@
       <div *ngIf="this.form.errors?.['notSame']&& form.get('confirmPassword')?.touched"
            class="validationMessage">password not match!</div>
 
-      <input type="submit" value="Submit" class="inputs subBtn"/>
+      <button type="submit" class="inputs subBtn">
+        <span *ngIf="!spinner">Submit</span>
+        <mat-spinner class="spinner" *ngIf="spinner" [diameter]="diameter" color="accent"></mat-spinner>
+      </button>
       <h4>Already have a account? <a routerLink="/login">Login</a></h4>
     </form>
 

@@ -22,6 +22,8 @@ export class HomeSignUpComponent {
 
   touched: boolean = false;
   exists?: boolean;
+  diameter: number = 30;
+  spinner: boolean = false;
 
   checkEmail(email: string) {
     this.checkMail.checkMail({email: email}).subscribe(res => {
@@ -41,6 +43,7 @@ export class HomeSignUpComponent {
     let email = this.email.get('email')?.value
 
     if(this.email.valid) {
+      this.spinner = true;
       this.checkEmail(email);
     }
   }

@@ -12,7 +12,10 @@
     </span>
     <form  (ngSubmit)="onSubmit()" [formGroup]="email">
       <input type="email" placeholder="Enter your work email" formControlName="email">
-      <button type="submit">Get Started</button>
+      <button type="submit">
+        <span *ngIf="!spinner">Get Started</span>
+        <mat-spinner class="spinner" *ngIf="spinner" [diameter]="diameter" color="accent"></mat-spinner>
+      </button>
       <p style="color: white; margin: 10px 0 -28px 0; font-size: 1rem;"
          *ngIf="touched && email.get('email')?.invalid && email.get('email')?.touched && !email.get('email')?.getError('email')">
         * Email is required!
