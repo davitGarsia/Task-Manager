@@ -24,6 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
     CreateIssueTypesComponent,
     AddUsersComponent,
     StepperComponent,
+
+
   ],
   imports: [
     CommonModule,

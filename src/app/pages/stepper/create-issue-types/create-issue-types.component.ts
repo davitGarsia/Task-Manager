@@ -30,7 +30,7 @@ export class CreateIssueTypesComponent implements OnInit {
     name: ['', Validators.required],
     description: ['', Validators.required],
     icon: ['', Validators.required],
-    color: ['', Validators.required],
+    color: ['#FDFEFE', Validators.required],
     status: ['', Validators.required],
     tasks: ['', Validators.required],
     columns: this._formBuilder.array([]),

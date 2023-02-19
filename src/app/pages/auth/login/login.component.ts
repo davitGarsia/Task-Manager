@@ -54,7 +54,9 @@ export class LoginComponent implements AfterViewInit {
       .login(this.form.value)
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
-        this.router.navigate(['/stepper']);
+        if(res) {
+          this.router.navigate(['/stepper']);
+        }
       });
 
   }

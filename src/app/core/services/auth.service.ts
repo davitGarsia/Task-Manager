@@ -37,6 +37,7 @@ export class AuthService extends BaseService {
     return this.post<User>('auth/signup', payload);
   }
 
+
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
