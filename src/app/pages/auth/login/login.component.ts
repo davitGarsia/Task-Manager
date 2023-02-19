@@ -36,13 +36,15 @@ export class LoginComponent implements AfterViewInit {
 
   isRegistered: boolean = false;
   mobile: boolean = false;
+  spinner: boolean = false;
+  diameter: number = 30;
 
   @ViewChild('password') password!: ElementRef;
 
   ngAfterViewInit(): void {
     window.innerWidth <= 1024 ? this.mobile = true : this.mobile = false;
     this.route.queryParamMap.subscribe(params => {
-      params.get('email') ? (this.form.get('email')?.setValue(params.get('email')), this.isRegistered = true) : null;
+      params.get('email') && !params.get('fromRegistration') ? (this.form.get('email')?.setValue(params.get('email')), this.isRegistered = true) : null;
     });
     this.isRegistered ? this.password.nativeElement.focus() : null;
   }
@@ -50,6 +52,7 @@ export class LoginComponent implements AfterViewInit {
   submit() {
     this.form.markAllAsTouched();
     if (this.form.invalid) return;
+    this.spinner = true;
     this.authService
       .login(this.form.value)
       .pipe(takeUntil(this.sub$))

@@ -17,7 +17,8 @@
     </p>
     <div>
       <button type="button" (click)="submit()">
-        Get Started
+        <span *ngIf="!spinner">Get Started</span>
+        <mat-spinner class="spinner" *ngIf="spinner" [diameter]="diameter" color="accent"></mat-spinner>
       </button>
       <span>
         <span>free forever.</span>

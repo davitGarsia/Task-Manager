@@ -56,16 +56,26 @@
       @include flex(flex-start, center);
 
       button {
-        padding: 15px 25px;
+        @include flex(center, center);
+        padding: 15px 0;
         font-size: 1.3rem;
         font-weight: bold;
         color: white;
+        width: 200px;
         background-color: #7B68EE;
         border: none;
         border-radius: 15px;
         outline: none;
         cursor: pointer;
         transition: .3s;
+
+        span {
+          display: block;
+          color: white;
+          width: 100%;
+          text-align: center;
+          margin: 0;
+        }
 
         &:hover {
           background-color: #7A1DE0;
