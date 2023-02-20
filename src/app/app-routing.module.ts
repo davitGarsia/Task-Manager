@@ -6,10 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 //ავტორიზაციის წარმატებით გავლის შემდეგ ამ ცვლადს შევცვლით
 let isAuthorised = true;
 
-import {HomeComponent} from "./pages/home/home.component";
-import {PageNotFoundComponent} from "./pages/404-error/page-not-found/page-not-found.component";
-import {AuthGuard} from "./core/guards";
-
+import { HomeComponent } from './pages/home/home.component';
+import { PageNotFoundComponent } from './pages/404-error/page-not-found/page-not-found.component';
+import { AuthGuard } from './core/guards';
 
 const routes: Routes = [
   {
@@ -18,22 +17,22 @@ const routes: Routes = [
     // loadChildren: () => isAuthorised ? import('./pages/application/application.module').then(m => m.ApplicationModule) :
     //   import('./pages/home/home.module').then(m => m.HomeModule),
 
-
-    children: [{
-      path: '',
-      loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
-    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./pages/home/home.module').then((m) => m.HomeModule),
+      },
       {
         path: 'auth',
-        loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+        loadChildren: () =>
+          import('./pages/auth/auth.module').then((m) => m.AuthModule),
       },
-      {
-        path: 'application',
-        loadChildren: () => import('./pages/application/application.module').then(m => m.ApplicationModule)
-      },
+
       {
         path: 'home',
-        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+        loadChildren: () =>
+          import('./pages/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: '',
@@ -41,27 +40,26 @@ const routes: Routes = [
           import('./pages/stepper/stepper.module').then((m) => m.StepperModule),
       },
       {
-        path: 'application',
-        canActivate: [AuthGuard],
+        path: '',
         loadChildren: () =>
-          import('./pages/application/application.module').then(m => m.ApplicationModule),
-      }]
+          import('./pages/main-layout/main-layout.module').then(
+            (m) => m.MainLayoutModule
+          ),
+      },
+    ],
   },
   {
     path: '**',
-    component: PageNotFoundComponent
-  }
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-
 export class AppRoutingModule {
-
   constructor() {
     isAuthorised = false;
   }
 }
-
