@@ -1,17 +1,19 @@
+<h1>Hello</h1>
 <mat-drawer-container class="mat-container" autosize>
   <mat-drawer #drawer class="sidenav" position="end" mode="side">
-    <app-sidenav-form></app-sidenav-form>
+    <span class="material-icons close-btn" (click)="closeDrawer()">close</span>
   </mat-drawer>
 
   <div class="sidenav-content">
     <div class="project-container grid">
       <div class="add-container" (click)="drawer.open()">
-        <div class="add-project" >
+        <div class="add-project">
           <span class="material-icons close">add</span>
           <p class="add">Add Project</p>
         </div>
       </div>
     </div>
-    <router-outlet></router-outlet>
+    <!-- <router-outlet></router-outlet> -->
   </div>
 </mat-drawer-container>
+<h1>Hello</h1>
