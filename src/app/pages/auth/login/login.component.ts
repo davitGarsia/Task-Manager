@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -16,7 +16,7 @@ import {CookieService} from "../../../core/services/cookie.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent implements AfterViewInit, OnInit {
   form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -41,8 +41,11 @@ export class LoginComponent implements AfterViewInit {
 
   @ViewChild('password') password!: ElementRef;
 
-  ngAfterViewInit(): void {
+  ngOnInit() {
     window.innerWidth <= 1024 ? this.mobile = true : this.mobile = false;
+  }
+
+  ngAfterViewInit(): void {
     this.route.queryParamMap.subscribe(params => {
       params.get('email') && !params.get('fromRegistration') ? (this.form.get('email')?.setValue(params.get('email')), this.isRegistered = true) : null;
     });

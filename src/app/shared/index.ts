@@ -40,3 +40,39 @@ export const testimonials = [
     date: '19.04.2023'
   }
 ];
+
+export const stepper = [
+  {
+    name: 'Stepper header 1',
+    description1: 'A 1-1 Lorem ipsum dolar sit amet lorem ipsum dolar sit amet',
+    description2: 'A 1-2 Lorem ipsum dolar sit amet lorem ipsum dolar sit amet'
+  },
+  {
+    name: 'Stepper header 2',
+    description1: 'A 2-1 Lorem ipsum dolar sit amet lorem ipsum dolar sit amet',
+    description2: 'A 2-2 Lorem ipsum dolar sit amet lorem ipsum dolar sit amet'
+  },
+  {
+    name: 'Stepper header 3',
+    description1: 'A 3-1 Lorem ipsum dolar sit amet lorem ipsum dolar sit amet',
+    description2: 'A 3-2 Lorem ipsum dolar sit amet lorem ipsum dolar sit amet'
+  },
+  {
+    name: 'Stepper header 4',
+    description1: 'A 4-1 Lorem ipsum dolar sit amet lorem ipsum dolar sit amet',
+    description2: 'A 4-2 Lorem ipsum dolar sit amet lorem ipsum dolar sit amet'
+  },
+  {
+    name: 'Stepper header 5',
+    description1: 'A 5-1 Lorem ipsum dolar sit amet lorem ipsum dolar sit amet',
+    description2: 'A 5-2 Lorem ipsum dolar sit amet lorem ipsum dolar sit amet'
+  }
+]
+
+export const src = [
+  'assets/images/undraw_projections_re_ulc6.svg',
+  'assets/images/undraw_scrum_board_re_wk7v.svg',
+  'assets/images/undraw_environmental_study_re_q4q8.svg',
+  'assets/images/undraw_subscriptions_re_k7jj.svg',
+  'assets/images/undraw_user_flow_re_bvfx.svg'
+]

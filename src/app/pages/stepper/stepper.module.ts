@@ -25,8 +25,6 @@ import { MatOptionModule } from '@angular/material/core';
     CreateIssueTypesComponent,
     AddUsersComponent,
     StepperComponent,
-
-
   ],
   imports: [
     CommonModule,
