@@ -8,22 +8,6 @@ import { DrawerService } from 'src/app/core/services/drawer.service';
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent implements OnInit {
-  @ViewChild(MatDrawer) drawer!: MatDrawer;
-
-  constructor(private drawerService: DrawerService) {}
-
-  ngOnInit(): void {
-    console.log('hi');
-    this.drawerService.isDrawerOpen$.subscribe((res: boolean) => {
-      if (res) {
-        this.drawer.open();
-      } else {
-        this.drawer?.close();
-      }
-    });
-  }
-
-  closeDrawer() {
-    this.drawerService.closeDrawer();
-  }
+ngOnInit() {
+}
 }

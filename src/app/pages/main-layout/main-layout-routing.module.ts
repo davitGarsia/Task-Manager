@@ -1,12 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './main-layout.component';
+import {BoardsComponent} from "./boards/boards.component";
+import {ProjectsComponent} from "./projects/projects.component";
+
 
 const routes: Routes = [
   {
-    path: 'main',
+    path: '',
+    pathMatch: "full",
     component: MainLayoutComponent,
   },
+  {
+    path: 'boards',
+    component: BoardsComponent
+  },
+  {
+    path: 'projects',
+    component: ProjectsComponent
+  }
 ];
 
 @NgModule({
