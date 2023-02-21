@@ -40,7 +40,7 @@ const routes: Routes = [
           import('./pages/stepper/stepper.module').then((m) => m.StepperModule),
       },
       {
-        path: '',
+        path: '' ,
         loadChildren: () =>
           import('./pages/main-layout/main-layout.module').then(
             (m) => m.MainLayoutModule

@@ -3,29 +3,32 @@
 </button>
 
 -->
+<img [src]="src[srcIndex]" alt="background" #backgroundImg />
 
 <mat-stepper
   #stepper
   [linear]="linear | async"
   class="stepper"
   [selectedIndex]="nextStepOpen$ | async"
+
+  (selectionChange)="getActiveStep($event)"
 >
-  <mat-step [editable]="isEditable" [completed]="completed | async">
+  <mat-step [editable]="isEditable">
     <ng-template matStepLabel>Project</ng-template>
     <app-create-project></app-create-project>
   </mat-step>
 
-  <mat-step [editable]="isEditable" [completed]="completed | async">
+  <mat-step [editable]="isEditable">
     <ng-template matStepLabel>Board</ng-template>
     <app-create-board></app-create-board>
   </mat-step>
 
-  <mat-step [editable]="isEditable" [completed]="completed | async">
+  <mat-step [editable]="isEditable">
     <ng-template matStepLabel>Issue Type</ng-template>
     <app-create-issue-types></app-create-issue-types>
   </mat-step>
 
-  <mat-step [editable]="isEditable" [completed]="completed | async">
+  <mat-step [editable]="isEditable">
     <ng-template matStepLabel>Users</ng-template>
     <app-add-users></app-add-users>
   </mat-step>
@@ -43,3 +46,20 @@
     </div>
   </mat-step>
 </mat-stepper>
+
+<ng-template #header>
+  <div class="step-header">
+    <h1>Step <span class="span">
+      <span class="counter" *ngFor="let step of stepsCountArray; let i = index">
+        {{i + 1}}
+      </span>
+    </span></h1>
+    <div>
+      <p class="description-1" *ngFor="let inf of stepperInfo">
+        {{inf.description1}}
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+<!-- [completed]="completed | async" -->

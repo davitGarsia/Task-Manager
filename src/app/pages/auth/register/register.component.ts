@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/services";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -11,7 +11,7 @@ import {checkPasswordValidator} from "../../../core/validators/form.validators";
   styleUrls: ['./register.component.scss']
 })
 
-export class RegisterComponent implements AfterViewInit {
+export class RegisterComponent implements AfterViewInit, OnInit {
 
 
 
@@ -40,8 +40,11 @@ export class RegisterComponent implements AfterViewInit {
   diameter: number = 30;
   spinner: boolean = false;
 
-  ngAfterViewInit(): void {
+  ngOnInit() {
     window.innerWidth <= 1024 ? this.mobile = true : this.mobile = false;
+  }
+
+  ngAfterViewInit(): void {
     this.route.queryParamMap.subscribe(params => {
       params.get('email') ? this.form.get('email')?.setValue(params.get('email')) : null;
     });
