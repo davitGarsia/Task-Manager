@@ -6,6 +6,8 @@ import { ProjectComponent } from './project/project.component';
 import {HomeModule} from "../home/home.module";
 import {FormsModule} from "@angular/forms";
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { ProjectSettingComponent } from './project-setting/project-setting.component';
+import { ProjectEditComponent } from './project-edit/project-edit.component';
 
 
 
@@ -13,7 +15,9 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
   declarations: [
     ApplicationComponent,
     ProjectComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    ProjectSettingComponent,
+    ProjectEditComponent
   ],
     imports: [
         CommonModule,
