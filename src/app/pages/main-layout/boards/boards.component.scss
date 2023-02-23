@@ -123,3 +123,26 @@ label {
   background-color: #6246b7;
 }
 
+.toggle-sidenav {
+  position: absolute;
+  top:50px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: #dbd8d8;
+  cursor: pointer;
+}
+
+.toggle-sidenav:hover {
+  background-color: #cfc3c3;
+}
+
+.toggle-sidenav:active {
+  background-color: #c0b4b4;
+}
+
