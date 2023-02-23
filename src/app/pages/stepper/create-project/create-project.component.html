@@ -3,17 +3,17 @@
   <div class="margin-auto">
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Name</mat-label>
-      <input matInput formControlName="name" placeholder="" required />
+      <input matInput formControlName="name" placeholder="" required/>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Abbreviation</mat-label>
-      <input matInput formControlName="abbreviation" placeholder="" required />
+      <input matInput formControlName="abbreviation" placeholder="" required/>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Description</mat-label>
-      <input matInput formControlName="description" placeholder="" required />
+      <input matInput formControlName="description" placeholder="" required/>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
@@ -26,16 +26,14 @@
         required
       />
     </mat-form-field>
-
-    <div>
-      <button
-        [disabled]="!projectFormGroup.valid"
-        mat-button
-        matStepperNext
-        (click)="onSubmit()"
-      >
-        Next
-      </button>
-    </div>
+    <button
+      [disabled]="!projectFormGroup.valid"
+      mat-button
+      matStepperNext
+      (click)="onSubmit()"
+      appNextButton
+    >
+      Next
+    </button>
   </div>
 </form>

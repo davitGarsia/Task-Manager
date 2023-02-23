@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -9,20 +9,34 @@ import {
 import { BoardService } from 'src/app/core/services/board.service';
 import { ControlProjectsService } from 'src/app/core/services/control-projects.service';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
+import {ValidCounterService} from "../../../core/services/valid-counter.service";
 
 @Component({
   selector: 'app-create-board',
   templateUrl: './create-board.component.html',
   styleUrls: ['./create-board.component.scss'],
 })
-export class CreateBoardComponent implements OnInit {
+export class CreateBoardComponent implements OnInit, AfterViewInit {
   constructor(
     private _formBuilder: FormBuilder,
     private stepperService: StepperNextService,
-    private boardService: BoardService
+    private boardService: BoardService,
+    private validCounter: ValidCounterService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    this.boardFormGroup.get('name')?.setValue('ss');
+     this.boardComponent(1)
+    this.boardFormGroup.get('name')?.setValue('');
+  }
+
+  boardComponent(index: number) {
+    this.validCounter.validCounter(this.boardFormGroup, index);
+    console.log('board')
+  }
 
   boardFormGroup = this._formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(4)]],
