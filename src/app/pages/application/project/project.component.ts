@@ -24,8 +24,9 @@ export class ProjectComponent implements OnInit {
 
   }
 
-  selectedProject($event: any) {
-    console.log($event);
+  selectedProject(projectId: any) {
+    console.log(projectId);
+    this.projectFacade.setProjectId(projectId);
 
   }
 }
