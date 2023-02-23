@@ -46,6 +46,13 @@ const routes: Routes = [
             (m) => m.MainLayoutModule
           ),
       },
+      {
+        path: 'application',
+        loadChildren: () =>
+          import('./pages/application/application.module').then(
+            (m) => m.ApplicationModule
+          ),
+      }
     ],
   },
   {

@@ -1,41 +1,26 @@
 <div class="container">
-  <p>project works!</p>
+  <p>
+    <app-navigation></app-navigation>
+  </p>
 
-<div>
-  <div class="container">
-    <div class="row">
-        <div class="table-responsive">
-          <table  class="table table-bordered table-hover">
-            <thead>
-            <tr>
-              <th>Project Name</th>
-              <th >Responsible user</th>
-              <th >tasks</th>
-              <th >board</th>
-              <th >color</th>
-              <th></th>
-              <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>name</td>
-              <td>User name</td>
-              <td>task name</td>
-              <td>board name</td>
-              <td>color</td>
-              <td><button>edit</button></td>
-              <td><button>delete</button></td>
-            </tr>
+  <div>
+    <div><app-side-menu></app-side-menu></div>
 
+    <div class="table-bordered">
+      Select Project: <select [ngModel]="currentProject?.id"
+                      (ngModelChange)="selectedProject($event)">
 
-            </tbody>
-          </table>
-        </div><!--end of .table-responsive-->
+                <option *ngFor="let project of projects$ | async"
+                        [value]="project.id"
+                       >
+                        {{project.name}}
+                </option>
+
+              </select>
 
     </div>
-  </div>
 
-</div>
+
+  </div>
 
 </div>

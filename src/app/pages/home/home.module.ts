@@ -29,33 +29,36 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 //import {AuthInterceptor} from "../../core/interceptors/auth.interceptor";
 
 @NgModule({
-  declarations: [
-    NavigationComponent,
-    HeaderComponent,
-    HomeSignUpComponent,
-    AboutProjectComponent,
-    ScrollToTopComponent,
+    declarations: [
+        NavigationComponent,
+        HeaderComponent,
+        HomeSignUpComponent,
+        AboutProjectComponent,
+        ScrollToTopComponent,
 
-    HomeSignUpComponent,
-    AboutProjectComponent,
-    ScrollToTopComponent,
-    TestimonialsComponent,
-    AuthorsComponent,
-    FooterComponent,
-    HeaderComponent,
-    HomeComponent,
-  ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
-    HttpClientModule,
-    MatTabsModule,
-    AuthModule,
-    FontAwesomeModule,
-    MatProgressSpinnerModule,
-  ],
+        HomeSignUpComponent,
+        AboutProjectComponent,
+        ScrollToTopComponent,
+        TestimonialsComponent,
+        AuthorsComponent,
+        FooterComponent,
+        HeaderComponent,
+        HomeComponent,
+    ],
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        ReactiveFormsModule,
+        MatSidenavModule,
+        HttpClientModule,
+        MatTabsModule,
+        AuthModule,
+        FontAwesomeModule,
+        MatProgressSpinnerModule,
+    ],
+    exports: [
+        NavigationComponent
+    ]
 })
 export class HomeModule {
   constructor(public library: FaIconLibrary) {
