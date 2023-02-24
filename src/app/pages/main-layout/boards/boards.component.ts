@@ -1,29 +1,42 @@
-import { Component, ViewChild } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { DrawerService } from '../../../core/services/drawer.service';
+import {BoardService} from "../../../core/services/board.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-boards',
   templateUrl: './boards.component.html',
   styleUrls: ['./boards.component.scss'],
 })
-export class BoardsComponent {
+export class BoardsComponent{
   isOpen = false;
   @ViewChild(MatDrawer) drawer!: MatDrawer;
 
-  constructor(private drawerService: DrawerService) {}
+  constructor(private drawerService: DrawerService,
+              private route: ActivatedRoute,
+              private boardService: BoardService) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if(params['id']) {
+        this.boardService.getBoards(params['id']).subscribe({
+          next: res => console.log(res),
+        })
+        console.log(params['id'])
+      }
+    })
+
+
     console.log('hi');
     this.drawerService.isDrawerOpen$.subscribe((res: boolean) => {
       if (res) {
         this.drawer?.open();
-        // this.isOpen = true;
       } else {
         this.drawer?.close();
-        // this.isOpen = false;
       }
     });
+
   }
 
   toggleDrawer() {
@@ -35,4 +48,6 @@ export class BoardsComponent {
       this.isOpen = false;
     }
   }
+
+
 }

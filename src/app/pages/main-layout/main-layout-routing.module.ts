@@ -11,8 +11,12 @@ const routes: Routes = [
     pathMatch: "full",
     component: MainLayoutComponent,
   },
+  // {
+  //   path: 'boards',
+  //   component: BoardsComponent
+  // },
   {
-    path: 'boards',
+    path: 'boards/:id',
     component: BoardsComponent
   },
   {
