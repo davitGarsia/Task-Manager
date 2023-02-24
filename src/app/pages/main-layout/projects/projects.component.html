@@ -11,6 +11,11 @@
 
     </div>
   </div>
-
+  <mat-paginator [length]="projectsLength"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 (page)="settingsChanged($event)"
+                 aria-label="Select page">
+  </mat-paginator>
 </div>
 

@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ControlProjectsService} from "../../../core/services/control-projects.service";
 import {BoardService} from "../../../core/services/board.service";
 import {Router} from "@angular/router";
 import {SharedService} from "../../../core/services/shared.service";
+import {IProject} from "../../../core/interfaces/iproject";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-projects',
@@ -17,10 +19,27 @@ export class ProjectsComponent implements OnInit{
               private router: Router) {
   }
 
-  projects:any = [];
+  projects: IProject[] = [];
+  projectsLength: number = 0;
+  pageSize: number = 10;
+  page: number = 1;
+
+/*  @Input('length') length!: number;
+  @Input('pageSize') pageSize!: number;
+  @Input('pageSizeOptions') pageSizeOptions!: number;*/
 
   ngOnInit() {
-    this.projectsService.getProjects().subscribe({
+    this.getProjects('DESC', this.page, this.pageSize);
+
+    this.projectsService.getAllProjects()
+      .subscribe(res => {
+        console.log(res)
+        this.projectsLength = res.length;
+      })
+  }
+
+  getProjects(order: string, page: number, pageSize: number){
+    this.projectsService.getProjects(order, page, pageSize).subscribe({
       next: res => res.data.forEach((project: any) => {
 
         this.projects.push(project);
@@ -45,4 +64,12 @@ export class ProjectsComponent implements OnInit{
   //   this.router.navigate(['main/boards']);
   //
   // }
+  settingsChanged(event: PageEvent) {
+    console.log(event)
+    this.page = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+
+    this.projects = [];
+    this.getProjects('DESC', this.page, this.pageSize);
+  }
 }

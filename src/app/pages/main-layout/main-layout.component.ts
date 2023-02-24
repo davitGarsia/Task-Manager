@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
-import { DrawerService } from 'src/app/core/services/drawer.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatDrawer} from '@angular/material/sidenav';
+import {DrawerService} from 'src/app/core/services/drawer.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -8,6 +8,32 @@ import { DrawerService } from 'src/app/core/services/drawer.service';
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent implements OnInit {
-ngOnInit() {
-}
+
+  constructor(
+    private drawerService: DrawerService,
+  ) {
+  }
+
+  isOpen = false;
+  @ViewChild(MatDrawer) drawer!: MatDrawer;
+
+  ngOnInit() {
+    this.drawerService.isDrawerOpen$.subscribe((res: boolean) => {
+      if (res) {
+        this.drawer?.open();
+      } else {
+        this.drawer?.close();
+      }
+    });
+  }
+
+  toggleDrawer() {
+    if (!this.isOpen) {
+      this.drawerService.openDrawer();
+      this.isOpen = true;
+    } else if (this.isOpen) {
+      this.drawerService.closeDrawer();
+      this.isOpen = false;
+    }
+  }
 }
