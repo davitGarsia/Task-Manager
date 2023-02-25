@@ -10,8 +10,8 @@ import {UsersFacadeService} from "../../facades/users-facade.service";
   styleUrls: ['./application.component.scss']
 })
 export class ApplicationComponent implements OnInit, AfterViewInit {
-  private scrolledTop: boolean = false;
-  private scrolled: boolean= true;
+  scrolledTop: boolean = false;
+  scrolled: boolean= false;
 
   constructor() {
   }

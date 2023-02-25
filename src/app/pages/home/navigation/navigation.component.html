@@ -21,8 +21,7 @@
   <div class="auth-links" *ngIf="!auth.getToken(); else userInfo">
     <button type="button" (click)="signUp()">sign up</button>
     <button type="button" (click)="navigateToLogin()">Log in</button>
-    <button routerLink="/register" class="registerBtn">Register</button>
-    <!--   შავლეგო ეს ღილაკი ჩავაგდე მაინც, რომ დავლაგდებით მერე ავირჩიოთ რა აჯობებს-->
+
   </div>
   <div class="toggle-nav dont-close-from-outside" [ngClass]="menuIsOpened ? 'opened' : ''" (click)="toggleMenu()">
     <div></div>

@@ -11,6 +11,8 @@ import {HttpHeaders} from "@angular/common/http";
 export class ControlProjectsService extends BaseService {
   addProject(payload: any): Observable<any> {
     console.log(payload)
+    localStorage.setItem('project', JSON.stringify(payload));
     return this.post<any>('project', payload);
+
   }
 }
