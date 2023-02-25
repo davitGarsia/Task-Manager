@@ -1,6 +1,7 @@
-<div class="container">
-  <div>
-    <app-navigation></app-navigation>
+<div class="container" #project>
+  <app-navigation [scrolled]="scrolled"></app-navigation>
+  <div >
+
     <div class="table-bordered">
       Select Project: <select [ngModel]="currentProject?.id"
                               (ngModelChange)="selectedProject($event)">
@@ -16,14 +17,17 @@
       <button routerLink="/stepper">Add Project</button>
     </div>
   </div>
-  <div class="sidebar">
-    <app-side-menu></app-side-menu>
-  </div>
-  <div class="content">
+  <div class="mainContent">
+    <div class="sidebar">
+      <app-side-menu></app-side-menu>
+    </div>
+    <div class="content">
 
-    <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
 
+    </div>
   </div>
+
 
 
 

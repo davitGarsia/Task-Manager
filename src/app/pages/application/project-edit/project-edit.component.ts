@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./project-edit.component.scss']
 })
 export class ProjectEditComponent {
-  disabled: boolean = false;
+  disabled: boolean = true;
   touchUi: boolean = false;
   colorCtr: any;
   color: any;
