@@ -9,6 +9,7 @@ import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 import {PageNotFoundComponent} from './pages/404-error/page-not-found/page-not-found.component';
 import {ProjectInterceptor} from './core/interceptors/project.interceptor';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS} from "@angular-material-components/color-picker";
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
       useClass: ProjectInterceptor,
       multi: true
     },
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
   ],
   bootstrap: [AppComponent],
 })

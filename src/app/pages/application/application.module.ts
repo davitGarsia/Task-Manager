@@ -4,10 +4,16 @@ import {ApplicationComponent} from "./application.component";
 import {ApplicationRoutingModule} from "./application-routing.module";
 import { ProjectComponent } from './project/project.component';
 import {HomeModule} from "../home/home.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { ProjectSettingComponent } from './project-setting/project-setting.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {NgxMatColorPickerModule} from "@angular-material-components/color-picker";
 
 
 
@@ -23,7 +29,14 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
         CommonModule,
         ApplicationRoutingModule,
         HomeModule,
-        FormsModule
+        FormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatIconModule,
+        MatInputModule,
+        MatDatepickerModule,
+        NgxMatColorPickerModule,
+        ReactiveFormsModule
     ]
 })
 export class ApplicationModule { }

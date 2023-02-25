@@ -1,27 +1,30 @@
 <div class="container">
-  <p>
-    <app-navigation></app-navigation>
-  </p>
-
   <div>
-    <div><app-side-menu></app-side-menu></div>
-
+    <app-navigation></app-navigation>
     <div class="table-bordered">
       Select Project: <select [ngModel]="currentProject?.id"
-                      (ngModelChange)="selectedProject($event)">
+                              (ngModelChange)="selectedProject($event)">
 
-                <option *ngFor="let project of projects$ | async"
-                        [value]="project.id"
-                       >
-                        {{project.name}}
-                </option>
+      <option *ngFor="let project of projects$ | async"
+              [value]="project.id"
+      >
+        {{project.name}}
+      </option>
 
-              </select>
+    </select>
       <button>Setting</button>
       <button routerLink="/stepper">Add Project</button>
     </div>
+  </div>
+  <div class="sidebar">
+    <app-side-menu></app-side-menu>
+  </div>
+  <div class="content">
 
-    </div>
+    <router-outlet></router-outlet>
+
+  </div>
+
 
 
 </div>

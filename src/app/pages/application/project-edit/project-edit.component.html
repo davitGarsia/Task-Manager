@@ -1,1 +1,22 @@
-<p>project-edit works!</p>
+<h1>Edit Project</h1>
+<form>
+  <mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input matInput placeholder="Name" >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Abbreviation</mat-label>
+    <input matInput placeholder="Abbreviation" >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Description" >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Color</mat-label>
+    <input matInput [ngxMatColorPicker]="picker" [formControl]="colorCtr" [disabled]="disabled">
+    <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+    <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
+  </mat-form-field>
+
+</form>
