@@ -1,21 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 import { UsersService } from 'src/app/core/services/users.service';
+import {ValidCounterService} from "../../../core/services/valid-counter.service";
 
 @Component({
   selector: 'app-add-users',
   templateUrl: './add-users.component.html',
   styleUrls: ['./add-users.component.scss'],
 })
-export class AddUsersComponent implements OnInit {
+export class AddUsersComponent implements OnInit, AfterViewInit {
   constructor(
     private _formBuilder: FormBuilder,
     private stepperService: StepperNextService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private validCounter: ValidCounterService
   ) {}
 
   ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.usersFormGroup.get('firstName')?.setValue('ss');
+    this.usersComponent(3);
+    this.usersFormGroup.get('firstName')?.setValue('');
+  }
+
+  usersComponent(index: number) {
+    this.validCounter.validCounter(this.usersFormGroup, index);
+  }
 
   usersFormGroup = this._formBuilder.group({
     firstName: ['', [Validators.required, Validators.minLength(2)]],

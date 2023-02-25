@@ -12,6 +12,10 @@ import {StepperNextService} from 'src/app/core/services/stepper.next.service';
 import {from, Observable, of, timeout} from 'rxjs';
 import {DOCUMENT} from "@angular/common";
 import {stepper, src} from "../../shared";
+import {CreateBoardComponent} from "./create-board/create-board.component";
+import {CreateProjectComponent} from "./create-project/create-project.component";
+import {CreateIssueTypesComponent} from "./create-issue-types/create-issue-types.component";
+import {AddUsersComponent} from "./add-users/add-users.component";
 
 @Component({
   selector: 'app-stepper',
@@ -71,6 +75,8 @@ export class StepperComponent implements OnInit, AfterViewInit {
     this.stepsCount = this.document.getElementsByClassName('mat-horizontal-stepper-content').length;
     this.stepsCountArray.length = this.stepsCount;
     // this.getSteps()
+
+    this.activeComponent();
   }
 
   /* steps$: HTMLElement[] | undefined;
@@ -85,6 +91,11 @@ export class StepperComponent implements OnInit, AfterViewInit {
         }
       })
   } */
+
+  @ViewChild(CreateProjectComponent) project!: CreateProjectComponent;
+  @ViewChild(CreateBoardComponent) board!: CreateBoardComponent;
+  @ViewChild(CreateIssueTypesComponent) issue!: CreateIssueTypesComponent;
+  @ViewChild(AddUsersComponent) users!: AddUsersComponent;
 
   activeIndex = 1; // shesacvleli iqneba tu davimaxsovrebt actiur steps refreshamde // localStorage
   src: string[] = src;
@@ -123,6 +134,25 @@ export class StepperComponent implements OnInit, AfterViewInit {
       })
       customLine.style.height = height * index + 30 * index + 'px';
     }, 100)
+
+    this.activeComponent();
+  }
+
+  activeComponent() {
+    switch (this.activeIndex - 1) {
+      case 0:
+        this.project.projectComponent(0);
+        break
+      case 1:
+        this.board.boardComponent(1);
+        break
+      case 2:
+        this.issue.issueComponent(2);
+        break
+      case 3:
+        this.users.usersComponent(3);
+        break
+    }
   }
 
   stepperInfo = stepper;

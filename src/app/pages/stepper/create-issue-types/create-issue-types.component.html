@@ -2,12 +2,12 @@
   <div class="margin-auto">
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Name</mat-label>
-      <input matInput formControlName="name" placeholder="" required />
+      <input matInput formControlName="name" placeholder="" required/>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Description</mat-label>
-      <input matInput formControlName="description" placeholder="" required />
+      <input matInput formControlName="description" placeholder="" required/>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
@@ -43,7 +43,7 @@
       <mat-label>Status</mat-label>
       <mat-select formControlName="status">
         <mat-option value="Active">Active</mat-option>
-        <mat-option>Inactive</mat-option>
+        <mat-option value="Inactive">Inactive</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -77,12 +77,12 @@
       </mat-autocomplete>
     </mat-form-field>
 
-    <div formArrayName="columns" class="step-form-field">
+    <div formArrayName="columns" class="step-form-field added">
       <div *ngFor="let column of colsArray.controls; let i = index">
         <div [formGroupName]="i">
           <mat-form-field appearance="fill" class="step-form-field">
             <mat-label>Column name</mat-label>
-            <input matInput formControlName="name" placeholder="" required />
+            <input matInput formControlName="name" placeholder="" required/>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="step-form-field">
@@ -96,7 +96,7 @@
           </mat-form-field>
         </div>
       </div>
-      <button type="button" mat-button color="primary" (click)="addCol()">
+      <button type="button" mat-button color="primary" (click)="addCol()" class="add">
         Add Column
       </button>
     </div>
@@ -109,6 +109,7 @@
         matStepperNext
         type="button"
         (click)="onSubmit()"
+        appNextButton
       >
         Next
       </button>

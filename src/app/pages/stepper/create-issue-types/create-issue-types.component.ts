@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -6,25 +6,28 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { map, Observable, startWith } from 'rxjs';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { StepperNextService } from 'src/app/core/services/stepper.next.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {map, Observable, startWith} from 'rxjs';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {StepperNextService} from 'src/app/core/services/stepper.next.service';
 
-import { IssueTypesService } from 'src/app/core/services';
+import {IssueTypesService} from 'src/app/core/services';
+import {ValidCounterService} from "../../../core/services/valid-counter.service";
 
 @Component({
   selector: 'app-create-issue-types',
   templateUrl: './create-issue-types.component.html',
   styleUrls: ['./create-issue-types.component.scss'],
 })
-export class CreateIssueTypesComponent implements OnInit {
+export class CreateIssueTypesComponent implements OnInit, AfterViewInit {
   constructor(
     private _formBuilder: FormBuilder,
     private stepperService: StepperNextService,
-    private issueTypesService: IssueTypesService
-  ) {}
+    private issueTypesService: IssueTypesService,
+    private validCounter: ValidCounterService
+  ) {
+  }
 
   issueFormGroup = this._formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
@@ -51,6 +54,17 @@ export class CreateIssueTypesComponent implements OnInit {
       startWith(null),
       map((task: any) => (task ? this.filter(task) : this.allTasks.slice()))
     );
+  }
+
+  ngAfterViewInit() {
+    this.issueFormGroup.get('name')?.setValue('ss');
+    this.issueComponent(2);
+    this.issueFormGroup.get('name')?.setValue('');
+  }
+
+  issueComponent(index: number) {
+    this.validCounter.validCounter(this.issueFormGroup, index);
+    console.log('board')
   }
 
   add(event: MatChipInputEvent): void {
