@@ -44,7 +44,7 @@
 .add-container {
   border-radius: 5px;
   cursor: pointer;
-  background-image: linear-gradient(to right, #1a1a59, #1cb5e0);
+ // background-image: linear-gradient(to right, #1a1a59, #1cb5e0);
   width: 300px;
   height: 160px;
   display: flex;
@@ -53,7 +53,7 @@
 }
 
 .add-container:hover {
-  background-image: linear-gradient(to right, #1a1a59, #0e5b70);
+ // background-image: linear-gradient(to right, #1a1a59, #0e5b70);
 }
 
 .close {
@@ -63,8 +63,6 @@
 .add-container:hover {
   background-color: #dbd8d8;
 }
-
-/**/
 
 .input-wrapper {
   display: flex;
@@ -124,3 +122,27 @@ label {
 .create-btn:active {
   background-color: #6246b7;
 }
+
+.toggle-sidenav {
+  position: absolute;
+  top:50px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: #dbd8d8;
+  cursor: pointer;
+}
+
+.toggle-sidenav:hover {
+  background-color: #cfc3c3;
+}
+
+.toggle-sidenav:active {
+  background-color: #c0b4b4;
+}
+
