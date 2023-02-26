@@ -33,7 +33,6 @@ export class ProjectsComponent implements OnInit{
 
     this.projectsService.getAllProjects()
       .subscribe(res => {
-        console.log(res)
         this.projectsLength = res.length;
       })
   }
@@ -41,29 +40,14 @@ export class ProjectsComponent implements OnInit{
   getProjects(order: string, page: number, pageSize: number){
     this.projectsService.getProjects(order, page, pageSize).subscribe({
       next: res => res.data.forEach((project: any) => {
-
+        console.log(project)
         this.projects.push(project);
-        //console.log(this.projects)
       }),
       error: err => console.log(err),
     })
   }
 
-  // renderProjects() {
-  //   // this.projectsService.getProjects().subscribe({
-  //   //   next: res => console.log(res),
-  //   //   error: err => console.log(err),
-  //   // })
-  // }
 
-  // getProjectId(index: number) {
-  //   console.log(this.projects[index].id);
-  //   this.sharedService.receiveId(this.projects[index].id);
-  //
-  //
-  //   this.router.navigate(['main/boards']);
-  //
-  // }
   settingsChanged(event: PageEvent) {
     console.log(event)
     this.page = event.pageIndex + 1;

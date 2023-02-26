@@ -11,10 +11,7 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      {
-        path: 'boards',
-        component: BoardsComponent
-      },
+
       {
         path: 'boards/:id',
         component: BoardsComponent

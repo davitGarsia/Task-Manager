@@ -2,7 +2,7 @@
   <div class="prj-container">
     <div class="project-container grid">
       <div *ngFor="let project of projects; let i = index">
-        <div class="inner-container" [routerLink]="['/main/boards', project.id]">
+        <div class="inner-container" [ngStyle]="{backgroundColor: project.color}" [routerLink]="['/main/boards', project.id]">
         <div class="add-project">
           <p class="prj-title">{{project.name}}</p>
         </div>
@@ -10,12 +10,15 @@
       </div>
 
     </div>
+
   </div>
-  <mat-paginator [length]="projectsLength"
-                 [pageSize]="pageSize"
-                 [pageSizeOptions]="[5, 10, 25, 100]"
-                 (page)="settingsChanged($event)"
-                 aria-label="Select page">
-  </mat-paginator>
+
 </div>
 
+<mat-paginator [length]="projectsLength"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="[5, 10, 25, 100]"
+               (page)="settingsChanged($event)"
+               aria-label="Select page"
+class="paginator">
+</mat-paginator>

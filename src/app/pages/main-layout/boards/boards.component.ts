@@ -15,6 +15,7 @@ export class BoardsComponent implements OnInit{
 
   boards: IBoard[] = [];
 
+
   constructor(
               private route: ActivatedRoute,
               private boardService: BoardService) {}
@@ -23,14 +24,11 @@ export class BoardsComponent implements OnInit{
     this.route.params.subscribe(params => {
       if(params['id']) {
         this.boardService.getBoards(params['id']).subscribe({
-          next: res => this.boards = res
+          next: res => {
+            this.boards = res;
+          },
         })
-        console.log(params['id'])
       }
     })
   }
-
-
-
-
-}
+  }
