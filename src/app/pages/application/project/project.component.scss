@@ -40,8 +40,9 @@
   .mainContent {
     display: flex;
     justify-content: space-between;
-    background-color: red;
+
     width: 100%;
+    height: 100%;
 
     .content {
       display: flex;
@@ -49,7 +50,7 @@
       align-items: center;
       justify-content: center;
       width: calc(100% - 300px);
-      height: 100%;
+      height: 1000px;
       background-color: #fff;
       border: 1px solid #e0e0e0;
       border-radius: 5px;
@@ -62,7 +63,7 @@
     align-self: flex-start;
     right: 800px;
     width: 300px;
-    height: 100%;
+    height: 1000px;
     background-color: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
@@ -75,18 +76,20 @@
 .table-bordered, {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: auto;
   height: 100px;
+
   margin-bottom: 1rem;
   color: #212529;
   position: absolute;
-  top: 100px;
-  right: 0;
+  top: 150px;
+
+  right: 25px;
   font-size: 20px;
   font-weight: 500;
-  z-index: 4;
+  z-index: 0;
 }
 
 

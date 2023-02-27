@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 
-import { MatStepper, MatStepperNext } from '@angular/material/stepper';
+
 
 import { ProjectFacade } from 'src/app/facades/project-facade.service';
 import { ControlProjectsService } from 'src/app/core/services/control-projects.service';
@@ -34,7 +34,6 @@ export class CreateProjectComponent implements OnInit{
 
   ngOnInit(): void {
     this.project = JSON.parse(localStorage.getItem('project')!);
-    console.log(this.project);
     this.projectFormGroup.patchValue(this.project)
   }
 

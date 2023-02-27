@@ -22,7 +22,6 @@ import {NgxMatColorPickerModule} from "@angular-material-components/color-picker
     ApplicationComponent,
     ProjectComponent,
     SideMenuComponent,
-    ProjectSettingComponent,
     ProjectEditComponent
   ],
     imports: [

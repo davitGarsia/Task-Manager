@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 import { UsersService } from 'src/app/core/services/users.service';
+import {User} from "../../../core/interfaces";
+
 
 @Component({
   selector: 'app-add-users',
@@ -15,7 +17,9 @@ export class AddUsersComponent implements OnInit {
     private usersService: UsersService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   usersFormGroup = this._formBuilder.group({
     firstName: ['', [Validators.required, Validators.minLength(2)]],

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -13,13 +13,14 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
 
 import { IssueTypesService } from 'src/app/core/services';
+import {IProject} from "../../../core/interfaces/iproject";
 
 @Component({
   selector: 'app-create-issue-types',
   templateUrl: './create-issue-types.component.html',
   styleUrls: ['./create-issue-types.component.scss'],
 })
-export class CreateIssueTypesComponent implements OnInit {
+export class CreateIssueTypesComponent implements OnInit{
   constructor(
     private _formBuilder: FormBuilder,
     private stepperService: StepperNextService,
@@ -30,7 +31,7 @@ export class CreateIssueTypesComponent implements OnInit {
     name: ['', [Validators.required, Validators.minLength(2)]],
     description: ['', [Validators.required, Validators.minLength(4)]],
     icon: ['', Validators.required],
-    color: ['#910D9B', Validators.required],
+    color: ['', Validators.required],
     status: ['', Validators.required],
     tasks: ['', Validators.required],
     columns: this._formBuilder.array([]),
@@ -45,13 +46,17 @@ export class CreateIssueTypesComponent implements OnInit {
   allTasks: string[] = ['Task', 'Bug', 'Test', 'Spike'];
 
   @ViewChild('taskInput') taskInput!: ElementRef<HTMLInputElement>;
-
+  project: IProject = {} as IProject;
   ngOnInit(): void {
     this.filteredTasks = this.taskControl.valueChanges.pipe(
       startWith(null),
-      map((task: any) => (task ? this.filter(task) : this.allTasks.slice()))
+      map((task: any) => (task ? this.filter(task) : this.allTasks.slice())),
     );
+    this.project = JSON.parse(localStorage.getItem('issueType')!)
+    this.issueFormGroup .patchValue(this.project)
   }
+
+
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();

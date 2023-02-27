@@ -7,7 +7,7 @@ export class ProjectFacade {
 
   setProject(project: any) {
     if (project) {
-      localStorage.setItem('project', JSON.stringify(project));
+      localStorage.setItem('project', JSON.stringify(project))
     }
   }
 

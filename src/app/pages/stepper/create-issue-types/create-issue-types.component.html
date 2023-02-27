@@ -104,11 +104,12 @@
     <div>
       <button mat-button matStepperPrevious (click)="goBack()">Back</button>
       <button
-        [disabled]="!issueFormGroup.valid"
+
         mat-button
         matStepperNext
         type="button"
         (click)="onSubmit()"
+
       >
         Next
       </button>

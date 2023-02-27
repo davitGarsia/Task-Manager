@@ -41,6 +41,12 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       console.log(firstElPos);
     })
   }
+
+  clearLocalStorage() {
+      localStorage.removeItem('project');
+      localStorage.removeItem('board');
+      localStorage.removeItem('issueType');
+  }
 }
 
 

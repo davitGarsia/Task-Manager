@@ -13,6 +13,7 @@ export class IssueTypesService {
   constructor(private http: HttpClient) {}
 
   setIssueType(issueType: any) {
+    localStorage.setItem('issueType', JSON.stringify(issueType));
     return this.http.post(this.apiUrl, issueType);
   }
 

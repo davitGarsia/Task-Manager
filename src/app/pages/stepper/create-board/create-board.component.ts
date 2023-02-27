@@ -9,6 +9,7 @@ import {
 import { BoardService } from 'src/app/core/services/board.service';
 import { ControlProjectsService } from 'src/app/core/services/control-projects.service';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
+import {IProject} from "../../../core/interfaces/iproject";
 
 @Component({
   selector: 'app-create-board',
@@ -22,7 +23,12 @@ export class CreateBoardComponent implements OnInit {
     private boardService: BoardService
   ) {}
 
-  ngOnInit(): void {}
+  project: IProject = {} as IProject;
+
+  ngOnInit(): void {
+    this.project = JSON.parse(localStorage.getItem('board')!);
+    this.boardFormGroup.patchValue(this.project)
+  }
 
   boardFormGroup = this._formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(4)]],
