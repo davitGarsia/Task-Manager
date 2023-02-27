@@ -4,16 +4,13 @@
   <div class="board-container">
     <div class="brd-container grid">
       <div *ngFor="let board of boards">
-        <div class="inner-container">
+        <div class="inner-container" [routerLink]="['/main/board', board.id]">
           <div class="board">
             <p class="board-title">{{board.name}}</p>
             <p class="desc">{{board.description}}</p>
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
-
 </div>
