@@ -21,13 +21,14 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
+this.getMyProjects()
   }
 
   selectedProject(projectId: any) {
-    console.log(projectId);
-    this.projectFacade.setProjectId(projectId);
-
+    this.projectFacade.setProjectId(projectId)
+    setTimeout(() => {
+      location.reload()
+    }, 2000)
   }
    scrolledTop: boolean = false;
   scrolled: boolean= false;
@@ -46,6 +47,9 @@ export class ProjectComponent implements OnInit, AfterViewInit {
       localStorage.removeItem('project');
       localStorage.removeItem('board');
       localStorage.removeItem('issueType');
+  }
+  getMyProjects(){
+    this.projectFacade.getMyProjects$().subscribe()
   }
 }
 

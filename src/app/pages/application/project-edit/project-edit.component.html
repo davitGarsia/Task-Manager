@@ -2,21 +2,21 @@
 <form [formGroup]="form" >
   <mat-form-field>
     <mat-label>First Name</mat-label>
-    <input matInput placeholder="Name" >
+    <input matInput placeholder="Name" formControlName="name" >
   </mat-form-field>
   <mat-form-field>
     <mat-label>Abbreviation</mat-label>
-    <input matInput placeholder="Abbreviation" >
+    <input matInput placeholder="Abbreviation" formControlName="abbreviation">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Description</mat-label>
-    <input matInput placeholder="Description" >
+    <input matInput placeholder="Description" formControlName="description">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Color</mat-label>
-    <input matInput [ngxMatColorPicker]="picker" [formControl]="colorCtr" >
+    <input matInput [ngxMatColorPicker]="picker" [formControl]="colorCtr" formControlName="color">
     <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
     <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
   </mat-form-field>
-<button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+<button mat-raised-button color="primary" (click)="saveChange()">delete</button>
 </form>

@@ -1,8 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {UsersService} from "../../core/services/users.service";
-import {User} from "../../core/interfaces";
-import {ProjectFacadeService} from "../../core/services/project-facade.service";
-import {UsersFacadeService} from "../../facades/users-facade.service";
+
 
 @Component({
   selector: 'app-application',
@@ -11,7 +8,7 @@ import {UsersFacadeService} from "../../facades/users-facade.service";
 })
 export class ApplicationComponent implements OnInit, AfterViewInit {
   scrolledTop: boolean = false;
-  scrolled: boolean= false;
+  scrolled: boolean= true;
 
   constructor() {
   }
@@ -20,14 +17,14 @@ export class ApplicationComponent implements OnInit, AfterViewInit {
 
   }
 
-  @ViewChild('project') project!: ElementRef;
+  // @ViewChild('project') project!: ElementRef;
 
   ngAfterViewInit() {
-    this.project.nativeElement.addEventListener('scroll', () => {
-      let firstElPos = this.project.nativeElement.firstChild.getBoundingClientRect().top;
-      firstElPos <= -10 ? this.scrolled = true : this.scrolled = false;
-      firstElPos <= -window.innerHeight ? this.scrolledTop = true : this.scrolledTop = false;
-    })
+    // this.project.nativeElement.addEventListener('scroll', () => {
+    //   let firstElPos = this.project.nativeElement.firstChild.getBoundingClientRect().top;
+    //   firstElPos <= -10 ? this.scrolled = true : this.scrolled = false;
+    //   firstElPos <= -window.innerHeight ? this.scrolledTop = true : this.scrolledTop = false;
+    // })
   }
 
 
