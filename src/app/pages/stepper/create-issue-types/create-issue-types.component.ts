@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {map, Observable, startWith} from 'rxjs';
+import {from, map, Observable, startWith, filter, of, timeout, toArray} from 'rxjs';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {StepperNextService} from 'src/app/core/services/stepper.next.service';
@@ -35,7 +35,7 @@ export class CreateIssueTypesComponent implements OnInit, AfterViewInit {
     icon: ['', Validators.required],
     color: ['#910D9B', Validators.required],
     status: ['', Validators.required],
-    tasks: ['', Validators.required],
+    tasks: [[''], Validators.required],
     columns: this._formBuilder.array([]),
   });
   isEditable = true;
@@ -56,6 +56,11 @@ export class CreateIssueTypesComponent implements OnInit, AfterViewInit {
     );
   }
 
+  log() {
+    console.log(this.issueFormGroup.get('tasks')?.value)
+    console.log(this.taskControl?.value)
+  }
+
   ngAfterViewInit() {
     this.issueFormGroup.get('name')?.setValue('ss');
     this.issueComponent(2);
@@ -64,7 +69,6 @@ export class CreateIssueTypesComponent implements OnInit, AfterViewInit {
 
   issueComponent(index: number) {
     this.validCounter.validCounter(this.issueFormGroup, index);
-    console.log('board')
   }
 
   add(event: MatChipInputEvent): void {
@@ -81,8 +85,11 @@ export class CreateIssueTypesComponent implements OnInit, AfterViewInit {
   remove(role: string): void {
     const index = this.tasks.indexOf(role);
 
+    this.taskInput.nativeElement.select();
+
     if (index >= 0) {
       this.tasks.splice(index, 1);
+      this.issueFormGroup.get('tasks')!.setValue(this.tasks)
     }
   }
 
@@ -143,5 +150,17 @@ export class CreateIssueTypesComponent implements OnInit, AfterViewInit {
       this.stepperService.complete.next(true);
     }
     this.stepperService.complete.next(false);
+  }
+
+  filterOptions() {
+    setTimeout(() => {
+      const tasks: any = this.issueFormGroup.get('tasks')!.value;
+
+      const newFilteredTasks = this.allTasks.filter(task => {
+        return !tasks.includes(task)
+      });
+
+      this.filteredTasks = of(newFilteredTasks);
+    }, 200)
   }
 }

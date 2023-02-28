@@ -49,10 +49,10 @@
 
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Tasks</mat-label>
-      <mat-chip-grid #chipListbox aria-label="Task Selection">
+      <mat-chip-grid #chipListBox aria-label="Task Selection" formControlName="tasks">
         <mat-chip *ngFor="let task of tasks" (removed)="remove(task)">
           {{ task }}
-          <button matChipRemove>
+          <button matChipRemove (click)="filterOptions()">
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip>
@@ -60,18 +60,18 @@
           placeholder="New Task"
           #taskInput
           [formControl]="taskControl"
-          formControlName="tasks"
           [matAutocomplete]="auto"
-          [matChipInputFor]="$any(chipListbox)"
+          [matChipInputFor]="$any(chipListBox)"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           (matChipInputTokenEnd)="add($event)"
+          (input)="log()"
         />
       </mat-chip-grid>
       <mat-autocomplete
         #auto="matAutocomplete"
         (optionSelected)="selected($event)"
       >
-        <mat-option *ngFor="let task of filteredTasks | async" [value]="task">
+        <mat-option *ngFor="let task of filteredTasks | async" [value]="task" (click)="taskInput.blur(); filterOptions()">
           {{ task }}
         </mat-option>
       </mat-autocomplete>
@@ -109,6 +109,7 @@
         matStepperNext
         type="button"
         (click)="onSubmit()"
+        appNextButton
       >
         Next
       </button>
