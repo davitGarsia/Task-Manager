@@ -46,6 +46,10 @@ const routes: Routes = [
             (m) => m.MainLayoutModule
           ),
       },
+      {
+        path: 'projects',
+        loadChildren: () => import('./pages/project/project.module').then(m => m.ProjectModule)
+      }
     ],
   },
   {
