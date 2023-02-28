@@ -4,8 +4,6 @@
   align-items: center;
   justify-content: center;
   overflow-y: scroll;
-  //display: grid;
-  //grid-template-columns: 1fr auto auto;
   width: 100%;
   height: 100%;
   min-width: 1040px;
@@ -39,27 +37,25 @@
 
   .mainContent {
     display: flex;
-    justify-content: space-between;
-
+    justify-content: center;
     width: 100%;
     height: 100%;
 
     .content {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: flex-start;
       width: calc(100% - 300px);
       height: 1000px;
       background-color: #fff;
       border: 1px solid #e0e0e0;
       border-radius: 5px;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-
     }
   }
-
   .sidebar {
+    display: flex;
     align-self: flex-start;
     right: 800px;
     width: 300px;
@@ -68,11 +64,8 @@
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-
   }
-
 }
-
 .table-bordered, {
   display: flex;
   flex-direction: row;
@@ -80,7 +73,6 @@
   justify-content: center;
   width: auto;
   height: 100px;
-
   margin-bottom: 1rem;
   color: #212529;
   position: absolute;

@@ -1,5 +1,5 @@
 <h1>Edit Project</h1>
-<form>
+<form [formGroup]="form" >
   <mat-form-field>
     <mat-label>First Name</mat-label>
     <input matInput placeholder="Name" >
@@ -18,5 +18,5 @@
     <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
     <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
   </mat-form-field>
-
+<button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
 </form>
