@@ -35,7 +35,7 @@ export class CreateIssueTypesComponent implements OnInit, AfterViewInit {
     icon: ['', Validators.required],
     color: ['#910D9B', Validators.required],
     status: ['', Validators.required],
-    tasks: [[''], Validators.required],
+    tasks: [[] as string[], Validators.required],
     columns: this._formBuilder.array([]),
   });
   isEditable = true;
@@ -54,11 +54,6 @@ export class CreateIssueTypesComponent implements OnInit, AfterViewInit {
       startWith(null),
       map((task: any) => (task ? this.filter(task) : this.allTasks.slice()))
     );
-  }
-
-  log() {
-    console.log(this.issueFormGroup.get('tasks')?.value)
-    console.log(this.taskControl?.value)
   }
 
   ngAfterViewInit() {

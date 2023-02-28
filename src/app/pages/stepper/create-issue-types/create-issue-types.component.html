@@ -49,7 +49,7 @@
 
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Tasks</mat-label>
-      <mat-chip-grid #chipListBox aria-label="Task Selection" formControlName="tasks">
+      <mat-chip-grid #chipListBox aria-label="Task Selection" formControlName="tasks" required>
         <mat-chip *ngFor="let task of tasks" (removed)="remove(task)">
           {{ task }}
           <button matChipRemove (click)="filterOptions()">
@@ -64,7 +64,6 @@
           [matChipInputFor]="$any(chipListBox)"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           (matChipInputTokenEnd)="add($event)"
-          (input)="log()"
         />
       </mat-chip-grid>
       <mat-autocomplete
