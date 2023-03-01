@@ -35,7 +35,7 @@ const routes: Routes = [
         component: ProjectUsersComponent
       },
       {
-        path: 'edit',
+        path: 'edit/:id',
         component: ProjectEditComponent
       },
       {
