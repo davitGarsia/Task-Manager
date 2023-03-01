@@ -1,11 +1,15 @@
-<h1>project-info works!</h1>
 <div class="container">
   <div class="prj-container">
     <div class="project-container grid">
       <div *ngFor="let project of projects; let i = index">
-        <div class="inner-container" [ngStyle]="{backgroundColor: project.color}" [routerLink]="['/main/boards', project.id]">
+        <div class="inner-container" [ngStyle]="{backgroundColor: project.color}" [routerLink]="['/application/setting/board',]
+        // project.id
+        ]">
           <div class="add-project">
-            <p class="prj-title">{{project.name}}</p>
+            <p class="prj-title">project name: {{project.name}}</p>
+            <p class="prj-title">project abbreviation: {{project.abbreviation}}</p>
+            <p class="prj-title"><button routerLink="/application/setting/description">Description</button></p>
+            <button [routerLink]="['/application/setting/edit', project.id]">Edit</button>
           </div>
         </div>
       </div>

@@ -1,9 +1,10 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProjectService} from "../../../core/services/project.service";
-import {Observable} from "rxjs";
+import {Observable, Subject, takeUntil} from "rxjs";
 import {IProject} from "../../../core/interfaces/iproject";
 import {Router} from "@angular/router";
 import {ProjectFacade} from "../../../facades/project-facade.service";
+
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -13,6 +14,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   projects: any = [];
   projects$: Observable<IProject[]> = this.projectService.getAllProjects();
   currentProject?: IProject | undefined = this.projectFacade.getProject()
+  sub$ = new Subject()
 
   constructor(
     private projectService: ProjectService,
@@ -21,7 +23,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-this.getMyProjects()
+    this.getMyProjects()
   }
 
   selectedProject(projectId: any) {
@@ -30,8 +32,9 @@ this.getMyProjects()
       location.reload()
     }, 2000)
   }
-   scrolledTop: boolean = false;
-  scrolled: boolean= false;
+
+  scrolledTop: boolean = false;
+  scrolled: boolean = false;
   @ViewChild('project') project!: ElementRef;
 
   ngAfterViewInit() {
@@ -44,12 +47,15 @@ this.getMyProjects()
   }
 
   clearLocalStorage() {
-      localStorage.removeItem('project');
-      localStorage.removeItem('board');
-      localStorage.removeItem('issueType');
+    localStorage.removeItem('project');
+    localStorage.removeItem('board');
+    localStorage.removeItem('issueType');
   }
-  getMyProjects(){
-    this.projectFacade.getMyProjects$().subscribe()
+
+  getMyProjects() {
+    this.projectFacade.getMyProjects$()
+      .pipe(takeUntil(this.sub$))
+      .subscribe()
   }
 }
 

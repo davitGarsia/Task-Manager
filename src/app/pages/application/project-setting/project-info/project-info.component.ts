@@ -5,19 +5,26 @@ import {Router} from "@angular/router";
 import {IProject} from "../../../../core/interfaces/iproject";
 import {PageEvent} from "@angular/material/paginator";
 import {SharedService} from "../../../../core/services/shared.service";
+import {ProjectFacade} from "../../../../facades/project-facade.service";
+
+import {DescriptionComponent} from "./description.component";
 
 
 @Component({
   selector: 'app-project-info',
- templateUrl: 'project-info.component.html',
+  templateUrl: 'project-info.component.html',
   styleUrls: ['./project-info.component.scss']
 })
-export class ProjectInfoComponent implements OnInit{
+
+export class ProjectInfoComponent implements OnInit {
 
   constructor(private projectsService: ControlProjectsService,
               private boardService: BoardService,
               private sharedService: SharedService,
-              private router: Router) {
+              private router: Router,
+              private projectFacade: ProjectFacade,
+
+  ) {
   }
 
   projects: IProject[] = [];
@@ -28,7 +35,9 @@ export class ProjectInfoComponent implements OnInit{
   /*  @Input('length') length!: number;
     @Input('pageSize') pageSize!: number;
     @Input('pageSizeOptions') pageSizeOptions!: number;*/
-
+get project(): IProject {
+  return this.projectFacade.getProject();
+}
   ngOnInit() {
     this.getProjects('DESC', this.page, this.pageSize);
 
@@ -38,7 +47,7 @@ export class ProjectInfoComponent implements OnInit{
       })
   }
 
-  getProjects(order: string, page: number, pageSize: number){
+  getProjects(order: string, page: number, pageSize: number) {
     this.projectsService.getProjects(order, page, pageSize).subscribe({
       next: res => res.data.forEach((project: any) => {
         console.log(project)
@@ -57,4 +66,6 @@ export class ProjectInfoComponent implements OnInit{
     this.projects = [];
     this.getProjects('DESC', this.page, this.pageSize);
   }
+
+
 }

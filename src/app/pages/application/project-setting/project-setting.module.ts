@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProjectSettingRoutingModule } from './project-setting-routing.module';
@@ -11,6 +11,9 @@ import {RouterModule} from "@angular/router";
 import {MainLayoutRoutingModule} from "../../main-layout/main-layout-routing.module";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {ProjectSettingComponent} from "./project-setting.component";
+import { DescriptionComponent } from './project-info/description.component';
+
+
 
 
 @NgModule({
@@ -19,7 +22,9 @@ import {ProjectSettingComponent} from "./project-setting.component";
     ProjectInfoComponent,
     ProjectBoardComponent,
     ProjectIssueTypeComponent,
-    ProjectUsersComponent
+    ProjectUsersComponent,
+    DescriptionComponent,
+
   ],
   imports: [
     CommonModule,
@@ -27,7 +32,8 @@ import {ProjectSettingComponent} from "./project-setting.component";
     MatSidenavModule,
     RouterModule,
     MainLayoutRoutingModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+
     ],
 })
 export class ProjectSettingModule { }

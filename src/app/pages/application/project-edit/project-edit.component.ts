@@ -5,6 +5,7 @@ import {IProject} from "../../../core/interfaces/iproject";
 import {ProjectFacade} from "../../../facades/project-facade.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ControlProjectsService} from "../../../core/services/control-projects.service";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-project-edit',
@@ -17,7 +18,7 @@ export class ProjectEditComponent {
   colorCtr: any;
   color: any;
   projects$ = this.projectFacade.myProjects$;
-
+  sub$ = new Subject()
 
   constructor(
     private projectService: ProjectService,
@@ -36,17 +37,21 @@ export class ProjectEditComponent {
   });
   project: IProject = {} as IProject;
 currentProjectId: number = this.projectFacade.getProjectId();
-currentProj = this.projectService.getProjectById(this.currentProjectId).subscribe((res) => {
+currentProj = this.projectService.getProjectById(this.currentProjectId)
+  .pipe(takeUntil(this.sub$))
+  .subscribe((res) => {
   this.project = res;
   this.form.patchValue(this.project)
-  console.log(this.project)
+
 })
 
   get currentProject(): IProject {
     return this.projectFacade.getProject();
   }
-  saveChange() {
-  this.projectService.deleteProject(this.currentProjectId).subscribe((res) => {
+  delete() {
+  this.projectService.deleteProject(this.currentProjectId)
+    .pipe(takeUntil(this.sub$))
+    .subscribe((res) => {
     localStorage.removeItem('project');
   });
     setTimeout(() => {
@@ -62,6 +67,7 @@ currentProj = this.projectService.getProjectById(this.currentProjectId).subscrib
       params =>{
         if (params['id']){
           this.projectService.getProjectById(+params['id'])
+            .pipe(takeUntil(this.sub$))
             .subscribe(
               res =>{
                 this.form.patchValue(res)
@@ -74,5 +80,12 @@ currentProj = this.projectService.getProjectById(this.currentProjectId).subscrib
   }
 
 
+  save() {
+    this.projectService.updateProject(this.currentProjectId, this.form.value)
+      .pipe(takeUntil(this.sub$))
+      .subscribe((res) => {
+      this.router.navigate(['project']).then()
+    })
+  }
 }
 

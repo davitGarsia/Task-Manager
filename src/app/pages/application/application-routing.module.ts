@@ -5,7 +5,6 @@ import {AuthGuard} from "../../core/guards";
 import {ProjectComponent} from "./project/project.component";
 import {ProjectEditComponent} from "./project-edit/project-edit.component";
 
-
 const routes: Routes = [
 
   {

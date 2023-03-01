@@ -7,24 +7,15 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  &:hover {
+    filter: brightness(80%);
+  }
 }
 
 .container {
-  margin-top: 250px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
-}
-
-.inner-container:hover {
-  filter: brightness(80%);
-}
-
-.inner-container:hover {
-  background-color: #dbd8d8;
-}
-
-.container {
-  display: flex;
 }
 
 .grid {
