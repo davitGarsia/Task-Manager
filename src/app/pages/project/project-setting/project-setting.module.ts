@@ -7,6 +7,7 @@ import { ProjectEpicAddEditComponent } from './containers/project-epic-add-edit/
 import { ProjectSettingComponent } from './project-setting.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatTableModule} from "@angular/material/table";
         CommonModule,
         ProjectSettingRoutingModule,
         MatButtonModule,
-      MatTableModule
+      MatTableModule,
+      MatDialogModule
     ]
 })
 export class ProjectSettingModule { }
