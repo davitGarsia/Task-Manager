@@ -7,6 +7,7 @@ import {ProjectUsersComponent} from "./project-users/project-users.component";
 import {ProjectInfoComponent} from "./project-info/project-info.component";
 import {ProjectEditComponent} from "../project-edit/project-edit.component";
 import {DescriptionComponent} from "./project-info/description.component";
+import {BoardEditComponent} from "./project-board/board-edit/board-edit.component";
 
 const routes: Routes = [
   {
@@ -24,20 +25,31 @@ const routes: Routes = [
       },
       {
         path: 'board',
-        component: ProjectBoardComponent
+        children:[
+          {
+          path: '',
+          component: ProjectBoardComponent
+        },
+          {
+            path: 'boardEdit',
+            component: BoardEditComponent
+          }
+        ]
+
       },
       {
         path: 'issueType',
         component: ProjectIssueTypeComponent
       },
       {
+        path: 'edit',
+        component: ProjectEditComponent
+      },
+      {
         path: 'users',
         component: ProjectUsersComponent
       },
-      {
-        path: 'edit/:id',
-        component: ProjectEditComponent
-      },
+
       {
         path: 'description',
         component: DescriptionComponent

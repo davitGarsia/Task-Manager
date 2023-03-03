@@ -81,6 +81,10 @@ currentProj = this.projectService.getProjectById(this.currentProjectId)
 
 
   save() {
+  this.form.markAllAsTouched();
+  if (this.form.invalid) {
+    return
+  }
     this.projectService.updateProject(this.currentProjectId, this.form.value)
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {

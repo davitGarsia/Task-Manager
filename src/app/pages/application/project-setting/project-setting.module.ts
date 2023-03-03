@@ -12,6 +12,12 @@ import {MainLayoutRoutingModule} from "../../main-layout/main-layout-routing.mod
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {ProjectSettingComponent} from "./project-setting.component";
 import { DescriptionComponent } from './project-info/description.component';
+import { BoardEditComponent } from './project-board/board-edit/board-edit.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatButtonModule} from "@angular/material/button";
+import {MatTableModule} from "@angular/material/table";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -24,6 +30,7 @@ import { DescriptionComponent } from './project-info/description.component';
     ProjectIssueTypeComponent,
     ProjectUsersComponent,
     DescriptionComponent,
+    BoardEditComponent,
 
   ],
   imports: [
@@ -33,7 +40,12 @@ import { DescriptionComponent } from './project-info/description.component';
     RouterModule,
     MainLayoutRoutingModule,
     MatPaginatorModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatTableModule,
+    MatInputModule,
+    ReactiveFormsModule,
 
-    ],
+  ],
 })
 export class ProjectSettingModule { }
