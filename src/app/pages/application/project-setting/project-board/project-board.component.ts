@@ -9,7 +9,7 @@ import {IBoard} from "../../../../core/interfaces/board";
   styleUrls: ['./project-board.component.scss']
 })
 export class ProjectBoardComponent {
-boards$: Observable<IBoard[]> = this.boardService.getBoards();
+boards$: Observable<IBoard[]> = this.boardService.getProjBoards();
   displayedColumns = ['id', 'name', 'description', 'createdAt']
 
     constructor(

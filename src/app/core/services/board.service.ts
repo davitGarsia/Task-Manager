@@ -23,4 +23,7 @@ export class BoardService extends BaseService {
   getBoardss(): Observable<IBoard[]> {
     return this.get<IBoard[]>('board');
   }
+  getProjBoards(): Observable<IBoard[]> {
+    return this.get<IBoard[]>('board');
+  }
 }
