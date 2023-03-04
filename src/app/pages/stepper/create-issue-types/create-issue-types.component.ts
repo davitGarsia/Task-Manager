@@ -13,6 +13,7 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {StepperNextService} from 'src/app/core/services/stepper.next.service';
 
 import { IssueTypesService } from 'src/app/core/services';
+import {ValidCounterService} from "../../../core/services/valid-counter.service";
 
 @Component({
   selector: 'app-create-issue-types',
