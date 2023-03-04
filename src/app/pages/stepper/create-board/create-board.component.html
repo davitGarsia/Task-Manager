@@ -11,7 +11,7 @@
     </mat-form-field>
 
     <!---->
-    <div formArrayName="columns" class="step-form-field">
+    <div formArrayName="columns" class="step-form-field added">
       <div *ngFor="let column of colsArray.controls; let i = index">
         <div [formGroupName]="i">
           <mat-form-field class="step-form-field">
@@ -41,7 +41,7 @@
           </mat-form-field>
         </div>
       </div>
-      <button type="button" mat-button color="primary" (click)="addCol()">
+      <button type="button" mat-button color="primary" (click)="addCol()" class="add">
         Add Column
       </button>
     </div>
@@ -53,6 +53,7 @@
         mat-button
         matStepperNext
         (click)="onSubmit()"
+        appNextButton
       >
         Next
       </button>

@@ -1,19 +1,16 @@
-<h1>Hello</h1>
 <mat-drawer-container class="mat-container" autosize>
-  <mat-drawer #drawer class="sidenav" position="end" mode="side">
-    <span class="material-icons close-btn" (click)="closeDrawer()">close</span>
+  <mat-drawer #drawer class="sidenav" position="start" mode="side">
+    <!--    <span class="material-icons close-btn" (click)="closeDrawer()">close</span>-->
+    <a routerLink="projects">Projects</a>
   </mat-drawer>
 
   <div class="sidenav-content">
-    <div class="project-container grid">
-      <div class="add-container" (click)="drawer.open()">
-        <div class="add-project">
-          <span class="material-icons close">add</span>
-          <p class="add">Add Project</p>
-        </div>
-      </div>
-    </div>
-    <!-- <router-outlet></router-outlet> -->
+    <button type="button" (click)="toggleDrawer()" class="toggle-sidenav">
+      <span class="material-icons" *ngIf="!isOpen">chevron_right</span>
+      <span class="material-icons" *ngIf="isOpen">chevron_left</span>
+    </button>
+  <router-outlet></router-outlet>
   </div>
+
 </mat-drawer-container>
-<h1>Hello</h1>
+

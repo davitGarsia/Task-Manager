@@ -10,10 +10,8 @@ export class SharedService {
 
   receiveId(id: string) {
     this.relayId.next(id);
-
-
   }
 
-  constructor() {
-  }
+
+  constructor() { }
 }

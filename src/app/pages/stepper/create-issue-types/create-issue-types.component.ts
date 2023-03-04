@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -6,34 +6,35 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { map, Observable, startWith } from 'rxjs';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { StepperNextService } from 'src/app/core/services/stepper.next.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {from, map, Observable, startWith, filter, of, timeout, toArray} from 'rxjs';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {StepperNextService} from 'src/app/core/services/stepper.next.service';
 
 import { IssueTypesService } from 'src/app/core/services';
-import {IProject} from "../../../core/interfaces/iproject";
 
 @Component({
   selector: 'app-create-issue-types',
   templateUrl: './create-issue-types.component.html',
   styleUrls: ['./create-issue-types.component.scss'],
 })
-export class CreateIssueTypesComponent implements OnInit{
+export class CreateIssueTypesComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private stepperService: StepperNextService,
-    private issueTypesService: IssueTypesService
-  ) {}
+    private issueTypesService: IssueTypesService,
+    private validCounter: ValidCounterService
+  ) {
+  }
 
   issueFormGroup = this._formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
     description: ['', [Validators.required, Validators.minLength(4)]],
     icon: ['', Validators.required],
-    color: ['', Validators.required],
+    color: ['#910D9B', Validators.required],
     status: ['', Validators.required],
-    tasks: ['', Validators.required],
+    tasks: [[] as string[], Validators.required],
     columns: this._formBuilder.array([]),
   });
   isEditable = true;
@@ -46,17 +47,26 @@ export class CreateIssueTypesComponent implements OnInit{
   allTasks: string[] = ['Task', 'Bug', 'Test', 'Spike'];
 
   @ViewChild('taskInput') taskInput!: ElementRef<HTMLInputElement>;
-  project: IProject = {} as IProject;
+
   ngOnInit(): void {
     this.filteredTasks = this.taskControl.valueChanges.pipe(
       startWith(null),
-      map((task: any) => (task ? this.filter(task) : this.allTasks.slice())),
+      map((task: any) => (task ? this.filter(task) : this.allTasks.slice()))
     );
-    this.project = JSON.parse(localStorage.getItem('issueType')!)
-    this.issueFormGroup .patchValue(this.project)
+
   }
 
 
+
+  ngAfterViewInit() {
+    this.issueFormGroup.get('name')?.setValue('ss');
+    this.issueComponent(2);
+    this.issueFormGroup.get('name')?.setValue('');
+  }
+
+  issueComponent(index: number) {
+    this.validCounter.validCounter(this.issueFormGroup, index);
+  }
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
@@ -72,8 +82,11 @@ export class CreateIssueTypesComponent implements OnInit{
   remove(role: string): void {
     const index = this.tasks.indexOf(role);
 
+    this.taskInput.nativeElement.select();
+
     if (index >= 0) {
       this.tasks.splice(index, 1);
+      this.issueFormGroup.get('tasks')!.setValue(this.tasks)
     }
   }
 
@@ -134,5 +147,17 @@ export class CreateIssueTypesComponent implements OnInit{
       this.stepperService.complete.next(true);
     }
     this.stepperService.complete.next(false);
+  }
+
+  filterOptions() {
+    setTimeout(() => {
+      const tasks: any = this.issueFormGroup.get('tasks')!.value;
+
+      const newFilteredTasks = this.allTasks.filter(task => {
+        return !tasks.includes(task)
+      });
+
+      this.filteredTasks = of(newFilteredTasks);
+    }, 200)
   }
 }

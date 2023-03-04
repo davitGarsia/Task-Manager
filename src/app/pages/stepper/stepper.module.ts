@@ -17,6 +17,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatOptionModule } from '@angular/material/core';
+import {NextButtonDirective} from "../../core/directives";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatOptionModule } from '@angular/material/core';
     CreateIssueTypesComponent,
     AddUsersComponent,
     StepperComponent,
+    NextButtonDirective
   ],
   imports: [
     CommonModule,

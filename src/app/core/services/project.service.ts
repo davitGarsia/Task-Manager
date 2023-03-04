@@ -8,6 +8,7 @@ import {IProject} from "../interfaces/iproject";
   providedIn: 'root'
 })
 export class ProjectService extends BaseService {
+  projectName = '';
 
   getProjects():Observable<PaginationResponse<IProject>> {
 return this.get<PaginationResponse<IProject>>('project');
@@ -28,4 +29,8 @@ return this.get<PaginationResponse<IProject>>('project');
   getProjectUsers():Observable<any>{
     return this.get('project/users');
   };
+
+  getById(id: any):Observable<any> {
+    return this.get<any>('project/'+`${id}`)
+  }
 }
