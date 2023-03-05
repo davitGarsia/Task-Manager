@@ -9,7 +9,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 export class ConfirmDeleteComponent {
 
   constructor(
-    public dialogRed: MatDialogRef<ConfirmDeleteComponent>,
+    public dialogRef: MatDialogRef<ConfirmDeleteComponent>,
   ) {
   }
 }

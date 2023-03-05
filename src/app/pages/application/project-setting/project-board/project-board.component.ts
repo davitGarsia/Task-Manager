@@ -56,12 +56,13 @@ sub$ = new Subject()
   }
 
   deleteBoard(id: number) {
-    const dialogRed = this.dialog.open(ConfirmDeleteComponent);
-    dialogRed.afterClosed()
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent);
+    dialogRef.afterClosed()
       .pipe(
         takeUntil(this.sub$),
         switchMap((result) => {
           if (result) {
+            console.log(result)
             return this.boardService.deleteBoard(id);
           }
           return of(null);
