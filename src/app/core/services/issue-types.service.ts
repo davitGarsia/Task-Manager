@@ -20,6 +20,7 @@ export class IssueTypesService {
     return this.http.get(this.apiUrl);
   }
 
+
   getIssueTypeByID(id: number): Observable<any> {
     return this.http.get(this.apiUrl + '/' + id); //`${this.apiUrl}/${id}`
   }

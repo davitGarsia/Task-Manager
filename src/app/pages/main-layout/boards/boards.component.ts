@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {IBoard} from "../../../core/interfaces";
 import {Observable} from "rxjs";
 import {ProjectService} from "../../../core/services/project.service";
+import {ProjectFacade} from "../../../facades/project-facade.service";
 
 @Component({
   selector: 'app-boards',
@@ -20,7 +21,8 @@ export class BoardsComponent implements OnInit{
   constructor(
               private route: ActivatedRoute,
               private boardService: BoardService,
-              private projectService: ProjectService
+              private projectService: ProjectService,
+              private projectFacade: ProjectFacade,
              ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,7 @@ export class BoardsComponent implements OnInit{
             this.projectService.projectName = res.name;
           }
         })
+        
       }
     })
   }

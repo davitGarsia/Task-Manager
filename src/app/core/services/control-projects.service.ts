@@ -22,4 +22,7 @@ export class ControlProjectsService extends BaseService {
   getAllProjects():Observable<IProject[]> {
     return this.get<IProject[]>('project/all');
   }
+  getById(id: any):Observable<any> {
+    return this.get<any>('project/'+`${id}`)
+  }
 }

@@ -8,20 +8,27 @@ import { ProjectSettingComponent } from './project-setting.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {MatDialogModule} from "@angular/material/dialog";
-
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import { IssueTypesComponent } from './containers/issue-types/issue-types.component';
 
 @NgModule({
   declarations: [
     ProjectEpicsComponent,
     ProjectEpicAddEditComponent,
-    ProjectSettingComponent
+    ProjectSettingComponent,
+    IssueTypesComponent
   ],
     imports: [
         CommonModule,
         ProjectSettingRoutingModule,
         MatButtonModule,
-      MatTableModule,
-      MatDialogModule
+        MatTableModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+      MatFormFieldModule,
+      MatInputModule
     ]
 })
 export class ProjectSettingModule { }
