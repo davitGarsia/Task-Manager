@@ -1,0 +1,47 @@
+.textBox{
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  height: 70vh;
+  width: 100vh;
+  padding: 20px;
+  margin-top: 25px;
+  background-color: rgba(122, 29, 224, 0.7);
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
+  label{
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    width: 100%;
+    height: fit-content;
+    border: none;
+    background-color: transparent;
+    color: #3a3838;
+    font-size: 20px;
+    font-weight: 500;
+    resize: none;
+    outline: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 1vh ;
+    padding: 10px;
+
+  }
+  textarea{
+    width: 90vh;
+    height: 40vh;
+    border: none;
+   background-color: #efeeee;
+    color: #3a3838;
+    font-size: 20px;
+    font-weight: 500;
+    resize: none;
+    outline: none;
+    overflow-y: scroll;
+  }
+}

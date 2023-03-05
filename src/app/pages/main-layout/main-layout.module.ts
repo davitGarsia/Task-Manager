@@ -13,7 +13,10 @@ import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
-  declarations: [MainLayoutComponent, ProjectsComponent, BoardsComponent, BoardComponent, ],
-  imports: [CommonModule, MatSidenavModule, RouterModule, MainLayoutRoutingModule, MatPaginatorModule, MatButtonModule, MatIconModule],
+    declarations: [MainLayoutComponent, ProjectsComponent, BoardsComponent, BoardComponent,],
+    imports: [CommonModule, MatSidenavModule, RouterModule, MainLayoutRoutingModule, MatPaginatorModule, MatButtonModule, MatIconModule],
+    exports: [
+        BoardComponent
+    ]
 })
 export class MainLayoutModule {}

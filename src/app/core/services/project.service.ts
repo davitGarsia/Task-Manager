@@ -19,7 +19,9 @@ return this.get<PaginationResponse<IProject>>('project');
   getProjectById(id: number):Observable<IProject> {
     return this.get<IProject>(`project/${id}`);
   }
-
+  createProject(project: IProject): Observable<IProject> {
+    return this.post<IProject>('project', project);
+  }
   updateProject(id: number, project: IProject):Observable<IProject> {
     return this.put<IProject>(`project/${project.id}`, project);
   }
@@ -33,4 +35,6 @@ return this.get<PaginationResponse<IProject>>('project');
   getById(id: any):Observable<any> {
     return this.get<any>('project/'+`${id}`)
   }
+
+
 }

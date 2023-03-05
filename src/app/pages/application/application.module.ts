@@ -14,29 +14,34 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {NgxMatColorPickerModule} from "@angular-material-components/color-picker";
 import {MatButtonModule} from "@angular/material/button";
+import { ProjectCurrentComponent } from './current-project/project-current.component';
 
 
 
 @NgModule({
-  declarations: [
-    ApplicationComponent,
-    ProjectComponent,
-    SideMenuComponent,
-    ProjectEditComponent
-  ],
-  imports: [
-    CommonModule,
-    ApplicationRoutingModule,
-    HomeModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatIconModule,
-    MatInputModule,
-    MatDatepickerModule,
-    NgxMatColorPickerModule,
-    ReactiveFormsModule,
-    MatButtonModule
-  ]
+    declarations: [
+        ApplicationComponent,
+        ProjectComponent,
+        SideMenuComponent,
+        ProjectEditComponent,
+        ProjectCurrentComponent
+    ],
+    exports: [
+        ProjectComponent
+    ],
+    imports: [
+        CommonModule,
+        ApplicationRoutingModule,
+        HomeModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatIconModule,
+        MatInputModule,
+        MatDatepickerModule,
+        NgxMatColorPickerModule,
+        ReactiveFormsModule,
+        MatButtonModule
+    ]
 })
 export class ApplicationModule { }

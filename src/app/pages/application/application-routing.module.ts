@@ -4,6 +4,7 @@ import {ApplicationComponent} from "./application.component";
 import {AuthGuard} from "../../core/guards";
 import {ProjectComponent} from "./project/project.component";
 import {ProjectEditComponent} from "./project-edit/project-edit.component";
+import {ProjectCurrentComponent} from "./current-project/project-current.component";
 
 const routes: Routes = [
 
@@ -18,13 +19,21 @@ const routes: Routes = [
         component: ProjectComponent
       },
       {
-        path: 'edit/:id',
-        component: ProjectEditComponent
+        path:'current',
+        component: ProjectCurrentComponent
       },
+      // {
+      //   path: 'edit/:id',
+      //   component: ProjectEditComponent
+      // },
       {
         path: 'setting',
         loadChildren: () => import('./project-setting/project-setting.module').then(m => m.ProjectSettingModule)
       },
+      {
+        path: 'main',
+        loadChildren: () => import('src/app/pages/main-layout/main-layout.module').then(m => m.MainLayoutModule)
+      }
 
     ],
   }

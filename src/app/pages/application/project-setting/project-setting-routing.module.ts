@@ -31,7 +31,7 @@ const routes: Routes = [
           component: ProjectBoardComponent
         },
           {
-            path: 'boardEdit',
+            path: 'editBoard/:id',
             component: BoardEditComponent
           }
         ]
@@ -42,7 +42,7 @@ const routes: Routes = [
         component: ProjectIssueTypeComponent
       },
       {
-        path: 'edit',
+        path: 'edit/:id',
         component: ProjectEditComponent
       },
       {
@@ -51,7 +51,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'description',
+        path: 'description/:id',
         component: DescriptionComponent
       }
     ]

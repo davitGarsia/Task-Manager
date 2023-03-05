@@ -16,7 +16,6 @@ import {ValidCounterService} from "../../../core/services/valid-counter.service"
   styleUrls: ['./create-project.component.scss'],
 })
 export class CreateProjectComponent implements OnInit, AfterViewInit {
-
   constructor(
     private _formBuilder: FormBuilder,
     private stepperService: StepperNextService,

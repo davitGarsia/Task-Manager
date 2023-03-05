@@ -37,6 +37,7 @@ export class ProjectInfoComponent implements OnInit {
     @Input('pageSizeOptions') pageSizeOptions!: number;*/
 get project(): IProject {
   return this.projectFacade.getProject();
+
 }
   ngOnInit() {
     this.getProjects('DESC', this.page, this.pageSize);
@@ -44,13 +45,14 @@ get project(): IProject {
     this.projectsService.getAllProjects()
       .subscribe(res => {
         this.projectsLength = res.length;
+
       })
   }
 
   getProjects(order: string, page: number, pageSize: number) {
     this.projectsService.getProjects(order, page, pageSize).subscribe({
       next: res => res.data.forEach((project: any) => {
-        console.log(project)
+
         this.projects.push(project);
       }),
       error: err => console.log(err),

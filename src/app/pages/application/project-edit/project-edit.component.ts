@@ -19,6 +19,7 @@ export class ProjectEditComponent {
   color: any;
   projects$ = this.projectFacade.myProjects$;
   sub$ = new Subject()
+  projectId!: number;
 
   constructor(
     private projectService: ProjectService,
@@ -30,24 +31,26 @@ export class ProjectEditComponent {
   }
 
   form: FormGroup = new FormGroup({
+    id: new FormControl('null', ),
     name: new FormControl('null', ),
     description: new FormControl('null', ),
     abbreviation: new FormControl('null', ),
     color: new FormControl('null', ),
   });
   project: IProject = {} as IProject;
-currentProjectId: number = this.projectFacade.getProjectId();
-currentProj = this.projectService.getProjectById(this.currentProjectId)
-  .pipe(takeUntil(this.sub$))
-  .subscribe((res) => {
-  this.project = res;
-  this.form.patchValue(this.project)
+  currentProjectId: number = this.projectFacade.getProjectId();
+  currentProj = this.projectService.getProjectById(this.currentProjectId)
+    .pipe(takeUntil(this.sub$))
+    .subscribe((res) => {
+      this.project = res;
+      this.form.patchValue(this.project)
 
-})
+    })
 
   get currentProject(): IProject {
     return this.projectFacade.getProject();
   }
+
   delete() {
   this.projectService.deleteProject(this.currentProjectId)
     .pipe(takeUntil(this.sub$))
@@ -76,20 +79,23 @@ currentProj = this.projectService.getProjectById(this.currentProjectId)
         }
       }
     )
-
   }
 
 
   save() {
-  this.form.markAllAsTouched();
-  if (this.form.invalid) {
-    return
-  }
+    this.form.markAllAsTouched();
+    if (this.form.invalid) {
+      return
+    }
     this.projectService.updateProject(this.currentProjectId, this.form.value)
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
-      this.router.navigate(['project']).then()
-    })
+        localStorage.setItem('project', JSON.stringify(res));
+        setTimeout(() => {
+          this.router.navigate(['/application/setting/info']).then()
+        }, 2000)
+
+      })
   }
 }
 

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TaskStatusEnum} from "../../../../../core/enums/task-status.enum";
 import {BoardService} from "../../../../../core/services/board.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-board-edit',
@@ -10,16 +10,36 @@ import {Router} from "@angular/router";
   styleUrls: ['./board-edit.component.scss']
 })
 export class BoardEditComponent implements OnInit {
-
-
+  boardId!: number;
+  taskStatuses = Object.values(TaskStatusEnum);
  constructor(
    private boardService: BoardService,
    private router: Router,
+   private route: ActivatedRoute,
 
  ) { }
 
 ngOnInit(): void {
-
+  this.route.params.subscribe(params => {
+    if (params['id']) {
+      this.boardId = +params['id'];
+      this.getBoard()
+    }
+  })
+}
+getBoard() {
+  this.boardService.getBoardId(this.boardId).subscribe(res => {
+    this.form.patchValue(res)
+    res.columns.forEach(column => {
+      this.columnsArray.push(new FormGroup({
+        id: new FormControl(column.id),
+        name: new FormControl(column.name, Validators.required),
+        description: new FormControl(column.description, Validators.required),
+        position: new FormControl(column.position, Validators.required),
+        taskStatus: new FormControl(column.taskStatus, Validators.required)
+      }, Validators.required));
+    })
+  })
 }
 
 
@@ -29,7 +49,8 @@ ngOnInit(): void {
     description: new FormControl(null, Validators.required),
     columns: new FormArray([], Validators.required),
   });
-  taskStatuses = Object.values(TaskStatusEnum);
+
+
 
   get columnsArray(): FormArray {
     return this.form.get('columns') as FormArray;

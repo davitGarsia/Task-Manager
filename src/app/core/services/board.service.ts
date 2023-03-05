@@ -23,7 +23,18 @@ export class BoardService extends BaseService {
   getBoardss(): Observable<IBoard[]> {
     return this.get<IBoard[]>('board');
   }
+  getBoardId(id: number): Observable<IBoard> {
+    return this.get<IBoard>(`board/${id}`);
+  }
+  updateBoard(data: any): Observable<IBoard> {
+    return this.put(`board/${data.id}`, data);
+  }
+
   getProjBoards(): Observable<IBoard[]> {
     return this.get<IBoard[]>('board');
   }
+  deleteBoard(id: number): Observable<any> {
+    return this.delete(`board/${id}`);
+  }
+
 }
