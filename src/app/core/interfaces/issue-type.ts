@@ -10,3 +10,5 @@ export interface IssueType {
   type: IssueTypeEnum;
   issueTypeColumns: IssueTypeColumn[];
 }
+
+

@@ -15,7 +15,7 @@ export class BoardComponent {
     private boardService: BoardService,
     private projectService: ProjectService) {}
 
-  board: any
+  board: any;
   projectName = this.projectService.projectName;
 
   ngOnInit(): void {
@@ -24,7 +24,8 @@ export class BoardComponent {
       if(params) {
 
         this.boardService.getBoardByID(params['id'], params['projectId']).subscribe({
-          next: res => this.board = res
+          next: res => console.log(res),
+
         })
         console.log(params['id'])
       }

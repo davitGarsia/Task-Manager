@@ -10,12 +10,14 @@ import {PageNotFoundComponent} from './pages/404-error/page-not-found/page-not-f
 import {ProjectInterceptor} from './core/interceptors/project.interceptor';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NextButtonDirective } from './core/directives/next-button.directive';
+import { TaskAddEditComponent } from './shared/task-add-edit/task-add-edit.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         PageNotFoundComponent,
+        TaskAddEditComponent,
     ],
     imports: [
         BrowserModule,
