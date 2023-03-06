@@ -28,8 +28,8 @@ return this.get<PaginationResponse<IProject>>('project');
   deleteProject(id: number):Observable<any> {
     return this.delete(`project/${id}`);
   }
-  getProjectUsers():Observable<any>{
-    return this.get('project/users');
+  getProjectUsers(id: number):Observable<any>{
+    return this.get('project/${id}/users');
   };
 
   getById(id: any):Observable<any> {

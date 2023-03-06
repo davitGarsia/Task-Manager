@@ -18,7 +18,7 @@ export class ProjectBoardComponent implements OnInit, OnDestroy {
 
   displayedColumns = ['id', 'name',  'createdAt', 'actions']
   dataSource = new MatTableDataSource<IBoard>();
-sub$ = new Subject()
+  sub$ = new Subject()
   constructor(
     private boardService: BoardService,
     private dialog: MatDialog,

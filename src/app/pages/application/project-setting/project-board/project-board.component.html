@@ -1,54 +1,57 @@
 <p>board works</p>
-  <div class="cont">
-<!--    <ng-container *ngIf="boards$ | async as boards" ></ng-container>-->
-<div  >
-<!--  <mat-select class="select">-->
-<!--    <mat-option *ngFor="let board of boards" [value]="board.id" >{{board.name}}</mat-option>-->
-<!--  </mat-select>-->
-  <button mat-raised-button color="primary"
+<div class="cont">
+  <!--    <ng-container *ngIf="boards$ | async as boards" ></ng-container>-->
+  <div>
+    <!--  <mat-select class="select">-->
+    <!--    <mat-option *ngFor="let board of boards" [value]="board.id" >{{board.name}}</mat-option>-->
+    <!--  </mat-select>-->
+    <button mat-raised-button color="primary"
 
-          [routerLink]="['/application/setting/board/editBoard']"
-  >Add Board</button>
-
-</div>
+            [routerLink]="['/application/setting/board/editBoard']"
+    >Add Board
+    </button>
 
   </div>
-    <div class="container">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+</div>
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Id </th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
+<div class="container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="createdAt">
-          <th mat-header-cell *matHeaderCellDef> Created At </th>
-          <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
-        </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef> </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="primary" [routerLink]="['/application/setting/board/editBoard/', element.id]">Edit</button>
-            <button mat-raised-button color="warn" (click)="deleteBoard(element.id)">Delete</button>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef> Created At</th>
+      <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+    </ng-container>
 
-          </td>
-        </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" [routerLink]="['/application/setting/board/editBoard/', element.id]">
+          Edit
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteBoard(element.id)">Delete</button>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+      </td>
+    </ng-container>
 
-    </div>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
 
 
 

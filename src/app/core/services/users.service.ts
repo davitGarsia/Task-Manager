@@ -3,14 +3,20 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User, UsersRoles } from '../interfaces';
 import { Observable } from 'rxjs';
+import {BaseService} from "./base.service";
 
 @Injectable({
   providedIn: 'root',
 })
-export class UsersService {
-  apiUrl = environment.apiUrl + 'users';
+export class UsersService extends BaseService {
+  // apiUrl = environment.apiUrl + 'users';
 
-  constructor(private http: HttpClient) {}
+  // constructor(
+  //   // private http: HttpClient
+  // ) {}
+createUser(user: User){
+    return this.post('/users', user)
+  }
 
   getUsers(): Observable<any> {
     return this.http.get(this.apiUrl);
