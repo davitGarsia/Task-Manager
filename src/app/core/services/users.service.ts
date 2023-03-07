@@ -23,7 +23,7 @@ createUser(user: User){
   }
 
   getUsersAll(): Observable<any> {
-    return this.http.get(this.apiUrl + '/all');
+    return this.http.get(this.apiUrl + 'users' + '/all');
   }
 
   getUserByID(id: number) {

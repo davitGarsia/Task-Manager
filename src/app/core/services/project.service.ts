@@ -29,12 +29,19 @@ return this.get<PaginationResponse<IProject>>('project');
     return this.delete(`project/${id}`);
   }
   getProjectUsers(id: number):Observable<any>{
-    return this.get('project/${id}/users');
+    return this.get('project/users');
   };
 
   getById(id: any):Observable<any> {
     return this.get<any>('project/'+`${id}`)
   }
+  addProjectUser( data: {
+    userIds: number[];
+    projectId: number;
+  }):Observable<any> {
+    return this.post<any>(`project/users`, data);
+  }
 
 
 }
+

@@ -20,6 +20,7 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ApplicationModule} from "../application.module";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import { UserEditComponent } from './project-users/user-edit.component';
 
 
 
@@ -32,6 +33,7 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
     ProjectUsersComponent,
     DescriptionComponent,
     BoardEditComponent,
+    UserEditComponent,
 
   ],
   imports: [
