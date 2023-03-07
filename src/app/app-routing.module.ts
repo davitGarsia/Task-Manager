@@ -8,7 +8,6 @@ let isAuthorised = true;
 
 import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './pages/404-error/page-not-found/page-not-found.component';
-import { AuthGuard } from './core/guards';
 
 const routes: Routes = [
   {

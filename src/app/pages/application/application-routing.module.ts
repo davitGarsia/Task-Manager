@@ -1,10 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ApplicationComponent} from "./application.component";
-import {AuthGuard} from "../../core/guards";
+
 import {ProjectComponent} from "./project/project.component";
 import {ProjectEditComponent} from "./project-edit/project-edit.component";
 import {ProjectCurrentComponent} from "./current-project/project-current.component";
+import {AuthGuard} from "../../core/guards/auth.guard";
 
 const routes: Routes = [
 
