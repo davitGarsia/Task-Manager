@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TaskService} from "../../core/services/task.service";
+import {Column} from "../../core/interfaces";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-task-add-edit',
   templateUrl: './task-add-edit.component.html',
   styleUrls: ['./task-add-edit.component.scss']
 })
-export class TaskAddEditComponent {
+export class TaskAddEditComponent implements OnInit, OnDestroy{
 
   form: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -26,6 +28,8 @@ export class TaskAddEditComponent {
     taskProperty: new FormArray([]),
   })
 
+  sub$ = new Subject();
+
   get taskProperty() {
     return this.form.get('taskProperty') as FormArray;
   }
@@ -33,15 +37,63 @@ export class TaskAddEditComponent {
   constructor(
     private taskService: TaskService,
     public dialogRef: MatDialogRef<TaskAddEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {taskId: number, boardId: number, boardColumn: Column}
   ) {
   }
 
-  addTaskProperty() {
-    this.taskProperty.push(new FormGroup({
-      name: new FormControl(null, Validators.required),
-      filedName: new FormControl(null, Validators.required),
-      value: new FormControl(null, Validators.required),
-      isRequired: new FormControl(null, Validators.required)
-    }))
+  ngOnInit() {
+    if (this.data.taskId) {
+      this.getTask(this.data.taskId);
+    }
+  }
+
+  // addTaskProperty() {
+  //   this.taskProperty.push(new FormGroup({
+  //     name: new FormControl(null, Validators.required),
+  //     filedName: new FormControl(null, Validators.required),
+  //     value: new FormControl(null, Validators.required),
+  //     isRequired: new FormControl(null, Validators.required)
+  //   }))
+  // }
+
+  private getTask(taskId: number) {
+    this.taskService.getTask(taskId)
+      .pipe(takeUntil(this.sub$))
+      .subscribe(res => {
+        this.form.patchValue(res)
+        res.taskProperty.forEach(property => {
+          this.taskProperty.push(new FormGroup({
+            id: new FormControl(property.id),
+            name: new FormControl(property.name, Validators.required),
+            filedName: new FormControl(property.filedName, Validators.required),
+            value: new FormControl(property.value, Validators.required),
+            isRequired: new FormControl(property.isRequired, Validators.required),
+          }))
+        })
+      })
+  }
+
+  save() {
+    this.form.markAllAsTouched();
+    if (this.form.invalid) return;
+
+    if(this.data.taskId) {
+      this.taskService.updateTask(this.data.taskId, this.form.value)
+        .pipe(takeUntil(this.sub$))
+        .subscribe(res => {
+        this.dialogRef.close(res);
+      })
+    } else {
+      this.taskService.createTask(this.form.value)
+        .pipe(takeUntil(this.sub$))
+        .subscribe(res => {
+        this.dialogRef.close(res);
+      })
+    }
+  }
+
+  ngOnDestroy() {
+    this.sub$.next(null);
+    this.sub$.complete();
   }
 }

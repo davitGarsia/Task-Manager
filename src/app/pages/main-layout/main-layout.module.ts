@@ -10,10 +10,19 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import { BoardComponent } from './board/board.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [MainLayoutComponent, ProjectsComponent, BoardsComponent, BoardComponent, ],
-  imports: [CommonModule, MatSidenavModule, RouterModule, MainLayoutRoutingModule, MatPaginatorModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule,
+    MatSidenavModule,
+    RouterModule,
+    MainLayoutRoutingModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule
+  ],
 })
 export class MainLayoutModule {}
