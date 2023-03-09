@@ -3,7 +3,8 @@ import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TaskService} from "../../core/services/task.service";
 import {Column} from "../../core/interfaces";
-import {Subject, takeUntil} from "rxjs";
+import {Observable, Subject, takeUntil} from "rxjs";
+import {IssueTypesService} from "../../core/services";
 
 @Component({
   selector: 'app-task-add-edit',
@@ -28,23 +29,33 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
     taskProperty: new FormArray([]),
   })
 
-  sub$ = new Subject();
-
-  get taskProperty() {
-    return this.form.get('taskProperty') as FormArray;
-  }
-
   constructor(
     private taskService: TaskService,
+    private issueTypeService: IssueTypesService,
     public dialogRef: MatDialogRef<TaskAddEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {taskId: number, boardId: number, boardColumn: Column}
   ) {
   }
 
+  sub$ = new Subject();
+  types$: Observable<any> = this.issueTypeService.getIssueType();
+  priorities: { id: 'LOW' | 'MEDIUM' | 'HIGH', name: string }[] = [
+    {id: 'LOW', name: 'Low'},
+    {id: 'MEDIUM', name: 'Medium'},
+    {id: 'HIGH', name: 'High'},
+  ]
+
+  get taskProperty() {
+    return this.form.get('taskProperty') as FormArray;
+  }
+
+
+
   ngOnInit() {
     if (this.data.taskId) {
       this.getTask(this.data.taskId);
     }
+    console.log(this.types$);
   }
 
   // addTaskProperty() {

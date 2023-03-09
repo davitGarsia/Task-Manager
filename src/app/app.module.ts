@@ -11,6 +11,13 @@ import {ProjectInterceptor} from './core/interceptors/project.interceptor';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NextButtonDirective } from './core/directives/next-button.directive';
 import { TaskAddEditComponent } from './shared/task-add-edit/task-add-edit.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatOptionModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -19,15 +26,22 @@ import { TaskAddEditComponent } from './shared/task-add-edit/task-add-edit.compo
         PageNotFoundComponent,
         TaskAddEditComponent,
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        // HomeModule,
-        FormsModule,
-        ReactiveFormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    // HomeModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatDividerModule,
+    MatOptionModule,
+    MatInputModule,
+    MatSelectModule,
+  ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

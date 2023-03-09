@@ -50,7 +50,7 @@ export class BoardComponent {
 
   addTask(column: Column) {
     this.dialog.open(TaskAddEditComponent, {
-      width: '250px',
+      width: '600px',
       data: {
         boardId: this.boardId,
         column: column,

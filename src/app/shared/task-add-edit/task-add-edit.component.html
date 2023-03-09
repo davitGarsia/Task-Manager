@@ -1,1 +1,37 @@
-<p>task-add-edit works!</p>
+<div class="container">
+  <h1 mat-dialog-title>Create Task</h1>
+  <div mat-dialog-content [formGroup]="form">
+    <div class="content">
+      <div class="content-left">
+        <mat-form-field>
+          <input matInput placeholder="Task Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="content-right">
+        <mat-form-field>
+          <mat-select placeholder="Task Type" formControlName="issueTypeId">
+            <mat-option *ngFor="let type of types$ | async" [value]="type.id">
+              {{type.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+        <mat-select placeholder="Task Priority" formControlName="priority">
+          <mat-option *ngFor="let priority of priorities" [value]="priority.id">
+            {{priority.name}}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close()">Cancel</button>
+    <button mat-button (click)="save()">Create</button>
+  </div>
+</div>
