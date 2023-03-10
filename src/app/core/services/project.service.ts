@@ -20,4 +20,15 @@ return this.get<PaginationResponse<IProject>>('project');
   getById(id: any):Observable<any> {
     return this.get<any>('project/'+`${id}`)
   }
+
+  getProjectUsers(): Observable<any> {
+    return this.get(`project/users`);
+  }
+
+  addProjectUser( data: {
+    projectId: number,
+    userIds: number[]
+  }): Observable<any> {
+    return this.post(`project/users`, data);
+  }
 }

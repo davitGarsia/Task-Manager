@@ -39,6 +39,7 @@ export class BoardComponent {
         console.log(params['id'])
       }
     })
+    this.getTasks();
   }
 
   fetchTasks() {
@@ -49,13 +50,26 @@ export class BoardComponent {
   }
 
   addTask(column: Column) {
-    this.dialog.open(TaskAddEditComponent, {
+  const dialogRef = this.dialog.open(TaskAddEditComponent, {
       width: '600px',
       data: {
         boardId: this.boardId,
         column: column,
       }
     })
+
+    dialogRef.afterClosed().subscribe((task: ITask) => {
+      if (task) {
+        this.getTasks();
+      }
+    })
   }
+
+private getTasks() {
+    this.taskService.getTasks({boardId: this.boardId}).subscribe(tasks => {
+      this.tasks = tasks;
+    })
+
+}
 
 }
