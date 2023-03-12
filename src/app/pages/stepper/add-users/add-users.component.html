@@ -1,46 +1,118 @@
-<form [formGroup]="usersFormGroup" class="flex">
-  <div class="margin-auto">
-    <mat-form-field appearance="fill" class="step-form-field">
-      <mat-label>First name</mat-label>
-      <input matInput formControlName="firstName" placeholder="" required />
-    </mat-form-field>
+<div class="container">
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{title}}
+      </mat-panel-title>
+      <mat-panel-description>
+        <button mat-raised-button color="primary" [disabled]="!usersFormGroup.valid" *ngIf="panelOpenState"
+                (click)="createAddUser()">Create and Add
+        </button>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form [formGroup]="usersFormGroup" class="flex">
+      <div class="margin-auto">
+        <mat-form-field appearance="fill" class="step-form-field">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="firstName" placeholder="Enter First Name" required/>
+          <mat-error *ngIf="usersFormGroup.get('firstName')?.getError('required') && usersFormGroup.get('firstName')?.touched"
+                     class="validationMessage">First Name is required!
+          </mat-error>
+          <mat-error *ngIf="!usersFormGroup.get('firstName')?.getError('required') && usersFormGroup.get('firstName')?.touched && usersFormGroup.get('firstName')?.getError('whitespace')"
+                     class="validationMessage">Empty First Name not allowed!
+          </mat-error>
+          <mat-error *ngIf="!usersFormGroup.get('firstName')?.getError('required') && usersFormGroup.get('firstName')?.touched && !usersFormGroup.get('firstName')?.getError('whitespace') && usersFormGroup.get('firstName')?.hasError('minlength')"
+                     class="validationMessage">Min length of First Name is 2!
+          </mat-error>
+        </mat-form-field>
 
-    <mat-form-field appearance="fill" class="step-form-field">
-      <mat-label>Last name</mat-label>
-      <input matInput formControlName="lastName" placeholder="" required />
-    </mat-form-field>
+        <mat-form-field appearance="fill" class="step-form-field">
+          <mat-label>Last name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Enter Last Name" required/>
+          <mat-error *ngIf="usersFormGroup.get('lastName')?.getError('required') && usersFormGroup.get('lastName')?.touched"
+                     class="validationMessage">Last Name is required!
+          </mat-error>
+          <mat-error *ngIf="!usersFormGroup.get('lastName')?.getError('required') && usersFormGroup.get('lastName')?.touched && usersFormGroup.get('lastName')?.getError('whitespace')"
+                     class="validationMessage">Empty Last Name not allowed!
+          </mat-error>
+          <mat-error *ngIf="!usersFormGroup.get('lastName')?.getError('required') && usersFormGroup.get('lastName')?.touched && !usersFormGroup.get('lastName')?.getError('whitespace') && usersFormGroup.get('lastName')?.hasError('minlength')"
+                     class="validationMessage">Min length of Last Name is 2!
+          </mat-error>
+        </mat-form-field>
 
-    <mat-form-field appearance="fill" class="step-form-field">
-      <mat-label>Id number</mat-label>
-      <input
-        matInput
-        formControlName="identityNumber"
-        placeholder=""
-        required
-      />
-    </mat-form-field>
+      <!--  <mat-form-field appearance="fill" class="step-form-field">
+          <mat-label>Id number</mat-label>
+          <input
+            matInput
+            formControlName="identityNumber"
+            placeholder=""
+            required
+          />
+        </mat-form-field> -->
 
-    <mat-form-field appearance="fill" class="step-form-field">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" placeholder="" required />
-    </mat-form-field>
+        <mat-form-field appearance="fill" class="step-form-field">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="example@email.ge" required/>
+          <mat-error *ngIf="usersFormGroup.get('email')?.getError('required') && usersFormGroup.get('email')?.touched"
+                     class="validationMessage">Email is required!
+          </mat-error>
+          <mat-error *ngIf="!usersFormGroup.get('email')?.getError('required') && usersFormGroup.get('email')?.touched && usersFormGroup.get('email')?.errors?.['pattern']"
+                     class="validationMessage">Please enter valid Email format!
+          </mat-error>
+        </mat-form-field>
 
-    <mat-form-field appearance="fill" class="step-form-field">
-      <mat-label>Mobile</mat-label>
-      <input matInput formControlName="mobileNumber" placeholder="" required />
-    </mat-form-field>
-    <div>
-      <button mat-button matStepperPrevious (click)="goBack()">Back</button>
-      <button
-        [disabled]="!usersFormGroup.valid"
-        mat-button
-        matStepperNext
-        type="button"
-        (click)="onSubmit()"
-        appNextButton
-      >
-        Next
-      </button>
-    </div>
+        <mat-form-field appearance="fill" class="step-form-field">
+          <mat-label>Mobile</mat-label>
+          <input matInput formControlName="mobileNumber" placeholder="Enter Mobile Number" required/>
+          <mat-error *ngIf="usersFormGroup.get('mobileNumber')?.getError('required') && usersFormGroup.get('mobileNumber')?.touched"
+                     class="validationMessage">Mobile Number is required!
+          </mat-error>
+          <mat-error *ngIf="!usersFormGroup.get('mobileNumber')?.getError('required') && usersFormGroup.get('mobileNumber')?.touched && usersFormGroup.get('mobileNumber')?.errors?.['pattern']"
+                     class="validationMessage">Mobile Number can contain only + and Numbers!
+          </mat-error>
+          <mat-error *ngIf="!usersFormGroup.get('mobileNumber')?.getError('required') && usersFormGroup.get('mobileNumber')?.touched && !usersFormGroup.get('mobileNumber')?.errors?.['pattern'] && usersFormGroup.get('mobileNumber')?.hasError('minlength') || usersFormGroup.get('mobileNumber')?.hasError('maxlength') && !usersFormGroup.get('mobileNumber')?.errors?.['pattern']"
+                     class="validationMessage">Mobile number Length range is 9 - 12!
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-expansion-panel>
+  <div class="add-users">
+    <form [formGroup]="projectUsers">
+      <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Users</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Users selection" [formControl]="usersMailsControl">
+          <mat-chip-row *ngFor="let mail of mails" (removed)="remove(mail)">
+            {{mail}}
+            <button matChipRemove [attr.aria-label]="'remove ' + mail">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input placeholder="Type Users Mail" #mailInput [formControl]="mailCtrl"
+               [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               (matChipInputTokenEnd)="add($event)"/>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let mail of filteredMails | async" [value]="mail">
+            {{mail}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
   </div>
-</form>
+</div>
+<div>
+  <!-- <button mat-button matStepperPrevious (click)="goBack()">Back</button> -->
+  <button
+    mat-button
+    type="button"
+    class="mat-stepper-next"
+    (click)="onSubmit()"
+    appNextButton
+  >
+    <span *ngIf="!spinner">Next</span>
+    <mat-spinner class="spinner" *ngIf="spinner" [diameter]="diameter" color="accent"></mat-spinner>
+  </button>
+</div>

@@ -1,18 +1,36 @@
-<form [formGroup]="boardFormGroup" class="flex step-form-field">
+<form [formGroup]="boardFormGroup" class="flex step-form-field" #boardForm>
   <div class="margin-auto">
     <mat-form-field appearance="fill">
       <mat-label>Board Name</mat-label>
       <input matInput formControlName="name" placeholder="" required />
+      <mat-error *ngIf="boardFormGroup.get('name')?.getError('required') && boardFormGroup.get('name')?.touched"
+                 class="validationMessage">Board Name is required!
+      </mat-error>
+      <mat-error *ngIf="!boardFormGroup.get('name')?.getError('required') && boardFormGroup.get('name')?.touched && boardFormGroup.get('name')?.getError('whitespace')"
+                 class="validationMessage">Empty Board Name not allowed!
+      </mat-error>
+      <mat-error *ngIf="!boardFormGroup.get('name')?.getError('required') && boardFormGroup.get('name')?.touched && !boardFormGroup.get('name')?.getError('whitespace') && boardFormGroup.get('name')?.hasError('minlength')"
+                 class="validationMessage">Min length of Board Name is 4!
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Board Description</mat-label>
       <input matInput formControlName="description" placeholder="" required />
+      <mat-error *ngIf="boardFormGroup.get('description')?.getError('required') && boardFormGroup.get('description')?.touched"
+                 class="validationMessage">Board Description is required!
+      </mat-error>
+      <mat-error *ngIf="!boardFormGroup.get('description')?.getError('required') && boardFormGroup.get('description')?.touched && boardFormGroup.get('description')?.getError('whitespace')"
+                 class="validationMessage">Empty Board Description not allowed!
+      </mat-error>
+      <mat-error *ngIf="!boardFormGroup.get('description')?.getError('required') && boardFormGroup.get('description')?.touched && !boardFormGroup.get('description')?.getError('whitespace') && boardFormGroup.get('description')?.hasError('minlength')"
+                 class="validationMessage">Min length of Board Description is 4!
+      </mat-error>
     </mat-form-field>
 
     <!---->
     <div formArrayName="columns" class="step-form-field added">
-      <div *ngFor="let column of colsArray.controls; let i = index">
+      <div *ngFor="let column of colsArray.controls; let i = index" class="animate">
         <div [formGroupName]="i">
           <mat-form-field class="step-form-field">
             <input
@@ -21,6 +39,15 @@
               formControlName="name"
               placeholder="Column name"
             />
+            <mat-error *ngIf="colsArray.controls[i].get('name')?.getError('required') && colsArray.controls[i].get('name')?.touched"
+                       class="validationMessage">Column Name is required!
+            </mat-error>
+            <mat-error *ngIf="!colsArray.controls[i].get('name')?.getError('required') && colsArray.controls[i].get('name')?.touched && colsArray.controls[i].get('name')?.getError('whitespace')"
+                       class="validationMessage">Empty Column Name not allowed!
+            </mat-error>
+            <mat-error *ngIf="!colsArray.controls[i].get('name')?.getError('required') && colsArray.controls[i].get('name')?.touched && !colsArray.controls[i].get('name')?.getError('whitespace') && colsArray.controls[i].get('name')?.hasError('minlength')"
+                       class="validationMessage">Min length of Column Name is 4!
+            </mat-error>
           </mat-form-field>
           <mat-form-field matInput class="step-form-field">
             <input
@@ -29,6 +56,15 @@
               formControlName="description"
               placeholder="Column description"
             />
+            <mat-error *ngIf="colsArray.controls[i].get('description')?.getError('required') && colsArray.controls[i].get('description')?.touched"
+                       class="validationMessage">Column Description is required!
+            </mat-error>
+            <mat-error *ngIf="!colsArray.controls[i].get('description')?.getError('required') && colsArray.controls[i].get('description')?.touched && colsArray.controls[i].get('description')?.getError('whitespace')"
+                       class="validationMessage">Empty Column Description not allowed!
+            </mat-error>
+            <mat-error *ngIf="!colsArray.controls[i].get('description')?.getError('required') && colsArray.controls[i].get('description')?.touched && !colsArray.controls[i].get('description')?.getError('whitespace') && colsArray.controls[i].get('description')?.hasError('minlength')"
+                       class="validationMessage">Min length of Column Description is 4!
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field class="step-form-field">
@@ -40,6 +76,7 @@
             </mat-select>
           </mat-form-field>
         </div>
+        <button mat-flat-button color="warn" (click)="deleteColumn(i)">Delete Column</button>
       </div>
       <button type="button" mat-button color="primary" (click)="addCol()" class="add">
         Add Column
@@ -47,15 +84,16 @@
     </div>
 
     <div>
-      <button mat-button matStepperPrevious (click)="goBack()">Back</button>
+    <!--  <button mat-button matStepperPrevious (click)="goBack()">Back</button> -->
       <button
         [disabled]="!boardFormGroup.valid"
         mat-button
-        matStepperNext
+        class="mat-stepper-next"
         (click)="onSubmit()"
         appNextButton
       >
-        Next
+        <span *ngIf="!spinner">Next</span>
+        <mat-spinner class="spinner" *ngIf="spinner" [diameter]="diameter" color="accent"></mat-spinner>
       </button>
     </div>
   </div>

@@ -9,40 +9,35 @@ import {BaseService} from "./base.service";
   providedIn: 'root',
 })
 export class UsersService extends BaseService {
-  // apiUrl = environment.apiUrl + 'users';
-
-  // constructor(
-  //   // private http: HttpClient
-  // ) {}
 createUser(user: User){
     return this.post('/users', user)
   }
 
   getUsers(): Observable<any> {
-    return this.http.get(this.apiUrl);
+    return this.get('users');
   }
 
   getUsersAll(): Observable<any> {
-    return this.http.get(this.apiUrl + 'users' + '/all');
+    return this.get('users/all');
   }
 
   getUserByID(id: number) {
-    return this.http.get(`${this.apiUrl}/${id}`);
+    return this.get(`users/${id}`);
   }
 
   setUser(user: any) {
-    return this.http.post(this.apiUrl, user);
+    return this.post('users', user);
   }
 
   setUserRoles(userRole: UsersRoles) {
-    return this.http.post(this.apiUrl, userRole);
+    return this.post('users/roles', userRole);
   }
 
   updateUserById(id: number, user: User) {
-    return this.http.put(`${this.apiUrl}/${id}`, user);
+    return this.put(`users/${id}`, user);
   }
 
   deleteUserById(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.delete(`users/${id}`);
   }
 }

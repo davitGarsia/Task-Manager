@@ -4,16 +4,40 @@
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Name</mat-label>
       <input matInput formControlName="name" placeholder="" required/>
+      <mat-error *ngIf="projectFormGroup.get('name')?.getError('required') && projectFormGroup.get('name')?.touched"
+                 class="validationMessage">Name is required!
+      </mat-error>
+      <mat-error *ngIf="!projectFormGroup.get('name')?.getError('required') && projectFormGroup.get('name')?.touched && projectFormGroup.get('name')?.getError('whitespace')"
+                 class="validationMessage">Empty Name not allowed!
+      </mat-error>
+      <mat-error *ngIf="!projectFormGroup.get('name')?.getError('required') && projectFormGroup.get('name')?.touched && !projectFormGroup.get('name')?.getError('whitespace') && projectFormGroup.get('name')?.hasError('minlength')"
+                 class="validationMessage">Min length of Name is 2!
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Abbreviation</mat-label>
       <input matInput formControlName="abbreviation" placeholder="" required/>
+      <mat-error *ngIf="projectFormGroup.get('abbreviation')?.getError('required') && projectFormGroup.get('abbreviation')?.touched"
+                 class="validationMessage">Abbreviation is required!
+      </mat-error>
+      <mat-error *ngIf="!projectFormGroup.get('abbreviation')?.getError('required') && projectFormGroup.get('abbreviation')?.touched && projectFormGroup.get('abbreviation')?.getError('whitespace')"
+                 class="validationMessage">Empty Abbreviation not allowed!
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
       <mat-label>Description</mat-label>
       <input matInput formControlName="description" placeholder="" required/>
+      <mat-error *ngIf="projectFormGroup.get('description')?.getError('required') && projectFormGroup.get('description')?.touched"
+                 class="validationMessage">Description is required!
+      </mat-error>
+      <mat-error *ngIf="!projectFormGroup.get('description')?.getError('required') && projectFormGroup.get('description')?.touched && projectFormGroup.get('description')?.getError('whitespace')"
+                 class="validationMessage">Empty Description not allowed!
+      </mat-error>
+      <mat-error *ngIf="!projectFormGroup.get('description')?.getError('required') && projectFormGroup.get('description')?.touched && !projectFormGroup.get('description')?.getError('whitespace') && projectFormGroup.get('description')?.hasError('minlength')"
+                 class="validationMessage">Min length of Description is 4!
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="step-form-field">
@@ -29,11 +53,12 @@
     <button
       [disabled]="!projectFormGroup.valid"
       mat-button
-      matStepperNext
       (click)="onSubmit()"
       appNextButton
+      class="mat-stepper-next"
     >
-      Next
+      <span *ngIf="!spinner">Next</span>
+      <mat-spinner class="spinner" *ngIf="spinner" [diameter]="diameter" color="accent"></mat-spinner>
     </button>
   </div>
 </form>

@@ -7,6 +7,7 @@
 form {
   min-width: 100% !important;
   overflow: auto;
+  scroll-behavior: smooth;
   padding-bottom: 70px;
   max-height: 100%;
   .margin-auto {
@@ -21,7 +22,7 @@ form {
 
     mat-form-field {
       flex-basis: 40%;
-      min-width: 250px;
+      min-width: 230px;
     }
 
     .add {
@@ -39,16 +40,119 @@ form {
       width: 100%;
 
       div {
+        @include  flex(center, center);
+        flex-direction: column;
+        padding: 20px 0;
+        &.animate {
+          animation: bg 1s linear;
+          animation-delay: .5s;
+        }
         div {
           @include  flex(center, center);
+          flex-direction: row;
           gap: 30px;
           flex-wrap: wrap;
           mat-form-field {
             flex-basis: 30%;
-            min-width: 250px;
+            min-width: 230px;
           }
         }
       }
+    }
+  }
+  .mat-mdc-form-field-error{
+    color: white;
+    font-size: .9rem;
+  }
+}
+
+@keyframes bg {
+  0% {
+    background: rgba(#7a5bd7, 0);
+  }
+  50% {
+    background: rgba(#7a5bd7, 1);
+  }
+  100% {
+    background: rgba(#7a5bd7, 0);
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  form {
+    padding-bottom: 30px;
+    .margin-auto {
+      gap: 10px;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  form {
+    padding-bottom: 50px;
+    .margin-auto {
+      gap: 10px;
+      padding: 1px;
+      .add {
+        bottom: 20px;
+      }
+
+      .added {
+        div {
+          @include  flex(center, center);
+          flex-direction: column;
+          padding: 0;
+          &.animate {
+            animation: bg 1s linear;
+            animation-delay: .5s;
+          }
+          div {
+            @include  flex(center, center);
+            flex-direction: column;
+            gap: 0;
+            mat-form-field {
+              flex-basis: 30%;
+              min-width: 250px;
+              margin-bottom: -20px;
+            }
+          }
+        }
+      }
+    }
+    .mat-mdc-form-field-error{
+      color: white;
+      font-size: .9rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  form {
+    .margin-auto {
+      gap: 30px;
+      padding: 1px;
+      .add {
+        width: 100px;
+        bottom: 20px;
+        left: 5px;
+        font-size: .8rem;
+      }
+
+      .added {
+        div {
+          margin-bottom: 10px;
+          div {
+            mat-form-field {
+              min-width: 220px;
+              margin-bottom: -10px;
+            }
+          }
+        }
+      }
+    }
+    .mat-mdc-form-field-error{
+      color: white;
+      font-size: .9rem;
     }
   }
 }

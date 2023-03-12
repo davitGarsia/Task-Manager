@@ -1,11 +1,9 @@
-
-<div  class="container" #project>
-  <app-navigation [scrolled]="scrolled"></app-navigation>
-  <div class="content">
-    <app-project></app-project>
+<mat-drawer-container class="application" [hasBackdrop]="true">
+  <mat-drawer #drawer [mode]="'side'">
+    <app-side-menu></app-side-menu>
+  </mat-drawer>
+  <mat-drawer-content>
     <router-outlet></router-outlet>
-  </div>
-
-</div>
-  <!--taskManager@gmail.com-->
-<!--task-manager-project-->
+    <button mat-raised-button (click)="drawer.toggle()" class="menu-button">Menu</button>
+  </mat-drawer-content>
+</mat-drawer-container>

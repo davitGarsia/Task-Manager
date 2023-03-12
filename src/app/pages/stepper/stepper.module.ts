@@ -18,6 +18,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatOptionModule } from '@angular/material/core';
 import {NextButtonDirective} from "../../core/directives";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -28,21 +30,23 @@ import {NextButtonDirective} from "../../core/directives";
     StepperComponent,
     NextButtonDirective
   ],
-  imports: [
-    CommonModule,
-    StepperRoutingModule,
-    MatStepperModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatIconModule,
-    MatOptionModule,
-  ],
+    imports: [
+        CommonModule,
+        StepperRoutingModule,
+        MatStepperModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatIconModule,
+        MatOptionModule,
+        MatExpansionModule,
+        MatProgressSpinnerModule,
+    ],
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,

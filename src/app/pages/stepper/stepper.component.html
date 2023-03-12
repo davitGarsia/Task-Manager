@@ -4,7 +4,7 @@
 
 -->
 <img [src]="src[srcIndex]" alt="background" #backgroundImg />
-
+<!-- [selectedIndex]="nextStepOpen$ | async" -->
 <mat-stepper
   #stepper
   [linear]="linear | async"
@@ -13,35 +13,35 @@
 
   (selectionChange)="getActiveStep($event)"
 >
-  <mat-step [editable]="isEditable">
+  <mat-step [editable]="isEditable" [completed]="completed | async">
     <ng-template matStepLabel>Project</ng-template>
-    <app-create-project></app-create-project>
+    <app-create-project [stepper]="stepper"></app-create-project>
   </mat-step>
 
-  <mat-step [editable]="isEditable">
+  <mat-step [editable]="isEditable" [completed]="completed | async">
     <ng-template matStepLabel>Board</ng-template>
-    <app-create-board></app-create-board>
+    <app-create-board [stepper]="stepper"></app-create-board>
   </mat-step>
 
-  <mat-step [editable]="isEditable">
+  <mat-step [editable]="isEditable" [completed]="completed | async">
     <ng-template matStepLabel>Issue Type</ng-template>
-    <app-create-issue-types></app-create-issue-types>
+    <app-create-issue-types [stepper]="stepper"></app-create-issue-types>
   </mat-step>
 
-  <mat-step [editable]="isEditable">
+  <mat-step [editable]="isEditable" [completed]="completed | async">
     <ng-template matStepLabel>Users</ng-template>
-    <app-add-users></app-add-users>
+    <app-add-users [stepper]="stepper"></app-add-users>
   </mat-step>
 
-  <mat-step class="done">
+  <mat-step class="done" [completed]="completed | async">
     <div class="flex">
-      <div class="margin-auto">
+      <div class="margin-auto" style="display: flex; justify-content: center; align-items: center; flex-direction: column">
         <ng-template matStepLabel>Done</ng-template>
-        <p class="para">Great, your project is now being created!</p>
+        <p class="para" style="color: white; font-size: calc(2vw + 2vh + 100%);line-height: calc(1vw + 1vh + 100%); text-align: center; text-transform: uppercase">Great, your project is now being created!</p>
         <div>
-          <button mat-button matStepperPrevious (click)="goBack()">Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-          <button mat-button matStepperNext routerLink="/application/current" style="background-color: #303f9f;">Finish</button>
+         <!-- <button mat-button matStepperPrevious (click)="goBack()">Back</button> -->
+         <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+          <button mat-raised-button color="accent"  routerLink="/application/current">Finish</button>
         </div>
       </div>
     </div>

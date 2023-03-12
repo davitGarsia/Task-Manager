@@ -15,6 +15,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {NgxMatColorPickerModule} from "@angular-material-components/color-picker";
 import {MatButtonModule} from "@angular/material/button";
 import { ProjectCurrentComponent } from './current-project/project-current.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {RouterLink} from "@angular/router";
 
 
 
@@ -29,19 +31,21 @@ import { ProjectCurrentComponent } from './current-project/project-current.compo
     exports: [
         ProjectComponent
     ],
-    imports: [
-        CommonModule,
-        ApplicationRoutingModule,
-        HomeModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatIconModule,
-        MatInputModule,
-        MatDatepickerModule,
-        NgxMatColorPickerModule,
-        ReactiveFormsModule,
-        MatButtonModule
-    ]
+  imports: [
+    CommonModule,
+    ApplicationRoutingModule,
+    HomeModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule,
+    MatInputModule,
+    MatDatepickerModule,
+    NgxMatColorPickerModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatSidenavModule,
+    RouterLink
+  ]
 })
 export class ApplicationModule { }
