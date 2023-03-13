@@ -32,6 +32,7 @@ export interface ITask {
   updatedAt: Date;
   deletedAt: Date;
   taskProperty: ITaskProperty[];
+
 }
 
 export interface ITaskProperty {

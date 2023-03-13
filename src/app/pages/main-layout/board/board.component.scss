@@ -16,11 +16,11 @@
 }
 
 .column-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
-  position: absolute;
-  top: 12%;
-  left: 8%;
+
+  //left: 8%;
 }
 
 .col-name {
@@ -100,5 +100,11 @@
   width: 280px;
   min-height: 100px;
   background-color: white;
-margin-bottom: 5px;
+margin-bottom: 10px;
 }
+
+.title, .desc {
+  margin-left: 5px;
+}
+
+

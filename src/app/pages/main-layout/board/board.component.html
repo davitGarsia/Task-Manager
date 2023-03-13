@@ -13,9 +13,10 @@
     </div>
 
 
-    <div class="task" *ngFor="let task of tasks[column.taskStatus] || []">
-      <h4>{{task.title}}</h4>
-      <p>{{task.value}}</p>
+    <div class="task" *ngFor="let task of tasks[column.id]">
+      <h4 class="title">{{task.name}}</h4>
+      <p class="desc">{{task.value}}</p>
+
     </div>
 
     <button type="button" class="add-task" (click)="addTask(column)">
@@ -55,5 +56,6 @@
 <!--      <span class="material-icons">add</span>-->
 <!--      <p>Add Task</p>-->
 <!--    </div>-->
-<!--  </div>-->
+<!-- *ngFor="let task of tasks[column.taskStatus]"
+ </div>-->
 

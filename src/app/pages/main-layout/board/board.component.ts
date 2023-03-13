@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {BoardService} from "../../../core/services/board.service";
 import {ProjectService} from "../../../core/services/project.service";
@@ -8,12 +8,14 @@ import {Column, IBoard} from "../../../core/interfaces";
 import {ITask} from "../../../core/interfaces/task";
 import {TaskService} from "../../../core/services/task.service";
 
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent {
+export class BoardComponent implements OnInit, AfterViewInit{
   boardId!: number;
 
   constructor(
@@ -33,21 +35,26 @@ export class BoardComponent {
       if(params) {
         this.boardId = +params['id'];
         this.boardService.getBoardByID(params['id'], params['projectId']).subscribe(res => {
-          this.board = res;
-          console.log(res);
+         this.board = res;
+         console.log(this.board);
+
         })
         console.log(params['id'])
+
       }
     })
+  }
+
+  ngAfterViewInit() {
     this.getTasks();
   }
 
-  fetchTasks() {
-    this.taskService.getTasks({boardId: this.boardId})
-      .subscribe(tasks => {
-        this.tasks = tasks;
-      })
-  }
+  // fetchTasks() {
+  //   this.taskService.getTasks({boardId: this.boardId})
+  //     .subscribe(tasks => {
+  //       this.tasks = tasks;
+  //     })
+  // }
 
   addTask(column: Column) {
   const dialogRef = this.dialog.open(TaskAddEditComponent, {
@@ -68,8 +75,12 @@ export class BoardComponent {
 private getTasks() {
     this.taskService.getTasks({boardId: this.boardId}).subscribe(tasks => {
       this.tasks = tasks;
+      console.log(tasks);
+
     })
 
 }
 
 }
+
+// _.groupBy(tasks, 'boardColumnId');

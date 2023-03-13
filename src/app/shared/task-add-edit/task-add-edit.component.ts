@@ -25,7 +25,7 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
     epicId: new FormControl(''),
     boardId: new FormControl('', Validators.required),
     boardColumnId: new FormControl(''),
-    isBacklog: new FormControl(true, Validators.required),
+    isBacklog: new FormControl(false, Validators.required),
     priority: new FormControl('', Validators.required),
     taskStatus: new FormControl(this.data.column?.taskStatus || 'ToDo', Validators.required),
     assigneeId: new FormControl(''),
@@ -61,14 +61,15 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
 
 
   ngOnInit() {
+    this.getTask(this.data.taskId);
     if (this.data.taskId) {
       this.getTask(this.data.taskId);
     } else {
-      this.form.get('issueTypeId')?.valueChanges.pipe()
+      this.form.get('issueTypeId')?.valueChanges.pipe(takeUntil(this.sub$))
         .subscribe((issueTypeId: number) => {
           this.getIssueTypeProperties(issueTypeId)
         })
-    }
+     }
     if (this.data.boardId) {
       this.form.patchValue({boardId: this.data.boardId})
     }
