@@ -5,6 +5,15 @@ import {Observable, Subject, takeUntil} from "rxjs";
 import {ProjectService} from "../../../../core/services/project.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
+import {
+  faAlignLeft,
+  faAlignCenter,
+  faAlignRight,
+  faTextSlash,
+  faUnderline,
+  faItalic,
+  faBold,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-description',
@@ -12,6 +21,13 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./description.component.scss']
 })
 export class DescriptionComponent implements OnInit {
+  faAlignLeft = faAlignLeft;
+  faAlignCenter = faAlignCenter;
+  faAlignRight = faAlignRight;
+  faTextSlash = faTextSlash;
+  faUnderline = faUnderline;
+  faItalic = faItalic;
+  faBold = faBold;
   sub$ = new Subject()
 constructor(
   private projectFacade: ProjectFacade,
@@ -44,5 +60,61 @@ constructor(
 
   save() {
 
+  }
+  bold: boolean = false;
+  italic: boolean = false;
+  underline: boolean = false;
+  alignleft: boolean = false;
+  aligncenter: boolean = false;
+  alignright: boolean = false;
+
+  fontsize11 :any = 16;
+
+
+  changeFontWeight() {
+    this.bold = !this.bold;
+  }
+
+  changeFontWeight2() {
+    this.italic = !this.italic;
+
+  }
+
+  changeFontWeight3() {
+    this.underline = !this.underline;
+
+  }
+
+  fontSizeChange() {
+    let fontSize = document.getElementById("fontSize") as HTMLInputElement;
+    let fontSizeValue = fontSize.value;
+    this.fontsize11 = fontSizeValue + "px";
+    localStorage.setItem("fontsize", this.fontsize11);
+
+  }
+
+
+  alignLeft() {
+
+    this.alignleft = !this.alignleft;
+  }
+
+  alignCenter() {
+    this.aligncenter = !this.aligncenter;
+  }
+
+  alignRight() {
+    this.alignright = !this.alignright;
+  }
+
+  aA() {
+
+  }
+
+  capitalize() {
+
+  }
+
+  color() {
   }
 }

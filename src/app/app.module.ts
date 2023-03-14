@@ -11,6 +11,7 @@ import {ProjectInterceptor} from './core/interceptors/project.interceptor';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NextButtonDirective } from './core/directives/next-button.directive';
 import {MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS} from "@angular-material-components/color-picker";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS} from "@angular-material-compon
         // HomeModule,
         FormsModule,
         ReactiveFormsModule,
+        FontAwesomeModule,
     ],
     providers: [
         {

@@ -21,6 +21,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ApplicationModule} from "../application.module";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import { UserEditComponent } from './project-users/user-edit.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 
@@ -36,22 +37,23 @@ import { UserEditComponent } from './project-users/user-edit.component';
     UserEditComponent,
 
   ],
-  imports: [
-    CommonModule,
-    ProjectSettingRoutingModule,
-    MatSidenavModule,
-    RouterModule,
-    MainLayoutRoutingModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatTableModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    ApplicationModule,
-    MatDialogModule,
+    imports: [
+        CommonModule,
+        ProjectSettingRoutingModule,
+        MatSidenavModule,
+        RouterModule,
+        MainLayoutRoutingModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatTableModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        ApplicationModule,
+        MatDialogModule,
+        FontAwesomeModule,
 
-  ],
+    ],
 })
 export class ProjectSettingModule {
 }
