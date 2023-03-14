@@ -1,10 +1,5 @@
 <div class="textBox">
-<form [formGroup]="form" >
-  <label for="description">Description:</label>
-    <textarea type="text" id="description" name="description"
-              placeholder="Description" formControlName="description" >
-    </textarea>
-  <section>
+  <form [formGroup]="form">
     <div class="row">
       <div class="col">
         <div class="first box">
@@ -37,22 +32,24 @@
           <button type="button" (click)="capitalize()">
             <fa-icon [icon]="faTextSlash"></fa-icon>
           </button>
-          <input type="color" (change)="color()">
+          <input type="color" id="fontColor" (change)="color()">
         </div>
 
       </div>
     </div>
     <div class="row">
       <div class="col">
+
       <textarea [ngClass]="{textarea1: bold,textarea2:italic, textarea3:underline, fontsize11:fontsize11,
       alignLeft:alignleft, alignCenter:aligncenter, alignRight:alignright}"
                 placeholder="Your text here "
                 [ngStyle]="{'font-size': fontsize11}"
-      ></textarea>
+     id="description" name="description"
+                placeholder="Description" formControlName="description"></textarea>
       </div>
     </div>
-  </section>
+  </form>
 
-</form>
+
   <button mat-raised-button color="primary" (click)="save()">Save</button>
 </div>

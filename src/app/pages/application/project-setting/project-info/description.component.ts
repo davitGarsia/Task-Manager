@@ -59,6 +59,16 @@ constructor(
 
 
   save() {
+    this.projectService.updateProject(this.project.id, this.form.value).subscribe(
+      res => {
+        this.projectService.getProjectById(this.project.id).subscribe(
+          res => {
+            this.projectFacade.setProject(res);
+            console.log(res)
+          }
+        )
+      }
+    )
 
   }
   bold: boolean = false;
@@ -108,13 +118,29 @@ constructor(
   }
 
   aA() {
+    let textarea = document.getElementById("description") as HTMLInputElement;
+    if (textarea.style.textTransform == "uppercase") {
+      textarea.style.textTransform = "none";
 
+    } else {
+      textarea.style.textTransform = "uppercase";
+    }
   }
 
   capitalize() {
+    let textarea = document.getElementById("description") as HTMLInputElement;
+    textarea.style.fontWeight = "normal";
+    textarea.style.textAlign = "left";
+    textarea.style.fontStyle = "normal";
+    textarea.style.textTransform = "capitalize";
+
 
   }
 
   color() {
+    let textarea = document.getElementById("description") as HTMLInputElement;
+    let value1 = document.getElementById("fontColor") as HTMLInputElement;
+    let value = value1.value;
+    textarea.style.color = value;
   }
 }
