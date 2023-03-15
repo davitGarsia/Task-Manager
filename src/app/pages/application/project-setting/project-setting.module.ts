@@ -20,8 +20,10 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ApplicationModule} from "../application.module";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
-import { UserEditComponent } from './project-users/user-edit.component';
+import { UserEditComponent } from '../../user/user-add-edit/user-edit.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {MatDividerModule} from "@angular/material/divider";
+import {UserModule} from "../../user/user.module";
 
 
 
@@ -34,7 +36,6 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     ProjectUsersComponent,
     DescriptionComponent,
     BoardEditComponent,
-    UserEditComponent,
 
   ],
     imports: [
@@ -52,6 +53,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
         ApplicationModule,
         MatDialogModule,
         FontAwesomeModule,
+        MatDividerModule,
+        UserModule
 
     ],
 })

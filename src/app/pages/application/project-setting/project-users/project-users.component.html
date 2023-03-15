@@ -1,6 +1,6 @@
 <div class="container">
   <div class="choseUser"> <button mat-raised-button color="primary"
-                (click)="addUser()">Add New User
+                (click)="addUser()">Choose User
   </button>
     <div *ngIf="chooseUserActive">
       <form [formGroup]="userForm" >
@@ -10,9 +10,12 @@
             <mat-option *ngFor="let user of users$ | async" [value]="user.id" (click)="onSubmit()">
               {{user.firstName}}{{user.lastName}}
             </mat-option>
-
           </mat-select>
         </mat-form-field>
+        <mat-divider></mat-divider>
+        <button mat-raised-button color="primary"
+                type="submit" (click)="addNewUser()">Add New User
+        </button>
       </form>
 
     </div>

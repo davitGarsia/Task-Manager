@@ -15,7 +15,7 @@ export class UsersService extends BaseService {
   //   // private http: HttpClient
   // ) {}
 createUser(user: User){
-    return this.post('/users', user)
+    return this.post('users', user)
   }
 
   getUsers(): Observable<any> {

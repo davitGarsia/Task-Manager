@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {IProject} from "../../../../core/interfaces/iproject";
 import {ProjectFacade} from "../../../../facades/project-facade.service";
-import {Observable, Subject, takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {ProjectService} from "../../../../core/services/project.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {
-  faAlignLeft,
   faAlignCenter,
+  faAlignLeft,
   faAlignRight,
+  faBold,
+  faItalic,
   faTextSlash,
   faUnderline,
-  faItalic,
-  faBold,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -140,7 +140,7 @@ constructor(
   color() {
     let textarea = document.getElementById("description") as HTMLInputElement;
     let value1 = document.getElementById("fontColor") as HTMLInputElement;
-    let value = value1.value;
-    textarea.style.color = value;
+    textarea.style.color = value1.value;
+
   }
 }

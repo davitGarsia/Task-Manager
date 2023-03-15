@@ -7,6 +7,8 @@ import {ProjectFacade} from "../../../../facades/project-facade.service";
 import {UsersFacadeService} from "../../../../facades/users-facade.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UsersService} from "../../../../core/services/users.service";
+import {MatDialog} from "@angular/material/dialog";
+import {UserEditComponent} from "../../../user/user-add-edit/user-edit.component";
 
 @Component({
   selector: 'app-project-users',
@@ -15,11 +17,11 @@ import {UsersService} from "../../../../core/services/users.service";
 })
 export class ProjectUsersComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['id', 'firstName', 'lastName','email', 'isActive','actions']
+  displayedColumns = ['id', 'firstName', 'lastName', 'email', 'isActive', 'actions']
   dataSource = new MatTableDataSource<IBoard>();
   sub$ = new Subject();
   chooseUserActive = false;
-  users$: Observable<User[]>= this.userService.getUsersAll()
+  users$: Observable<User[]> = this.userService.getUsersAll()
   projectUsersIds: number[] = [];
 
   get projectId() {
@@ -31,6 +33,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
     private projectFacade: ProjectFacade,
     private userFacade: UsersFacadeService,
     private userService: UsersService,
+    private dialog: MatDialog,
   ) {
   }
 
@@ -58,7 +61,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
   }
 
   removeUser(id: number) {
-const userIds = this.projectUsersIds.filter((userId: number) => userId !== id)
+    const userIds = this.projectUsersIds.filter((userId: number) => userId !== id)
     this.projectService.addProjectUser({
       projectId: this.projectId,
       userIds
@@ -70,21 +73,42 @@ const userIds = this.projectUsersIds.filter((userId: number) => userId !== id)
   }
 
 
-  addUser()  {
+  addUser() {
     this.chooseUserActive = !this.chooseUserActive;
 
   }
 
   onSubmit() {
-    const userIds = [ ...this.projectUsersIds, this.userForm.value.userId]
-    this.projectService.addProjectUser({
+    const userIds = [...this.projectUsersIds, this.userForm.value.userId]
+    this.createUser(userIds)
+      .subscribe(() => {
+        this.getCurrentProjectUsers()
+        this.addUser()
+      })
+  }
+  createUser(userIds: number[]){
+   return  this.projectService.addProjectUser({
       projectId: this.projectId,
       userIds
     })
       .pipe(takeUntil(this.sub$))
-      .subscribe(() => {
-        this.getCurrentProjectUsers()
-        this.addUser()
+
+  }
+
+  addNewUser() {
+    const dialog = this.dialog.open(UserEditComponent)
+    dialog.afterClosed()
+      .pipe(takeUntil(this.sub$))
+      .subscribe((result : User) => {
+
+        if (result) {
+          const userIds = [...this.projectUsersIds, result.id]
+          this.createUser(userIds)
+            .subscribe(() => {
+              this.getCurrentProjectUsers()
+              this.chooseUserActive = false;
+            })
+        }
 
       })
   }
