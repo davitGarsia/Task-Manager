@@ -11,6 +11,7 @@ import { BoardComponent } from './board/board.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from '@angular/material/dialog';
+import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatPaginatorModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule, CdkDropListGroup, CdkDropList, CdkDrag
   ],
 })
 export class MainLayoutModule {}

@@ -9,6 +9,7 @@ import {ITask} from "../../../core/interfaces/task";
 import {TaskService} from "../../../core/services/task.service";
 
 import * as _ from 'lodash';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-board',
@@ -74,13 +75,43 @@ export class BoardComponent implements OnInit, AfterViewInit{
 
 private getTasks() {
     this.taskService.getTasks({boardId: this.boardId}).subscribe(tasks => {
-      this.tasks = tasks;
+      this.tasks =  _.groupBy(tasks, 'boardColumnId');
       console.log(tasks);
 
     })
-
 }
 
+  drop(event: CdkDragDrop<any>, column: Column) {
+    console.log(event.container)
+
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+      const tasks: ITask[] = event.container.data.map((task: ITask, index: number) => {
+        return {
+          ...task,
+          taskStatus: column.taskStatus,
+          boardColumnId: column.id,
+        }
+      })
+
+      this.tasks[column.id] = tasks
+      const currentTask = tasks[event.currentIndex]
+      console.log(currentTask)
+      this.taskService.updateTask(currentTask.id, currentTask).subscribe(task => {
+
+        console.log(task)
+        this.getTasks()
+      })
+    }
+  }
 }
 
-// _.groupBy(tasks, 'boardColumnId');
+

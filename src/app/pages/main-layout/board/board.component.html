@@ -3,26 +3,36 @@
   <p class="name">{{projectName}}</p>
 </div>
 
-<div class="column-container" *ngFor="let column of board.columns">
+<div class="display" cdkDropListGroup>
+<div class="column-container"
+     cdkDropList
+     *ngFor="let column of board.columns;"
+     [cdkDropListData]="tasks[column.id] || []"
+     (cdkDropListDropped)="drop($event, column)"
+>
   <div class="column">
     <div class="col-header">
       <p class="col-name">{{column.name}}</p>
-      <button mat-icon-button>
-        <mat-icon>more_horiz</mat-icon>
-      </button>
+<!--      <button mat-icon-button>-->
+<!--        <mat-icon>more_horiz</mat-icon>-->
+<!--      </button>-->
     </div>
 
 
-    <div class="task" *ngFor="let task of tasks[column.id]">
+    <div class="task" *ngFor="let task of tasks[column.id] || []"
+         cdkDrag
+         >
+      <div class="placeholder" *cdkDragPlaceholder></div>
       <h4 class="title">{{task.name}}</h4>
-      <p class="desc">{{task.value}}</p>
+      <p class="desc">{{task.description}}</p>
 
     </div>
 
     <button type="button" class="add-task" (click)="addTask(column)">
       <span class="material-icons">add</span>
-      <p>Add Task</p>
+      <p class="p-add">Add Task</p>
     </button>
+  </div>
   </div>
 </div>
 
@@ -57,5 +67,6 @@
 <!--      <p>Add Task</p>-->
 <!--    </div>-->
 <!-- *ngFor="let task of tasks[column.taskStatus]"
+(dblclick)="viewTask(task, column)"
  </div>-->
 
