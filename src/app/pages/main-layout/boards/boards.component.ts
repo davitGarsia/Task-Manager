@@ -39,9 +39,11 @@ export class BoardsComponent implements OnInit{
           next: res => {
             console.log(res.name);
             this.projectService.projectName = res.name;
+
           }
         })
-        
+
+
       }
     })
   }

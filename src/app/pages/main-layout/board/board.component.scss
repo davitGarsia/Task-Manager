@@ -100,10 +100,11 @@
   margin-right: auto;
   border-radius: 5px;
   width: 280px;
-  min-height: 100px;
+  min-height: 40px;
   background-color: white;
-margin-bottom: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
+  padding: 5px 5px 3px;
 }
 
 .task:active{
@@ -112,10 +113,18 @@ margin-bottom: 10px;
 }
 
 .title, .desc {
-  margin-left: 5px;
+  margin-left: 8px;
+}
+
+.title {
+
+  margin-bottom: 0;
 }
 
 .display {
+  margin-top: 120px;
+  margin-bottom: 20%;
+  margin-left: 150px;
   display: flex;
   gap: 15px;
 }

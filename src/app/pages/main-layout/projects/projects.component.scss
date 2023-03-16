@@ -3,7 +3,7 @@
   cursor: pointer;
 
   width: 300px;
-  height: 60px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,8 +14,9 @@
 
 .container {
   margin-top: 250px;
-  display: flex;
-  flex-direction: column;
+ // display: flex;
+
+  //flex-direction: column;
 }
 
 .inner-container:hover {
@@ -26,10 +27,7 @@
   background-color: #dbd8d8;
 }
 
-.container {
-  display: flex;
 
-}
 
 .grid {
   display: grid;
@@ -37,11 +35,17 @@
   gap: 50px;
 }
 
-.prj-container {
-  /*margin-left: auto;
-  margin-right: auto;*/
-  margin:auto;
+
+.flex-container {
+  margin-left: 25%;
+
 }
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 .paginator {
   margin-bottom: 50px;

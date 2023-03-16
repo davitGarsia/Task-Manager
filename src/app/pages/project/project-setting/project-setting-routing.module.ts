@@ -9,33 +9,35 @@ const routes: Routes = [
   {
     path: '',
     component: ProjectSettingComponent,
-  },
-  {
-    path: 'issue-types',
     children: [
       {
-        path: '',
-        component: IssueTypesComponent
-      },
-    ]
-  },
-  {
-    path: 'epics',
-    children: [
-      {
-        path: '',
-        component: ProjectEpicsComponent
+        path: 'issue-types',
+        children: [
+          {
+            path: '',
+            component: IssueTypesComponent
+          },
+        ]
       },
       {
-        path: 'add',
-        component: ProjectEpicAddEditComponent
-      },
-      {
-        path: 'edit/:id',
-        component: ProjectEpicAddEditComponent
+        path: 'epics',
+        children: [
+          {
+            path: '',
+            component: ProjectEpicsComponent
+          },
+          {
+            path: 'add',
+            component: ProjectEpicAddEditComponent
+          },
+          {
+            path: 'edit/:id',
+            component: ProjectEpicAddEditComponent
+          }
+        ]
       }
     ]
-  }
+  },
 ];
 
 @NgModule({
@@ -43,3 +45,37 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class ProjectSettingRoutingModule { }
+
+
+// const routes: Routes = [
+//   {
+//     path: '',
+//     component: ProjectSettingComponent,
+//   },
+//   {
+//     path: 'issue-types',
+//     children: [
+//       {
+//         path: '',
+//         component: IssueTypesComponent
+//       },
+//     ]
+//   },
+//   {
+//     path: 'epics',
+//     children: [
+//       {
+//         path: '',
+//         component: ProjectEpicsComponent
+//       },
+//       {
+//         path: 'add',
+//         component: ProjectEpicAddEditComponent
+//       },
+//       {
+//         path: 'edit/:id',
+//         component: ProjectEpicAddEditComponent
+//       }
+//     ]
+//   }
+// ];

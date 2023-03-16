@@ -12,6 +12,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { IssueTypesComponent } from './containers/issue-types/issue-types.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
@@ -27,8 +28,9 @@ import { IssueTypesComponent } from './containers/issue-types/issue-types.compon
         MatTableModule,
         MatDialogModule,
         ReactiveFormsModule,
-      MatFormFieldModule,
-      MatInputModule
+        MatFormFieldModule,
+        MatInputModule,
+        MatSidenavModule
     ]
 })
 export class ProjectSettingModule { }
