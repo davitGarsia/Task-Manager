@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDrawer} from '@angular/material/sidenav';
 import {DrawerService} from 'src/app/core/services/drawer.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-main-layout',
@@ -11,6 +12,7 @@ export class MainLayoutComponent implements OnInit {
 
   constructor(
     private drawerService: DrawerService,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -25,6 +27,12 @@ export class MainLayoutComponent implements OnInit {
         this.drawer?.close();
       }
     });
+
+    this.route.params.subscribe(params => {
+      if(params['id']) {
+
+      }
+    })
   }
 
   toggleDrawer() {

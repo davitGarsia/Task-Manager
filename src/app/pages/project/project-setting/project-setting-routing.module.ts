@@ -3,11 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 import {ProjectSettingComponent} from "./project-setting.component";
 import {ProjectEpicsComponent} from "./containers/project-epics/project-epics.component";
 import {ProjectEpicAddEditComponent} from "./containers/project-epic-add-edit/project-epic-add-edit.component";
+import {IssueTypesComponent} from "./containers/issue-types/issue-types.component";
 
 const routes: Routes = [
   {
     path: '',
     component: ProjectSettingComponent,
+  },
+  {
+    path: 'issue-types',
+    children: [
+      {
+        path: '',
+        component: IssueTypesComponent
+      },
+    ]
   },
   {
     path: 'epics',

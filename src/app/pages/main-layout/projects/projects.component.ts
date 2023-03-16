@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {SharedService} from "../../../core/services/shared.service";
 import {IProject} from "../../../core/interfaces/iproject";
 import {PageEvent} from "@angular/material/paginator";
+import {ProjectFacade} from "../../../facades/project-facade.service";
 
 @Component({
   selector: 'app-projects',
@@ -16,7 +17,8 @@ export class ProjectsComponent implements OnInit{
   constructor(private projectsService: ControlProjectsService,
               private boardService: BoardService,
               private sharedService: SharedService,
-              private router: Router) {
+              private router: Router,
+              private projectFacade: ProjectFacade) {
   }
 
   projects: IProject[] = [];
@@ -47,6 +49,13 @@ export class ProjectsComponent implements OnInit{
     })
   }
 
+  saveProject(id: number) {
+    this.projectsService.getById(id).subscribe({
+      next: (res: any) => {
+        this.projectFacade.setProject(res);
+      }
+    })
+  }
 
   settingsChanged(event: PageEvent) {
     console.log(event)

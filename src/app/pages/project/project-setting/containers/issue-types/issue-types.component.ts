@@ -1,40 +1,41 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {EpicService} from "../../../../../core/services/epic.service";
+import {IssueTypesService} from "../../../../../core/services";
 import {of, Subject, switchMap, takeUntil} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmDeleteComponent} from "../../../../../shared/confirm-delete/confirm-delete.component";
 
 @Component({
-  selector: 'app-project-epics',
-  templateUrl: './project-epics.component.html',
-  styleUrls: ['./project-epics.component.scss']
+  selector: 'app-issue-types',
+  templateUrl: './issue-types.component.html',
+  styleUrls: ['./issue-types.component.scss']
 })
-export class ProjectEpicsComponent implements OnInit, OnDestroy{
+export class IssueTypesComponent implements OnInit, OnDestroy {
   displayedColumns = ['id', 'name', 'createdAt', 'actions'];
 
   dataSource = new MatTableDataSource();
 
   sub$ = new Subject();
 
-  constructor(private epicService: EpicService,
-              public dialog: MatDialog) {
+  constructor(private issueTypesService: IssueTypesService,
+              public dialog: MatDialog,
+              private issueTypeService: IssueTypesService) {
   }
 
   ngOnInit() {
-    this.getEpics();
+    this.getIssueTypes();
   }
 
-  getEpics() {
-    this.epicService.getEpics()
+  getIssueTypes() {
+    this.issueTypesService.getIssueType()
       .pipe(takeUntil(this.sub$))
-      .subscribe(epics => {
-        console.log(epics)
-        this.dataSource.data = epics;
-      })
+      .subscribe(issueType => {
+        console.log(issueType)
+        this.dataSource.data = issueType;
+      });
   }
 
-  delete(id: number) {
+  deleteIssueType(id: number) {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent);
 
     dialogRef.afterClosed()
@@ -42,14 +43,14 @@ export class ProjectEpicsComponent implements OnInit, OnDestroy{
         takeUntil(this.sub$),
         switchMap((result) => {
           if (result) {
-            return this.epicService.deleteEpic(id);
+            return this.issueTypeService.deleteIssueType(id);
           }
           return of(null);
         })
       )
       .subscribe(result => {
         if (result) {
-          this.getEpics();
+          this.getIssueTypes();
         }
       });
   }
