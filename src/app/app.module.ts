@@ -28,22 +28,12 @@ import {MatSelectModule} from "@angular/material/select";
         PageNotFoundComponent,
         TaskAddEditComponent,
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        // HomeModule,
-        FormsModule,
-        ReactiveFormsModule,
-        FontAwesomeModule,
-    ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // HomeModule,
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
@@ -53,6 +43,7 @@ import {MatSelectModule} from "@angular/material/select";
     MatOptionModule,
     MatInputModule,
     MatSelectModule,
+    FontAwesomeModule,
   ],
     providers: [
         {

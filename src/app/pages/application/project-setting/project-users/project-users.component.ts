@@ -42,7 +42,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
   });
 
   getCurrentProjectUsers() {
-    this.projectService.getProjectUsers(this.projectId)
+    this.projectService.getProjectUsersId(this.projectId)
       .pipe(takeUntil(this.sub$))
       .subscribe(users => {
         this.projectUsersIds = users.map((user: User) => user.id)
@@ -62,7 +62,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
 
   removeUser(id: number) {
     const userIds = this.projectUsersIds.filter((userId: number) => userId !== id)
-    this.projectService.addProjectUser({
+    this.projectService.addProjectUserData({
       projectId: this.projectId,
       userIds
     })
@@ -87,7 +87,7 @@ export class ProjectUsersComponent implements OnInit, OnDestroy {
       })
   }
   createUser(userIds: number[]){
-   return  this.projectService.addProjectUser({
+   return  this.projectService.addProjectUserData({
       projectId: this.projectId,
       userIds
     })

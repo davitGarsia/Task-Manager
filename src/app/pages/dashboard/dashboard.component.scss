@@ -25,13 +25,27 @@
     background-color: #efebeb;
   }
 }
+.container{
+  display: flex;
+  margin: 20px;
+  gap: 20px;
+}
 .content {
-  margin-top: 4%;
   text-align: center;
   font-size: 1.5em;
   padding-bottom: 1%;
-  width: 400px;
+  width: 100%;
+  height: 300px;
+  background-color: #efeeee;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 .sidebar{
-  width:180px;
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+  border-radius: 5px;
+  background-color: #efeeee;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }

@@ -3,7 +3,7 @@ import {ITask} from "./task";
 import {TaskStatusEnum} from "../enums/task-status.enum";
 
 import {ETaskStatus} from "../enums/task-status.enum";
-import {ITask} from "./task";
+
 
 export interface IBoard {
   id: number;
@@ -12,14 +12,14 @@ export interface IBoard {
   position: number;
   projectId: number;
   project:IProject;
-  columns: Column[];
+  columns: IColumn[];
   tasks: ITask;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
 }
 
-export interface Column {
+export interface IColumn {
   id: number;
   name: string;
   description: string;
