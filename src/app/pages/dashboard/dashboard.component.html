@@ -1,0 +1,18 @@
+<div #project class="navigation">
+  <app-navigation [scrolled]="scrolled"></app-navigation>
+</div>
+<div>
+  <div class="projectList">
+    Select Project: <select [ngModel]="currentProject?.id"
+                            (ngModelChange)="selectedProject($event)" class="select">
+    <option selected></option>
+    <option *ngFor="let project of projects$ | async"
+            [value]="project.id"
+    >
+      {{project.name}}
+    </option>
+
+  </select>
+
+  </div>
+</div>

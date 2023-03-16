@@ -24,6 +24,7 @@ import { UserEditComponent } from '../../user/user-add-edit/user-edit.component'
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatDividerModule} from "@angular/material/divider";
 import {UserModule} from "../../user/user.module";
+import {CdkDrag, CdkDropList, DragDropModule} from "@angular/cdk/drag-drop";
 
 
 
@@ -38,25 +39,26 @@ import {UserModule} from "../../user/user.module";
     BoardEditComponent,
 
   ],
-    imports: [
-        CommonModule,
-        ProjectSettingRoutingModule,
-        MatSidenavModule,
-        RouterModule,
-        MainLayoutRoutingModule,
-        MatPaginatorModule,
-        MatSelectModule,
-        MatButtonModule,
-        MatTableModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        ApplicationModule,
-        MatDialogModule,
-        FontAwesomeModule,
-        MatDividerModule,
-        UserModule
+  imports: [
+    CommonModule,
+    ProjectSettingRoutingModule,
+    MatSidenavModule,
+    RouterModule,
+    MainLayoutRoutingModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatTableModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    ApplicationModule,
+    MatDialogModule,
+    FontAwesomeModule,
+    MatDividerModule,
+    UserModule,
+    DragDropModule,
 
-    ],
+  ],
 })
 export class ProjectSettingModule {
 }

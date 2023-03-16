@@ -3,6 +3,7 @@ import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TaskStatusEnum} from "../../../../../core/enums/task-status.enum";
 import {BoardService} from "../../../../../core/services/board.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-board-edit',
@@ -57,6 +58,7 @@ getBoard() {
   }
   addColumn() {
     this.columnsArray.push(new FormGroup({
+      id: new FormControl(null),
       name: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       position: new FormControl(this.columnsArray.length + 1, Validators.required),
@@ -76,5 +78,14 @@ this.boardService.addBoard(this.form.value).subscribe(
     this.router.navigate(['/application/setting/board']);
   }
 );
+  }
+
+  drop($event: CdkDragDrop<any, any>) {
+    moveItemInArray(this.columnsArray.controls, $event.previousIndex, $event.currentIndex);
+    console.log(this.columnsArray.controls);
+    this.columnsArray.controls.forEach((control, index) => {
+      control.get('position')?.setValue(index + 1);
+    })
+
   }
 }

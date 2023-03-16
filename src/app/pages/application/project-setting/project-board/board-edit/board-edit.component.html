@@ -14,8 +14,12 @@
       <button mat-raised-button color="primary" (click)="save()">Save</button>
     </div>
 
-    <div class="columns" formArrayName="columns">
-      <div *ngFor="let column of columnsArray.controls; let i= index" [formGroupName]="i" class="column">
+    <div class="columns" formArrayName="columns" cdkDropList cdkDropListOrientation="horizontal"(cdkDropListDropped)="drop($event)">
+      <div *cdkDragPreview class="prev"></div>
+
+      <div *ngFor="let column of columnsArray.controls; let i= index" [formGroupName]="i"  class="column"  cdkDrag>
+
+
         <mat-form-field>
           <mat-label>Column Name</mat-label>
           <input matInput placeholder="Column Name" formControlName="name">
@@ -30,8 +34,13 @@
             <mat-option *ngFor="let status of taskStatuses" [value]="status">{{status}} </mat-option>
           </mat-select>
         </mat-form-field>
+        <div class="column-placeholder" *cdkDragPlaceholder></div>
+
+
 
       </div>
+
     </div>
+
   </form>
 </div>
