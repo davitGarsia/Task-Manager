@@ -26,24 +26,15 @@ export class BoardsComponent implements OnInit{
              ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.data.subscribe(({projects}) => {
+      console.log(projects);
 
-      if(params['id']) {
-
-        this.boardService.getBoards(params['id']).subscribe({
+      if(projects['id']) {
+        this.boardService.getBoards(projects['id']).subscribe({
           next: res => {
             this.boards = res;
           },
         })
-        this.projectService.getById(params['id']).subscribe({
-          next: res => {
-            console.log(res.name);
-            this.projectService.projectName = res.name;
-
-          }
-        })
-
-
       }
     })
   }

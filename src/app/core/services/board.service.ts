@@ -12,7 +12,7 @@ export class BoardService extends BaseService {
   }
 
   getBoards(header: any): Observable<any> {
-    return this.get<any>('board', header)
+    return this.get<any>('board')
   }
 
   getBoardByID(boardId: number, projectId: string): Observable<any> {

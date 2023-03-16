@@ -23,9 +23,7 @@ export class BaseService {
 
 
   get<T>(url: string, header?: any): Observable<T> {
-    return this.http.get<T>(this.apiUrl + url, {
-      headers: new HttpHeaders({project: `${header}`})
-    })
+    return this.http.get<T>(this.apiUrl + url)
   }
 
 
