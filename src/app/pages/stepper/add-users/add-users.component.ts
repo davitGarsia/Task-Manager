@@ -62,13 +62,6 @@ export class AddUsersComponent implements OnInit {
   onSubmit() {
     this.spinner = true;
     this.makeIdsArray();
-    this.stepperService.changeFromLinear();
-
-    this.stepperService.openNextStep(4);
-
-    setTimeout(() => {
-      this.stepperService.changeToLinear();
-    }, 1000);
 
     this.currentUsersOnProject(null, this.projectUsers);
   }
@@ -87,6 +80,13 @@ export class AddUsersComponent implements OnInit {
       }).subscribe(response => {
         this.spinner = false;
         this.stepperService.navigateToNextStep(this.stepper);
+        this.stepperService.changeFromLinear();
+
+        this.stepperService.openNextStep(4);
+
+        setTimeout(() => {
+          this.stepperService.changeToLinear();
+        }, 1000);
         if (res) {
           this.title = 'User Created';
           setTimeout(() => {

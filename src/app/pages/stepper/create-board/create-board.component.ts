@@ -98,13 +98,6 @@ export class CreateBoardComponent implements OnInit, AfterViewInit {
   onSubmit() {
     // Next btn
     this.spinner = true;
-    this.stepperService.changeFromLinear();
-
-    this.stepperService.openNextStep(2);
-
-    setTimeout(() => {
-      this.stepperService.changeToLinear();
-    }, 1000);
 
     //Creating Board
 
@@ -113,6 +106,13 @@ export class CreateBoardComponent implements OnInit, AfterViewInit {
       next: (res) => {
         this.spinner = false;
         this.stepperService.navigateToNextStep(this.stepper);
+        this.stepperService.changeFromLinear();
+
+        this.stepperService.openNextStep(2);
+
+        setTimeout(() => {
+          this.stepperService.changeToLinear();
+        }, 1000);
       }
     });
   }

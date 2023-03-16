@@ -141,18 +141,18 @@ export class CreateIssueTypesComponent implements OnInit {
 
   onSubmit() {
     this.spinner = true;
-    this.stepperService.changeFromLinear();
-
-    this.stepperService.openNextStep(3);
-
-    setTimeout(() => {
-      this.stepperService.changeToLinear();
-    }, 1000);
 
     this.issueTypesService.setIssueType(this.issueFormGroup.value).subscribe({
       next: (res) => {
         this.spinner = false;
         this.stepperService.navigateToNextStep(this.stepper);
+        this.stepperService.changeFromLinear();
+
+        this.stepperService.openNextStep(3);
+
+        setTimeout(() => {
+          this.stepperService.changeToLinear();
+        }, 1000);
       }
     });
   }

@@ -53,13 +53,7 @@ export class CreateProjectComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     this.spinner = true;
-    this.stepperService.changeFromLinear();
 
-    this.stepperService.openNextStep(1);
-
-    setTimeout(() => {
-      this.stepperService.changeToLinear();
-    }, 500);
 
     console.log(this.projectFormGroup.value);
     this.controlProjectsService
@@ -73,6 +67,13 @@ export class CreateProjectComponent implements OnInit, AfterViewInit {
           console.log(res);
           this.spinner = false;
           this.stepperService.navigateToNextStep(this.stepper);
+        this.stepperService.changeFromLinear();
+
+        this.stepperService.openNextStep(1);
+
+        setTimeout(() => {
+          this.stepperService.changeToLinear();
+        }, 500);
         }
       );
     if (this.projectFormGroup.valid) {

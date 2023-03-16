@@ -22,6 +22,10 @@
     position: relative;
     z-index: 5;
 
+    .mat-step-header {
+      pointer-events: none;
+    }
+
     .step-header {
       width: 100%;
       padding: 23px;
@@ -63,7 +67,6 @@
     .mat-horizontal-stepper-header {
       width: 100%;
       height: inherit;
-
 
       .mat-step-header-ripple {
         height: 0;
