@@ -14,8 +14,26 @@
 
     .menu-button {
       position: fixed;
-      top: 20px;
+      top: 10px;
       left: 20px;
+      z-index: 101;
+    }
+
+    nav {
+      width: 100%;
+      background: white;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+      @include flex(flex-end, baseline);
+      gap: 20px;
+      padding: 0 30px;
+      border-bottom: 1px solid gray;
+
+      mat-form-field {
+        margin-bottom: -20px;
+      }
     }
   }
 }

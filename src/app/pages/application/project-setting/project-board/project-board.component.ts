@@ -73,8 +73,5 @@ export class ProjectBoardComponent implements OnInit, OnDestroy {
         }
       });
   }
-
-
-
 }
 

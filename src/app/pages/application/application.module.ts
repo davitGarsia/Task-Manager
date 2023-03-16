@@ -17,6 +17,7 @@ import {MatButtonModule} from "@angular/material/button";
 import { ProjectCurrentComponent } from './current-project/project-current.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {RouterLink} from "@angular/router";
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 
 
 
@@ -45,7 +46,8 @@ import {RouterLink} from "@angular/router";
     ReactiveFormsModule,
     MatButtonModule,
     MatSidenavModule,
-    RouterLink
+    RouterLink,
+    NgxSkeletonLoaderModule
   ]
 })
 export class ApplicationModule { }

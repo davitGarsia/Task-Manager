@@ -21,6 +21,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ApplicationModule} from "../application.module";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import { UserEditComponent } from './project-users/user-edit.component';
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 
 
 
@@ -50,8 +51,8 @@ import { UserEditComponent } from './project-users/user-edit.component';
     ReactiveFormsModule,
     ApplicationModule,
     MatDialogModule,
-
-  ],
+    NgxSkeletonLoaderModule,
+  ]
 })
 export class ProjectSettingModule {
 }

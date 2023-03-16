@@ -22,7 +22,10 @@ export class ControlProjectsService extends BaseService {
     return this.post<any>('project', payload);
   }
 
-  getProjects(order: string, page: number, limit: number): Observable<any> {
+  getProjects(order: string, page: number, limit: number, search?: string): Observable<any> {
+    if(search){
+      return this.get<any>(`project?order=${order}&page=${page}&limit=${limit}&search=${search}`);
+    }
     return this.get<any>(`project?order=${order}&page=${page}&limit=${limit}`);
   }
 
@@ -35,7 +38,7 @@ export class ControlProjectsService extends BaseService {
     return this.post<any>('project/users', payload)
   }
 
-  getUsersFromProject(): Observable<any> {
-    return this.get<any>('project/users');
+  getUsersFromProject(id?: number): Observable<any> {
+    return this.get<any>('project/users', id);
   }
 }

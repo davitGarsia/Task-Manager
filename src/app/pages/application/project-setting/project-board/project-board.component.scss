@@ -47,4 +47,11 @@
   background-color: #f17d7d;
   border-radius: 5px;
   box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+  position: relative;
+
+  .add {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
 }

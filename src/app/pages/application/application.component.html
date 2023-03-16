@@ -3,6 +3,29 @@
     <app-side-menu></app-side-menu>
   </mat-drawer>
   <mat-drawer-content>
+    <nav>
+      <mat-form-field appearance="fill">
+        <mat-label>Search Project</mat-label>
+        <input matInput placeholder="Type Project Name" (input)="search($event)">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>View</mat-label>
+        <mat-select [(value)]="view" (selectionChange)="changeView()">
+          <mat-option *ngFor="let view of views" [value]="view.value">
+            {{view.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Sort Projects</mat-label>
+        <mat-select [(value)]="value" (selectionChange)="sortChanged()">
+          <mat-option *ngFor="let sort of sorts" [value]="sort.value">
+            {{sort.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </nav>
     <router-outlet></router-outlet>
     <button mat-raised-button (click)="drawer.toggle()" class="menu-button">Menu</button>
   </mat-drawer-content>

@@ -1,20 +1,14 @@
-<p>board works</p>
 <div class="cont">
   <!--    <ng-container *ngIf="boards$ | async as boards" ></ng-container>-->
-  <div>
     <!--  <mat-select class="select">-->
     <!--    <mat-option *ngFor="let board of boards" [value]="board.id" >{{board.name}}</mat-option>-->
     <!--  </mat-select>-->
-    <button mat-raised-button color="primary"
-
-            [routerLink]="['/application/setting/board/editBoard']"
-    >Add Board
-    </button>
-
-  </div>
 </div>
 
 <div class="container">
+  <button class="add" mat-raised-button color="primary" [routerLink]="['/application/setting/board/editBoard']">
+    Add Board
+  </button>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!-- Position Column -->

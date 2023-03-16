@@ -4,4 +4,5 @@ export interface IProject {
   abbreviation: string;
   description: string;
   color: string;
+  search?: string
 }

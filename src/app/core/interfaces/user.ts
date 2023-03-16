@@ -6,4 +6,6 @@ export interface User {
   "email": string,
   "mobileNumber": string,
   "isActive": boolean,
+  "createdAt"?: string,
+  "updatedAt"?: string
 }
