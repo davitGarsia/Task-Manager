@@ -1,9 +1,9 @@
 <div #project class="navigation">
   <app-navigation [scrolled]="scrolled"></app-navigation>
 </div>
-<div>
+
   <div class="projectList">
-    Select Project: <select [ngModel]="currentProject?.id"
+    Select Project:<select [ngModel]="currentProject?.id"
                             (ngModelChange)="selectedProject($event)" class="select">
     <option selected></option>
     <option *ngFor="let project of projects$ | async"
@@ -13,6 +13,18 @@
     </option>
 
   </select>
-
   </div>
+<div class="container">
+  <div class="sidebar">
+    <ul>
+      <li *ngFor="let board of boards$ | async">
+        <a routerLink="/dashboard">{{board.name}}</a>
+
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>

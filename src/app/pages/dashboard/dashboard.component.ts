@@ -25,6 +25,7 @@ constructor(
 }
 
   @ViewChild('project') project!: ElementRef;
+  boards$: any
 
   ngAfterViewInit() {
     this.project.nativeElement.addEventListener('scroll', () => {
