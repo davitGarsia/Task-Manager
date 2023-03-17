@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {BoardService} from "../../../core/services/board.service";
 import {ProjectService} from "../../../core/services/project.service";
@@ -10,14 +10,17 @@ import {TaskService} from "../../../core/services/task.service";
 
 import * as _ from 'lodash';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {ConfirmDeleteComponent} from "../../../shared/confirm-delete/confirm-delete.component";
+import {of, Subject, switchMap, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements OnInit, AfterViewInit{
+export class BoardComponent implements OnInit, AfterViewInit, OnDestroy{
   boardId!: number;
+  sub$ = new Subject();
 
   constructor(
     private route: ActivatedRoute,
@@ -111,6 +114,31 @@ private getTasks() {
         this.getTasks()
       })
     }
+  }
+
+  deleteTask(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent);
+
+    dialogRef.afterClosed()
+      .pipe(
+        takeUntil(this.sub$),
+        switchMap((result) => {
+          if (result) {
+            return this.taskService.deleteTask(id);
+          }
+          return of(null);
+        })
+      )
+      .subscribe(result => {
+        if (result) {
+          this.getTasks();
+        }
+      })
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.next(null);
+    this.sub$.complete();
   }
 }
 

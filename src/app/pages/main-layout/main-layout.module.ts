@@ -12,6 +12,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from '@angular/material/dialog';
 import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
+import {ConfirmDeleteModule} from "../../shared/confirm-delete/confirm-delete.module";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
     MatPaginatorModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule, CdkDropListGroup, CdkDropList, CdkDrag
+    MatDialogModule, CdkDropListGroup, CdkDropList, CdkDrag,
+    ConfirmDeleteModule
   ],
   exports: [
     BoardComponent

@@ -12,23 +12,35 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { IssueTypesComponent } from './containers/issue-types/issue-types.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {ConfirmDeleteModule} from "../../../shared/confirm-delete/confirm-delete.module";
+
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSelectModule} from "@angular/material/select";
+import { IssueTypeAddEditComponent } from './containers/issue-type-add-edit/issue-type-add-edit.component';
 
 @NgModule({
   declarations: [
     ProjectEpicsComponent,
     ProjectEpicAddEditComponent,
     ProjectSettingComponent,
-    IssueTypesComponent
+    IssueTypesComponent,
+    IssueTypeAddEditComponent,
+
   ],
-    imports: [
-        CommonModule,
-        ProjectSettingRoutingModule,
-        MatButtonModule,
-        MatTableModule,
-        MatDialogModule,
-        ReactiveFormsModule,
-      MatFormFieldModule,
-      MatInputModule
-    ]
+  imports: [
+    CommonModule,
+    ProjectSettingRoutingModule,
+    MatButtonModule,
+    MatTableModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSidenavModule,
+    ConfirmDeleteModule,
+    MatCheckboxModule,
+    MatSelectModule
+  ]
 })
 export class ProjectSettingModule { }

@@ -21,7 +21,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(6),
+      Validators.minLength(4),
     ]),
   });
   sub$ = new Subject();

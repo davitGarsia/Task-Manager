@@ -31,7 +31,7 @@
       <th mat-header-cell *matHeaderCellDef>  </th>
       <td mat-cell *matCellDef="let element">
         <button mat-raised-button color="primary" [routerLink]="['/projects/setting/issue-types/edit', element.id]">Edit</button>
-<!--        <button mat-raised-button color="warn" (click)="deleteBoard(element.id)">Delete</button>-->
+       <button mat-raised-button color="warn" (click)="deleteIssueType(element.id)">Delete</button>
       </td>
     </ng-container>
 
