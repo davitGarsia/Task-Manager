@@ -9,7 +9,7 @@
           <div class="add-project">
             <p class="prj-title">project name: {{project.name}}</p>
             <p class="prj-title">project abbreviation: {{project.abbreviation}}</p>
-            <p class="prj-title"><button [routerLink]="['/application/setting/description', project.id]">Description</button></p>
+            <p class="prj-title"><button [routerLink]="['/application/setting/info/description', project.id]">Description</button></p>
             <button [routerLink]="['/application/setting/edit', project.id]">Edit</button>
           </div>
         </div>

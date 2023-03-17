@@ -35,7 +35,7 @@ constructor(
   private route: ActivatedRoute,
 ) { }
   form: FormGroup = new FormGroup({
-    description: new FormControl(this.project.description, ),
+    description: new FormControl(this.project?.description, ),
   });
   get project(): IProject {
     return this.projectFacade.getProject();
@@ -49,6 +49,7 @@ constructor(
             .subscribe(
               res =>{
                 this.form.patchValue(res)
+                console.log(res)
 
               }
             )

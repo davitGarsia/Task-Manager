@@ -22,8 +22,19 @@ const routes: Routes = [
       },
       {
         path: 'info',
-        component: ProjectInfoComponent
+        children:
+      [
+        {
+          path: '',
+          component: ProjectInfoComponent
+        },
+        {
+          path: 'description/:id',
+          component: DescriptionComponent
+        },
+      ]
       },
+
       {
         path: 'board',
         children: [
@@ -64,10 +75,7 @@ const routes: Routes = [
         ]
       },
 
-      {
-        path: 'description/:id',
-        component: DescriptionComponent
-      }
+
     ]
   }
 ];

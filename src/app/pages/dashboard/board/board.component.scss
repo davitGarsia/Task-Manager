@@ -1,0 +1,15 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.board-columns{
+  display: flex;
+  flex: 1 1 300px;
+  flex-direction: row;
+  height: 300px;
+  width: 100%;
+  background-color: #fceeee;
+  border: 1px solid #f00;
+}

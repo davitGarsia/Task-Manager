@@ -31,14 +31,17 @@
   gap: 20px;
 }
 .content {
+  flex: 1 1 auto;
+  display: flex;
   text-align: center;
   font-size: 1.5em;
   padding-bottom: 1%;
-  width: 100%;
-  height: 300px;
+  //width: 100%;
+  //height: 300px;
   background-color: #efeeee;
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
 }
 .sidebar{
   flex: 0 0 300px;
@@ -48,4 +51,8 @@
   border-radius: 5px;
   background-color: #efeeee;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+li, a{
+  text-decoration: none;
+  list-style: none;
 }

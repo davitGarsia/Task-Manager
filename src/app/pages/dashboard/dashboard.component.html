@@ -18,13 +18,17 @@
   <div class="sidebar">
     <ul>
       <li *ngFor="let board of boards$ | async">
-        <a routerLink="/dashboard">{{board.name}}</a>
-
+        <a [routerLink]="['/dashboard', board.id]">{{board.name}}</a>
       </li>
     </ul>
   </div>
   <div class="content">
-    <router-outlet></router-outlet>
+
+    <div *ngIf="!boardId">
+      <h2>Dashboard</h2>
+      <p>Choose a board from the sidebar</p>
+      <router-outlet></router-outlet>
+    </div>
   </div>
 
 </div>
