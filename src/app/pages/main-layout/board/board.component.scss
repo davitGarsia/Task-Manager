@@ -136,3 +136,22 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+.btn-delete {
+  color: red;
+  margin-left: 90%;
+  display: none;
+  margin-top: -25px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.task:hover .btn-delete{
+  display: block;
+
+}
+
+.btn-delete:hover {
+  color: rgba(201,19,26,0.63);
+}
+

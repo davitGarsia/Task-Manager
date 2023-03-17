@@ -25,8 +25,12 @@ export class IssueTypesService {
     return this.http.get(this.apiUrl + '/' + id); //`${this.apiUrl}/${id}`
   }
 
-  updateIssueType(id: number, issueType: IssueType): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, issueType);
+  // updateIssueType(id: number, issueType: IssueType): Observable<any> {
+  //   return this.http.put(`${this.apiUrl}/${id}`, issueType);
+  // }
+
+  updateIssueType(data: any): Observable<any> {
+    return this.http.put<any>(`issue-type/${data.id}`, data);
   }
 
   deleteIssueType(id: number): Observable<any> {
