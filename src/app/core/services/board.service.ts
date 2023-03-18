@@ -20,6 +20,10 @@ export class BoardService extends BaseService {
   getBoardByID(boardId: number, projectId: string): Observable<any> {
     return this.get<any>(`board/${boardId}`, {headers: {project: projectId}})
   }
+
+  getBoardsByProject(projectId: number): Observable<IBoard> {
+    return this.get<any>(`board`,  projectId )
+  }
   getBoardss(): Observable<IBoard[]> {
     return this.get<IBoard[]>('board');
   }

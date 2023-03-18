@@ -28,6 +28,12 @@ import {MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS} from "@angular-material-compon
         ReactiveFormsModule,
     ],
     providers: [
+
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: ProjectInterceptor,
+        multi: true
+      },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
@@ -36,12 +42,6 @@ import {MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS} from "@angular-material-compon
         {
             provide: Window,
             useValue: window
-        },
-
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ProjectInterceptor,
-            multi: true
         },
       { provide: MAT_COLOR_FORMATS,
         useValue: NGX_MAT_COLOR_FORMATS }

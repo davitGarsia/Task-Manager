@@ -67,13 +67,13 @@ export class CreateProjectComponent implements OnInit, AfterViewInit {
           console.log(res);
           this.spinner = false;
           this.stepperService.navigateToNextStep(this.stepper);
-        this.stepperService.changeFromLinear();
+          this.stepperService.changeFromLinear();
 
-        this.stepperService.openNextStep(1);
+          this.stepperService.openNextStep(1);
 
-        setTimeout(() => {
-          this.stepperService.changeToLinear();
-        }, 500);
+          setTimeout(() => {
+            this.stepperService.changeToLinear();
+          }, 500);
         }
       );
     if (this.projectFormGroup.valid) {

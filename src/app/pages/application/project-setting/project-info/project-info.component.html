@@ -86,7 +86,16 @@
       {{dialogProject?.description}}
     </p>
     <div class="users">
-      <h1>Users : <span>Total: {{dialogUsers.length}}</span></h1>
+      <h1>Users :
+        <span>Total:
+        <ng-container *ngIf="dialogUsersLoaded">
+          {{dialogUsers.length}}
+        </ng-container>
+          <ng-container *ngIf="!dialogUsersLoaded">
+            <mat-spinner></mat-spinner>
+          </ng-container>
+        </span>
+      </h1>
       <div *ngIf="dialogUsers">
         <table>
           <tr>
@@ -96,6 +105,26 @@
             <th>Active</th>
             <th>Created at</th>
             <th>Updated at</th>
+          </tr>
+          <tr  *ngIf="!dialogUsersLoaded">
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
           </tr>
           <ng-container *ngFor="let user of dialogUsers">
             <tr>
@@ -111,7 +140,16 @@
       </div>
     </div>
     <div class="users">
-      <h1>Boards : <span>Total: {{dialogBoards.length}}</span></h1>
+      <h1>Boards :
+        <span>Total:
+        <ng-container *ngIf="dialogBoardsLoaded">
+          {{dialogBoards.length}}
+        </ng-container>
+          <ng-container *ngIf="!dialogBoardsLoaded">
+            <mat-spinner></mat-spinner>
+          </ng-container>
+        </span>
+      </h1>
       <ng-container *ngFor="let board of dialogBoards">
       </ng-container>
       <table>
@@ -120,6 +158,20 @@
           <th>Description</th>
           <th>Created at</th>
           <th>Updated at</th>
+        </tr>
+        <tr  *ngIf="!dialogBoardsLoaded">
+          <td>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </td>
+          <td>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </td>
+          <td>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </td>
+          <td>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </td>
         </tr>
         <ng-container *ngFor="let board of dialogBoards">
           <tr>

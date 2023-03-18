@@ -12,6 +12,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {IBoard, User} from "../../../../core/interfaces";
 import {PaginatorService} from "../../../../core/services/paginator.service";
 import {DatePipe} from "@angular/common";
+import {description} from "../../../../shared";
+
 
 
 @Component({
@@ -35,11 +37,8 @@ export class ProjectInfoComponent implements OnInit {
   ) {
   }
 
-  description(desc: string) {
-    if (desc.length > 100) {
-      return desc.slice(0, 100) + ' ...';
-    }
-    return desc;
+  description(desc: string){
+   return  description(desc)
   }
 
   projects: IProject[] = [];
@@ -61,12 +60,16 @@ export class ProjectInfoComponent implements OnInit {
   dialogProject!: any;
   dialogUsers: User[] = [];
   dialogBoards: IBoard[] = [];
+  dialogBoardsLoaded: boolean = false;
+  dialogUsersLoaded: boolean = false;
 
   pageSizeOptions: number[] = [5, 10, 25, 100]
 
   id!: number;
 
   openDialog(id: number) {
+    this.dialogBoardsLoaded = false;
+    this.dialogUsersLoaded = false;
     this.id = id;
     console.log(id)
     this.dialogUsers = [];
@@ -76,10 +79,12 @@ export class ProjectInfoComponent implements OnInit {
     this.projectsService.getUsersFromProject(id).subscribe(user => {
       console.log(user)
       this.dialogUsers = user;
+      this.dialogUsersLoaded = true;
     })
     this.boardService.getBoards(id).subscribe(board => {
       console.log(board)
       this.dialogBoards = board;
+      this.dialogBoardsLoaded = true;
     })
 
     const dialogRef = this.dialog.open(this.dialogHtml);
@@ -126,7 +131,6 @@ export class ProjectInfoComponent implements OnInit {
       .subscribe(res => {
         this.projectsLength = res.length;
         this.pageSizeOptions = [...this.pageSizeOptions, this.projectsLength]
-        console.log(this.pageSizeOptions)
       })
 
     this.firstRender = false;

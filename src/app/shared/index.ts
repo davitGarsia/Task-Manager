@@ -76,3 +76,10 @@ export const src = [
   'assets/images/undraw_subscriptions_re_k7jj.svg',
   'assets/images/undraw_user_flow_re_bvfx.svg'
 ]
+
+export const description = (desc: string) => {
+  if (desc.length > 100) {
+    return desc.slice(0, 100) + ' ...';
+  }
+  return desc;
+}

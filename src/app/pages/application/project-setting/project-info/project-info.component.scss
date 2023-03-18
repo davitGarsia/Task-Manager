@@ -148,6 +148,14 @@
     width: 100%;
     span {
       float: right;
+
+
+      .mat-mdc-progress-spinner {
+        height: 30px !important;
+        width: 30px !important;
+        display: inline-block;
+        margin-bottom: -5px !important;
+      }
     }
   }
 
@@ -169,6 +177,14 @@
     td {
       padding: 10px;
       border: 1px solid #dddddd;
+
+      mat-progress-bar {
+        margin: 6px 0;
+      }
     }
   }
+}
+
+.mat-typography {
+  min-width: 900px;
 }

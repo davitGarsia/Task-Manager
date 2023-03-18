@@ -22,6 +22,10 @@ import {ApplicationModule} from "../application.module";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import { UserEditComponent } from './project-users/user-edit.component';
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatBadgeModule} from "@angular/material/badge";
 
 
 
@@ -52,6 +56,10 @@ import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
     ApplicationModule,
     MatDialogModule,
     NgxSkeletonLoaderModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatExpansionModule,
+    MatBadgeModule,
   ]
 })
 export class ProjectSettingModule {
