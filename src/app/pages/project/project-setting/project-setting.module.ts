@@ -18,6 +18,9 @@ import {ConfirmDeleteModule} from "../../../shared/confirm-delete/confirm-delete
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSelectModule} from "@angular/material/select";
 import { IssueTypeAddEditComponent } from './containers/issue-type-add-edit/issue-type-add-edit.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {MatDividerModule} from "@angular/material/divider";
+
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { IssueTypeAddEditComponent } from './containers/issue-type-add-edit/issu
   imports: [
     CommonModule,
     ProjectSettingRoutingModule,
+    ConfirmDeleteModule,
     MatButtonModule,
     MatTableModule,
     MatDialogModule,
@@ -38,9 +42,12 @@ import { IssueTypeAddEditComponent } from './containers/issue-type-add-edit/issu
     MatFormFieldModule,
     MatInputModule,
     MatSidenavModule,
-    ConfirmDeleteModule,
+    MatDialogModule,
+    FontAwesomeModule,
+    MatDividerModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+
   ]
 })
 export class ProjectSettingModule { }

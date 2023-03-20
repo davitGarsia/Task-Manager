@@ -14,7 +14,7 @@ export class ProjectService extends BaseService {
 return this.get<PaginationResponse<IProject>>('project');
   }
   getAllProjects():Observable<IProject[]> {
-    return this.get<IProject[]>('project/my');
+    return this.get<IProject[]>('project/all');
   }
   getProjectById(id: number):Observable<IProject> {
     return this.get<IProject>(`project/${id}`);

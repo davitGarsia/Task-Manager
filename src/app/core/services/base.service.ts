@@ -22,8 +22,10 @@ export class BaseService {
 
 
 
-  get<T>(url: string, header?: any): Observable<T> {
-    return this.http.get<T>(this.apiUrl + url)
+  get<T>(url: string, params = {}): Observable<T> {
+    return this.http.get<T>(this.apiUrl + url, {
+      params: params
+      })
   }
 
 

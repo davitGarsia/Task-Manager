@@ -2,7 +2,7 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TaskService} from "../../core/services/task.service";
-import {Column} from "../../core/interfaces";
+import {IColumn} from "../../core/interfaces";
 import {Observable, shareReplay, Subject, takeUntil} from "rxjs";
 import {IssueTypesService} from "../../core/services";
 import {EpicService} from "../../core/services/epic.service";
@@ -39,7 +39,7 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
     private epicService: EpicService,
     private projectService: ProjectService,
     public dialogRef: MatDialogRef<TaskAddEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {taskId: number, boardId: number, column: Column}
+    @Inject(MAT_DIALOG_DATA) public data: {taskId: number, boardId: number, column: IColumn}
   ) {
   }
 

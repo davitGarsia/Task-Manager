@@ -4,7 +4,7 @@ import {BoardService} from "../../../core/services/board.service";
 import {ProjectService} from "../../../core/services/project.service";
 import {MatDialog} from "@angular/material/dialog";
 import {TaskAddEditComponent} from "../../../shared/task-add-edit/task-add-edit.component";
-import {Column, IBoard, IColumn} from "../../../core/interfaces";
+import {IBoard, IColumn} from "../../../core/interfaces";
 import {ITask} from "../../../core/interfaces/task";
 import {TaskService} from "../../../core/services/task.service";
 

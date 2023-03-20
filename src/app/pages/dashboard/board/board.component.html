@@ -1,7 +1,7 @@
 <div class="container">
   <div class="board-columns" cdkDropListGroup>
     <div class="column" *ngFor="let column of board?.columns" cdkDropList [cdkDropListData]="tasks[column.id] || []"
-         (cdkDropListDropped)="drop($event)">
+         (cdkDropListDropped)="drop($event, column)">
       <div class="head">
         <h3>Status: {{column.taskStatus}}</h3>
         <button (click)="addTask(column.id)" mat-raised-button >Add Task</button>

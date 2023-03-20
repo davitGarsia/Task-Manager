@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Observable, Subject} from "rxjs";
+import {Observable, Subject, takeUntil} from "rxjs";
 import {IProject} from "../../core/interfaces/iproject";
 import {ProjectService} from "../../core/services/project.service";
 import {ProjectFacade} from "../../facades/project-facade.service";
@@ -39,8 +39,13 @@ export class DashboardComponent implements AfterViewInit, OnInit {
         this.boardId = null
       }
     })
+    this.getMyProjects()
   }
-
+  getMyProjects() {
+    this.projectFacade.getMyProjects$()
+      .pipe(takeUntil(this.sub$))
+      .subscribe()
+  }
   ngAfterViewInit() {
     this.project.nativeElement.addEventListener('scroll', () => {
       let firstElPos = this.project.nativeElement.firstChild.getBoundingClientRect().top;

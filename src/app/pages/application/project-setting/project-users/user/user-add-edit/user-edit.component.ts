@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UsersService} from "../../../core/services/users.service";
+import {UsersService} from "../../../../../../core/services/users.service";
 
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.scss']
 })
+
 export class UserEditComponent {
 
   constructor(

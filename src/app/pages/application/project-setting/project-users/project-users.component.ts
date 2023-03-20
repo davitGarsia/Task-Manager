@@ -8,7 +8,7 @@ import {UsersFacadeService} from "../../../../facades/users-facade.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UsersService} from "../../../../core/services/users.service";
 import {MatDialog} from "@angular/material/dialog";
-import {UserEditComponent} from "../../../user/user-add-edit/user-edit.component";
+import {UserEditComponent} from "./user/user-add-edit/user-edit.component";
 
 @Component({
   selector: 'app-project-users',
