@@ -20,21 +20,13 @@ export class ProjectInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const project = this.projectFacade.getProject();
 
-    let header = request.headers.get('project');
-
-      if (project.id && !header) {
+      if (project) {
         return next.handle(
           request.clone({
             setHeaders: { project: String(project.id) }
           })
         );
-    } else {
-        return next.handle(
-          request.clone({
-            setHeaders: { project: String(header) }
-          })
-        );
-      }
+    }
 
     return next.handle(request);
   }

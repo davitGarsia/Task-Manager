@@ -13,6 +13,7 @@ import {IBoard, User} from "../../../../core/interfaces";
 import {PaginatorService} from "../../../../core/services/paginator.service";
 import {DatePipe} from "@angular/common";
 import {description} from "../../../../shared";
+import {forkJoin, take} from "rxjs";
 
 
 
@@ -107,18 +108,20 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   firstRender: boolean = true;
-  view: string = 'card'
+  view: string = 'card';
+  search?: string;
 
   ngOnInit() {
     this.setCardsCount(this.pageSize);
 
     this.paginator.sort.subscribe(value => {
       this.sortValue = value;
-      !this.firstRender ? this.settingsChanged() : null;
+      !this.firstRender ? this.search ? this.settingsChanged(null, this.search) : this.settingsChanged() : null;
       this.setCardsCount(this.pageSize);
     })
 
     this.paginator.search.subscribe(value => {
+      this.search = value;
       this.page = 1;
       value ? this.pageSize = this.projectsLength : this.pageSize = 10;
       this.settingsChanged(null, value)
@@ -127,11 +130,6 @@ export class ProjectInfoComponent implements OnInit {
     this.paginator.setSort('DESC');
 
     this.getProjects(this.sortValue, this.page, this.pageSize);
-    this.projectsService.getAllProjects()
-      .subscribe(res => {
-        this.projectsLength = res.length;
-        this.pageSizeOptions = [...this.pageSizeOptions, this.projectsLength]
-      })
 
     this.firstRender = false;
     this.paginator.view.subscribe(value => {
@@ -140,39 +138,69 @@ export class ProjectInfoComponent implements OnInit {
   }
 
 
-  getProjects(order: string, page: number, pageSize: number, search?: string) {
-    this.projectsService.getProjects(order, page, pageSize, search).subscribe({
-      next: res => res.data.forEach((project: any) => {
-        this.projects.push(project);
-      }),
-      error: err => console.log(err),
-      complete: () => {
-        this.cardsCount = []
-        if (!this.projects.length && search) {
-          this.projects = [
-            {
-              id: 0,
-              name: "Search Result",
-              abbreviation: "Found 0 Project",
-              description: "Try to Type Another Project Name",
-              color: 'red',
-              search: search
-            }
-          ]
-        }
+  requests: any[] = [];
+  limit: number = 100;
 
+  getProjects(order: string, page: number, pageSize: number, search?: string) {
+    if(search) {
+      console.log(search)
+      this.requests = []
+      for(let i = 0; i < Math.ceil(this.projectsLength / this.limit); i++) {
+        this.requests.push(this.projectsService.getProjects(order, page, this.limit, search))
       }
-    })
+
+      forkJoin(this.requests).subscribe({
+        next: value => {
+          console.log(value)
+        this.projects = value[0].data
+        },
+        error: err => console.log(err),
+        complete: () => {
+          this.cardsCount = []
+          if (!this.projects.length && search) {
+            this.projects = [
+              {
+                id: 0,
+                name: "Search Result",
+                abbreviation: "Found 0 Project",
+                description: "Try to Type Another Project Name",
+                color: 'red',
+                search: search
+              }
+            ]
+          }
+
+        }
+      })
+    }
+    if(!search) {
+      console.log(pageSize, order, page, pageSize)
+      this.projectsService.getProjects(order, page, pageSize).subscribe({
+        next: res => {
+          this.projectsLength = res.totalCount;
+         // this.pageSizeOptions = [...this.pageSizeOptions, this.projectsLength]
+          console.log(res)
+          console.log(pageSize, order, page, pageSize)
+          res.data.forEach((project: any) => {
+            this.projects.push(project);
+          })},
+        error: err => console.log(err),
+        complete: () => this.cardsCount = []
+      })
+    }
   }
 
   @Input('sort') sort!: string;
 
 
   sortValue!: string;
+  disabled: boolean = false;
 
 
   settingsChanged(event?: any, search?: string) {
+    let projectsLength = this.projectsLength
     if (event) {
+      this.projectsLength = 0;
       this.page = event.pageIndex + 1;
       this.pageSize = event?.pageSize;
       this.setCardsCount(event?.pageSize);
@@ -181,7 +209,14 @@ export class ProjectInfoComponent implements OnInit {
     }
 
     this.projects = [];
-    this.getProjects(this.sortValue, this.page, this.pageSize, search);
-
+    if(!this.search) {
+      this.getProjects(this.sortValue, this.page, this.pageSize);
+    } else {
+      console.log(this.search)
+      this.getProjects(this.sortValue, this.page, this.pageSize, this.search);
+    }
+    setTimeout(()=>{
+      this.projectsLength = projectsLength;
+    },1000)
   }
 }

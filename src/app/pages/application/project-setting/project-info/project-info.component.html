@@ -73,7 +73,8 @@
                    [pageSizeOptions]="pageSizeOptions"
                    (page)="settingsChanged($event)"
                    aria-label="Select page"
-                   class="paginator">
+                   class="paginator"
+                   [disabled]="disabled">
     </mat-paginator>
   </footer>
 </div>

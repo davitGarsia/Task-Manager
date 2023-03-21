@@ -41,4 +41,8 @@ export class ControlProjectsService extends BaseService {
   getUsersFromProject(id?: number): Observable<any> {
     return this.get<any>('project/users', id);
   }
+
+  getProjectsWithBoards(): Observable<any> {
+    return this.get<any>('project/withBoards');
+  }
 }

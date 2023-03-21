@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TaskStatusEnum} from "../../../../../core/enums/task-status.enum";
 import {BoardService} from "../../../../../core/services/board.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ProjectService} from "../../../../../core/services/project.service";
+import {IBoard} from "../../../../../core/interfaces";
 
 @Component({
   selector: 'app-board-edit',
@@ -12,35 +14,64 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class BoardEditComponent implements OnInit {
   boardId!: number;
   taskStatuses = Object.values(TaskStatusEnum);
- constructor(
-   private boardService: BoardService,
-   private router: Router,
-   private route: ActivatedRoute,
+  projectId!: number;
+  boards: any[] = []
 
- ) { }
+  constructor(
+    private boardService: BoardService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private projectService: ProjectService
+  ) {
+  }
 
-ngOnInit(): void {
-  this.route.params.subscribe(params => {
-    if (params['id']) {
-      this.boardId = +params['id'];
-      this.getBoard()
-    }
-  })
-}
-getBoard() {
-  this.boardService.getBoardId(this.boardId).subscribe(res => {
-    this.form.patchValue(res)
-    res.columns.forEach(column => {
-      this.columnsArray.push(new FormGroup({
-        id: new FormControl(column.id),
-        name: new FormControl(column.name, Validators.required),
-        description: new FormControl(column.description, Validators.required),
-        position: new FormControl(column.position, Validators.required),
-        taskStatus: new FormControl(column.taskStatus, Validators.required)
-      }, Validators.required));
+  @Input('isInProjectEdit') isInProjectEdit!: boolean;
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if (this.isInProjectEdit) {
+        this.projectId = +params['id'];
+        this.getBoards()
+      } else {
+        this.boardId = +params['id'];
+        this.getBoard()
+      }
     })
-  })
-}
+  }
+
+  getBoard() {
+    this.boardService.getBoardId(this.boardId).subscribe(res => {
+      this.form.patchValue(res)
+      res.columns.forEach(column => {
+        this.columnsArray.push(new FormGroup({
+          id: new FormControl(column.id),
+          name: new FormControl(column.name, Validators.required),
+          description: new FormControl(column.description, Validators.required),
+          position: new FormControl(column.position, Validators.required),
+          taskStatus: new FormControl(column.taskStatus, Validators.required)
+        }, Validators.required));
+      })
+    })
+  }
+
+  getBoards() {
+    this.boardService.getBoardsByProject(this.projectId).subscribe((res: any) => {
+      this.boards = res;
+
+      res.forEach( (item: any) => {
+        const form: FormGroup = new FormGroup({
+          name: new FormControl('', Validators.required),
+          position: new FormControl(1, Validators.required),
+          description: new FormControl('', Validators.required),
+          columns: new FormArray([], Validators.required),
+        });
+        form.patchValue(item)
+        console.log(form.value)
+        this.formsArray.push(form)
+      })
+      console.log(this.formsArray[0].controls.columns.controls)
+    })
+  }
 
 
   form: FormGroup = new FormGroup({
@@ -50,31 +81,48 @@ getBoard() {
     columns: new FormArray([], Validators.required),
   });
 
+  formsArray: any[] = []
 
 
   get columnsArray(): FormArray {
     return this.form.get('columns') as FormArray;
   }
-  addColumn() {
-    this.columnsArray.push(new FormGroup({
-      name: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required),
-      position: new FormControl(this.columnsArray.length + 1, Validators.required),
-      taskStatus: new FormControl(TaskStatusEnum.ToDo, Validators.required),
-    },Validators.required));
 
+  columnsArrayFromFormsArray(index: number) {
+     console.log(this.formsArray[index].get('columns'))
+  }
+
+  addColumn(index?: number) {
+    if(index! >= 0) {
+      this.formsArray[index!].get('columns').push(new FormGroup({
+        name: new FormControl(null, Validators.required),
+        description: new FormControl(null, Validators.required),
+        position: new FormControl(this.columnsArray.length + 1, Validators.required),
+        taskStatus: new FormControl(TaskStatusEnum.ToDo, Validators.required),
+      }, Validators.required));
+      console.log(this.formsArray[0].controls.columns.controls)
+    } else {
+      console.log(555555)
+      this.columnsArray.push(new FormGroup({
+        name: new FormControl(null, Validators.required),
+        description: new FormControl(null, Validators.required),
+        position: new FormControl(this.columnsArray.length + 1, Validators.required),
+        taskStatus: new FormControl(TaskStatusEnum.ToDo, Validators.required),
+      }, Validators.required));
+    }
   }
 
 
   save() {
-this.form.markAllAsTouched();
-if (this.form.invalid) {
-  return;
-}
-this.boardService.addBoard(this.form.value).subscribe(
-  res =>{
-    this.router.navigate(['/application/setting/board']);
-  }
-);
+    console.log(this.formsArray[0].controls.columns.controls)
+    this.form.markAllAsTouched();
+    if (this.form.invalid) {
+      return;
+    }
+    this.boardService.addBoard(this.form.value).subscribe(
+      res => {
+        this.router.navigate(['/application/setting/board']);
+      }
+    );
   }
 }

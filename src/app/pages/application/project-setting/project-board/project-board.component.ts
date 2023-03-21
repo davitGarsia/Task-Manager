@@ -26,7 +26,8 @@ export class ProjectBoardComponent implements OnInit, OnDestroy {
 
   subs$ = new Subject()
 
-  projectsArray: any = []
+  projectsArray: any = [];
+  projectsArrayModified: any = [];
 
   projectsLength: number = 0;
   pageSize: number = 10;
@@ -47,6 +48,7 @@ export class ProjectBoardComponent implements OnInit, OnDestroy {
   }
 
   view: string = 'card';
+  search?: string;
 
   getBoard() {
     this.boardService.getProjBoards().subscribe(boards => {
@@ -60,15 +62,30 @@ export class ProjectBoardComponent implements OnInit, OnDestroy {
   }
 
   settingsChanged(event?: any, search?: string) {
-    this.subs$.next(null);
-    this.subs$.complete();
     if (event) {
       this.page = event.pageIndex + 1;
       this.pageSize = event?.pageSize;
+    } else {
+      this.projectsArrayModified = this.projectsArray.slice((this.page - 1) * this.pageSize, this.page * this.pageSize + 1)
     }
 
-    this.projectsArray = [];
-    this.setData(this.sort, this.page, this.pageSize);
+    if (search) {
+      let projectsArrayModified: any[] = this.projectsArray.filter((project: any) => {
+        return project.boards.some((board: IBoard) => {
+          return board.name.includes(search)
+        })
+      })
+
+      projectsArrayModified.map((project: any) => {
+        project.boards = project.boards.filter((board: any) => {
+          return board.name.includes(search)
+        })
+      })
+
+      this.projectsArrayModified = projectsArrayModified
+    } else {
+      this.projectsArrayModified = this.projectsArray.slice((this.page - 1) * this.pageSize, this.page * this.pageSize + 1)
+    }
   }
 
   openDialog(id: number) {
@@ -89,45 +106,34 @@ export class ProjectBoardComponent implements OnInit, OnDestroy {
     //     console.log(params['id'])
     //   }
     // })
-    this.projectsService.getAllProjects().subscribe(project => {
-      this.projectsLength = project.length;
+    this.setData();
+
+    this.paginator.search.subscribe(value => {
+      this.search = value;
+      this.page = 1;
+      value ? this.pageSize = this.projectsLength : this.pageSize = 10;
+      this.settingsChanged(null, value)
     })
-    this.setData(this.sort, this.page, this.pageSize);
+
+    this.paginator.sort.subscribe(value => {
+      if(value === 'ASC') {
+        this.projectsArray.sort((a: IProject, b: IProject) => a.id - b.id);
+      } else {
+        this.projectsArray.sort((a: IProject, b: IProject) => b.id - a.id);
+      }
+
+      this.projectsArrayModified = this.projectsArray;
+      this.settingsChanged(null, this.search)
+    })
   }
 
-  waitingArray: any[] = [];
-
-  setData(sort: string, page: number, pageSize: number) {
-    this.projectsService.getProjects(sort, page, pageSize)
-      .pipe(
-        takeUntil(this.subs$)
-      )
-      .subscribe(projects => {
-        // console.log(projects.data)
-
-        projects.data.forEach((project: IProject) => {
-          const projectObject = {
-            name: project.name,
-            abbr: project.abbreviation,
-            id: project.id,
-            color: project.color,
-            isOpen: false,
-            boards: []
-          }
-
-
-
-          this.boardService.getBoardsByProject(project.id)
-            .pipe(
-              takeUntil(this.subs$)
-            ).subscribe((board: any) => {
-            projectObject.boards = board;
-            this.projectsArray.push(projectObject);
-          })
-        })
-      })
+  setData() {
+    this.projectsService.getProjectsWithBoards().subscribe(projects => {
+      this.projectsLength = projects.length;
+      this.projectsArray = projects;
+      this.settingsChanged()
+    })
   }
-
 
   deleteBoard(id: number) {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent);

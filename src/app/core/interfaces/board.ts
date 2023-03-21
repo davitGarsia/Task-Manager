@@ -8,9 +8,9 @@ export interface IBoard {
   description: string;
   position: number;
   projectId: number;
-  project:IProject;
+  project?:IProject;
   columns: Column[];
-  tasks: ITask;
+  tasks?: ITask;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
@@ -23,8 +23,8 @@ export interface IBoard {
     description: string;
     position: number;
     boardId: number;
-    board: string;
-    tasks: Task[];
+    board?: string;
+    tasks?: Task[];
     taskStatus: TaskStatusEnum;
     createdAt: Date;
     updatedAt: Date;

@@ -1,6 +1,6 @@
 <div class="container">
   <mat-accordion>
-    <ng-container *ngFor="let project of projectsArray; let i = index">
+    <ng-container *ngFor="let project of projectsArrayModified; let i = index">
       <mat-expansion-panel (opened)="project.isOpen = true"
                            (closed)="project.isOpen = false">
         <mat-expansion-panel-header>

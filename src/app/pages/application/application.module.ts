@@ -18,6 +18,7 @@ import { ProjectCurrentComponent } from './current-project/project-current.compo
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {RouterLink} from "@angular/router";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
+import {ProjectSettingModule} from "./project-setting/project-setting.module";
 
 
 
@@ -32,22 +33,23 @@ import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
     exports: [
         ProjectComponent
     ],
-  imports: [
-    CommonModule,
-    ApplicationRoutingModule,
-    HomeModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatIconModule,
-    MatInputModule,
-    MatDatepickerModule,
-    NgxMatColorPickerModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatSidenavModule,
-    RouterLink,
-    NgxSkeletonLoaderModule
-  ]
+    imports: [
+        CommonModule,
+        ApplicationRoutingModule,
+        HomeModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatIconModule,
+        MatInputModule,
+        MatDatepickerModule,
+        NgxMatColorPickerModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatSidenavModule,
+        RouterLink,
+        NgxSkeletonLoaderModule,
+        ProjectSettingModule
+    ]
 })
 export class ApplicationModule { }

@@ -18,7 +18,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
-import {ApplicationModule} from "../application.module";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import { UserEditComponent } from './project-users/user-edit.component';
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
@@ -30,37 +29,39 @@ import {MatBadgeModule} from "@angular/material/badge";
 
 
 @NgModule({
-  declarations: [
-    ProjectSettingComponent,
-    ProjectInfoComponent,
-    ProjectBoardComponent,
-    ProjectIssueTypeComponent,
-    ProjectUsersComponent,
-    DescriptionComponent,
-    BoardEditComponent,
-    UserEditComponent,
+    declarations: [
+        ProjectSettingComponent,
+        ProjectInfoComponent,
+        ProjectBoardComponent,
+        ProjectIssueTypeComponent,
+        ProjectUsersComponent,
+        DescriptionComponent,
+        BoardEditComponent,
+        UserEditComponent,
 
-  ],
-  imports: [
-    CommonModule,
-    ProjectSettingRoutingModule,
-    MatSidenavModule,
-    RouterModule,
-    MainLayoutRoutingModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatTableModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    ApplicationModule,
-    MatDialogModule,
-    NgxSkeletonLoaderModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    MatExpansionModule,
-    MatBadgeModule,
-  ]
+    ],
+    exports: [
+        BoardEditComponent
+    ],
+    imports: [
+        CommonModule,
+        ProjectSettingRoutingModule,
+        MatSidenavModule,
+        RouterModule,
+        MainLayoutRoutingModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatTableModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        NgxSkeletonLoaderModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        MatExpansionModule,
+        MatBadgeModule,
+    ]
 })
 export class ProjectSettingModule {
 }
