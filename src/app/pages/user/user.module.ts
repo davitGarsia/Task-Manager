@@ -22,19 +22,19 @@ import {PermissionsDirective} from "../../core/directives/permissions.directive"
     UserRoleComponent,
     UserAddEditComponent
   ],
-    imports: [
-        CommonModule,
-        UserRoutingModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatTableModule,
-        MatPaginatorModule,
-        PermissionsDirective
-    ],
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    PermissionsDirective
+  ],
   exports: [
     UserAddEditComponent
   ]
