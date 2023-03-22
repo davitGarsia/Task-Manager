@@ -23,7 +23,7 @@ export class ProjectsComponent implements OnInit{
 
   projects: IProject[] = [];
   projectsLength: number = 0;
-  pageSize: number = 10;
+  pageSize: number = 25;
   page: number = 1;
 
 /*  @Input('length') length!: number;

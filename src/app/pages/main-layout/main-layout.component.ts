@@ -9,6 +9,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent implements OnInit {
+  scrolled: boolean = true;
 
   constructor(
     private drawerService: DrawerService,
