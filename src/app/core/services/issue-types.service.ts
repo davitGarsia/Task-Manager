@@ -19,24 +19,24 @@ export class IssueTypesService extends BaseService {
   }
 
   getIssueType(): Observable<IssueType[]> {
-    return this.http.get<IssueType[]>('issue-type');
+    return this.get<IssueType[]>('issue-type');
   }
   getIssueTypes(): Observable<IssueType[]> {
-    return this.http.get<IssueType[]>('issue-type');
+    return this.get<IssueType[]>('issue-type');
   }
 
   getIssueTypeByID(id: number): Observable<IssueType> {
-    return this.http.get<IssueType>(`issue-type/${id}`); //`${this.apiUrl}/${id}`
+    return this.get<IssueType>(`issue-type/${id}`); //`${this.apiUrl}/${id}`
   }
   getIssueTypesByID(id: number): Observable<IssueType> {
-    return this.http.get<IssueType>(`issue-type/${id}`); //`${this.apiUrl}/${id}`
+    return this.get<IssueType>(`issue-type/${id}`); //`${this.apiUrl}/${id}`
   }
   // updateIssueType(id: number, issueType: IssueType): Observable<any> {
   //   return this.http.put(`${this.apiUrl}/${id}`, issueType);
   // }
 
   updateIssueType(data: any): Observable<IssueType> {
-    return this.http.put<IssueType>(`issue-type/${data.id}`, data);
+    return this.put<IssueType>(`issue-type/${data.id}`, data);
   }
 
   deleteIssueType(id: number): Observable<any> {
