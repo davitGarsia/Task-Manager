@@ -1,6 +1,5 @@
 <h1>Board edit</h1>
 <div>
-
   <ng-container *ngFor="let board of boards; let i = index">
     <form [formGroup]="formsArray[i]">
       <div class="inputForm">
@@ -32,7 +31,6 @@
               <mat-option *ngFor="let status of taskStatuses" [value]="status">{{status}} </mat-option>
             </mat-select>
           </mat-form-field>
-
         </div>
       </div>
     </form>

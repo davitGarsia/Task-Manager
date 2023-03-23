@@ -19,6 +19,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {RouterLink} from "@angular/router";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 import {ProjectSettingModule} from "./project-setting/project-setting.module";
+import {MatListModule} from "@angular/material/list";
 
 
 
@@ -49,7 +50,8 @@ import {ProjectSettingModule} from "./project-setting/project-setting.module";
         MatSidenavModule,
         RouterLink,
         NgxSkeletonLoaderModule,
-        ProjectSettingModule
+        ProjectSettingModule,
+        MatListModule
     ]
 })
 export class ApplicationModule { }
