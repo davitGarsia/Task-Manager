@@ -29,6 +29,7 @@ export class ProjectEpicsComponent implements OnInit, OnDestroy{
     this.epicService.getEpics()
       .pipe(takeUntil(this.sub$))
       .subscribe(epics => {
+        console.log(epics)
         this.dataSource.data = epics;
       })
   }

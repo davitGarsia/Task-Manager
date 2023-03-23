@@ -6,8 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 //ავტორიზაციის წარმატებით გავლის შემდეგ ამ ცვლადს შევცვლით
 let isAuthorised = true;
 
-import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './pages/404-error/page-not-found/page-not-found.component';
+import {PermissionGuard} from "./core/guards/permission.guard";
 
 const routes: Routes = [
   {
@@ -55,8 +55,24 @@ const routes: Routes = [
       {
         path: 'projects',
         loadChildren: () => import('./pages/project/project.module').then(m => m.ProjectModule)
-      }
-    ],
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () =>import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
+        path: 'users',
+        canActivate: [PermissionGuard],
+        data: {
+          permissions: ['user:list']
+        },
+        loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)
+      },
+      {
+        path: 'roles',
+        loadChildren: () => import('./pages/roles/roles.module').then(m => m.RolesModule)
+      },
+  ],
   },
   {
     path: '**',

@@ -1,3 +1,4 @@
+
 <div class="container" [ngClass]="view === 'table' ? 'table' : ''">
   <ng-container *ngFor="let x of cardsCount">
     <div class="card-container" *ngIf="view !== 'table'">
@@ -53,6 +54,7 @@
           <!--        <button [routerLink]="['/application/setting/description', project.id]">Description</button>-->
           <button mat-button [routerLink]="['/application/setting/edit', project.id]">Edit</button>
           <button mat-button [routerLink]="['/application/setting/board', project.id]">Enter</button>
+
         </div>
       </div>
     </div>

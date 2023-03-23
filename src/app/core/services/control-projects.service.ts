@@ -44,5 +44,6 @@ export class ControlProjectsService extends BaseService {
 
   getProjectsWithBoards(): Observable<any> {
     return this.get<any>('project/withBoards');
+
   }
 }

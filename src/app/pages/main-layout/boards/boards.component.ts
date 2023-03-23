@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {IBoard} from "../../../core/interfaces";
 import {Observable} from "rxjs";
 import {ProjectService} from "../../../core/services/project.service";
+import {ProjectFacade} from "../../../facades/project-facade.service";
 
 @Component({
   selector: 'app-boards',
@@ -20,24 +21,19 @@ export class BoardsComponent implements OnInit{
   constructor(
               private route: ActivatedRoute,
               private boardService: BoardService,
-              private projectService: ProjectService
+              private projectService: ProjectService,
+              private projectFacade: ProjectFacade,
              ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.data.subscribe(({projects}) => {
+      console.log(projects);
 
-      if(params['id']) {
-
-        this.boardService.getBoards(params['id']).subscribe({
+      if(projects['id']) {
+        this.boardService.getBoards(projects['id']).subscribe({
           next: res => {
             this.boards = res;
           },
-        })
-        this.projectService.getById(params['id']).subscribe({
-          next: res => {
-            console.log(res.name);
-            this.projectService.projectName = res.name;
-          }
         })
       }
     })

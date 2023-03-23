@@ -1,3 +1,21 @@
+
+
+<div class="cont">
+  <!--    <ng-container *ngIf="boards$ | async as boards" ></ng-container>-->
+  <div>
+    <!--  <mat-select class="select">-->
+    <!--    <mat-option *ngFor="let board of boards" [value]="board.id" >{{board.name}}</mat-option>-->
+    <!--  </mat-select>-->
+    <button mat-raised-button color="primary"
+
+            [routerLink]="['/application/setting/board/addBoard']"
+    >Add Board
+    </button>
+
+  </div>
+</div>
+
+
 <div class="container">
   <mat-accordion>
     <ng-container *ngFor="let project of projectsArrayModified; let i = index">

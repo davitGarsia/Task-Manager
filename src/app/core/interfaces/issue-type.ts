@@ -14,3 +14,5 @@ export interface IssueType {
   updatedAt: Date;
   deletedAt: Date;
 }
+
+

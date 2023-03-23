@@ -3,8 +3,12 @@ import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TaskStatusEnum} from "../../../../../core/enums/task-status.enum";
 import {BoardService} from "../../../../../core/services/board.service";
 import {ActivatedRoute, Router} from "@angular/router";
+
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+
 import {ProjectService} from "../../../../../core/services/project.service";
 import {IBoard} from "../../../../../core/interfaces";
+
 
 @Component({
   selector: 'app-board-edit',
@@ -87,6 +91,14 @@ export class BoardEditComponent implements OnInit {
   get columnsArray(): FormArray {
     return this.form.get('columns') as FormArray;
   }
+  addColumn() {
+    this.columnsArray.push(new FormGroup({
+      id: new FormControl(null),
+      name: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
+      position: new FormControl(this.columnsArray.length + 1, Validators.required),
+      taskStatus: new FormControl(TaskStatusEnum.ToDo, Validators.required),
+    },Validators.required));
 
   columnsArrayFromFormsArray(index: number) {
      console.log(this.formsArray[index].get('columns'))
@@ -124,5 +136,14 @@ export class BoardEditComponent implements OnInit {
         this.router.navigate(['/application/setting/board']);
       }
     );
+  }
+
+  drop($event: CdkDragDrop<any, any>) {
+    moveItemInArray(this.columnsArray.controls, $event.previousIndex, $event.currentIndex);
+    console.log(this.columnsArray.controls);
+    this.columnsArray.controls.forEach((control, index) => {
+      control.get('position')?.setValue(index + 1);
+    })
+
   }
 }

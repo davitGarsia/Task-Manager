@@ -12,8 +12,8 @@ import {ProjectFacade} from "../../../facades/project-facade.service";
 })
 export class ProjectComponent implements OnInit, AfterViewInit {
   projects: any = [];
-  projects$: Observable<IProject[]> = this.projectService.getAllProjects();
-  currentProject?: IProject | undefined = this.projectFacade.getProject()
+  projects$ = this.projectFacade.myProjects$;
+  currentProject?: IProject  = this.projectFacade.getProject()
   sub$ = new Subject()
 
   constructor(
@@ -23,6 +23,7 @@ export class ProjectComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    // this.projectService.getAllProjects()
     this.getMyProjects()
   }
 

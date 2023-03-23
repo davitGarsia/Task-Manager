@@ -3,3 +3,9 @@ export enum TaskStatusEnum {
   InProgress = 'InProgress',
   Done = 'Done',
 }
+
+export enum ETaskStatus {
+  'ToDo' = 'ToDo',
+  'InProgress' = 'InProgress',
+  'Done' = 'Done',
+}

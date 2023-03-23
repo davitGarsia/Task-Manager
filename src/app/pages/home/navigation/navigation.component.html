@@ -8,6 +8,7 @@
     <a href="#about" class="dont-close-from-outside"> about project</a>
     <a href="#testimonials" class="dont-close-from-outside"> testimonials</a>
     <a href="#authors" class="nav-link"> authors</a>
+    <a routerLink="/dashboard">Dashboard</a>
     <a routerLink="..//application/setting/info" class="nav-link" *ngIf="auth.getToken()"> Task Manager</a>
     <section class="auth-links" *ngIf="!auth.getToken()">
       <button type="button" (click)="signUp()" class="dont-close-from-outside">sign up</button>

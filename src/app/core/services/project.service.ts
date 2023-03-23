@@ -14,7 +14,7 @@ export class ProjectService extends BaseService {
 return this.get<PaginationResponse<IProject>>('project');
   }
   getAllProjects():Observable<IProject[]> {
-    return this.get<IProject[]>('project/my');
+    return this.get<IProject[]>('project/all');
   }
   getProjectById(id: number):Observable<IProject> {
     return this.get<IProject>(`project/${id}`);
@@ -28,20 +28,26 @@ return this.get<PaginationResponse<IProject>>('project');
   deleteProject(id: number):Observable<any> {
     return this.delete(`project/${id}`);
   }
-  getProjectUsers(id: number):Observable<any>{
+  getProjectUsersId(id: number):Observable<any>{
     return this.get('project/users');
   };
 
   getById(id: any):Observable<any> {
     return this.get<any>('project/'+`${id}`)
   }
-  addProjectUser( data: {
-    userIds: number[];
-    projectId: number;
-  }):Observable<any> {
-    return this.post<any>(`project/users`, data);
+
+  getProjectUsers(): Observable<any> {
+    return this.get(`project/users`);
   }
 
-
+  addProjectUserData( data: {
+    projectId: number,
+    userIds: number[]
+  }): Observable<any> {
+    return this.post<any>(`project/users`, data);
+  }
 }
+
+
+
 
