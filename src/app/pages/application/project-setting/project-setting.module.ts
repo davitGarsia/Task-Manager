@@ -18,8 +18,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
-import {ApplicationModule} from "../application.module";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+
 import { UserEditComponent } from './project-users/user/user-add-edit/user-edit.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatDividerModule} from "@angular/material/divider";
@@ -30,9 +30,17 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import { ProjectEpicsComponent } from './project-epic/project-epics.component';
 import { EpicAddEditComponent } from './project-epic/epic-add-edit.component';
 
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatBadgeModule} from "@angular/material/badge";
+
+
 
 
 @NgModule({
+
   declarations: [
     ProjectSettingComponent,
     ProjectInfoComponent,
@@ -44,6 +52,7 @@ import { EpicAddEditComponent } from './project-epic/epic-add-edit.component';
     IssueTypesAddEditComponent,
     ProjectEpicsComponent,
     EpicAddEditComponent,
+        UserEditComponent,
 
   ],
   imports: [
@@ -65,8 +74,21 @@ import { EpicAddEditComponent } from './project-epic/epic-add-edit.component';
     UserModule,
     DragDropModule,
     MatCheckboxModule,
+          
+        MatDialogModule,
+        NgxSkeletonLoaderModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        MatExpansionModule,
+        MatBadgeModule,
 
   ],
+
+  
+    exports: [
+        BoardEditComponent
+    ],
+
 })
 export class ProjectSettingModule {
 }

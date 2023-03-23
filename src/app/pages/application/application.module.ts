@@ -15,6 +15,11 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {NgxMatColorPickerModule} from "@angular-material-components/color-picker";
 import {MatButtonModule} from "@angular/material/button";
 import { ProjectCurrentComponent } from './current-project/project-current.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {RouterLink} from "@angular/router";
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
+import {ProjectSettingModule} from "./project-setting/project-setting.module";
+import {MatListModule} from "@angular/material/list";
 
 
 
@@ -41,7 +46,12 @@ import { ProjectCurrentComponent } from './current-project/project-current.compo
         MatDatepickerModule,
         NgxMatColorPickerModule,
         ReactiveFormsModule,
-        MatButtonModule
+        MatButtonModule,
+        MatSidenavModule,
+        RouterLink,
+        NgxSkeletonLoaderModule,
+        ProjectSettingModule,
+        MatListModule
     ]
 })
 export class ApplicationModule { }

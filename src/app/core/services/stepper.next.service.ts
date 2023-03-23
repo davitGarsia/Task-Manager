@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import {MatStepper} from "@angular/material/stepper";
 
 @Injectable({ providedIn: 'root' })
 export class StepperNextService {
@@ -22,6 +23,10 @@ export class StepperNextService {
 
   changeFromLinear() {
     this.linear.next(false);
+  }
+
+  navigateToNextStep(stepper: MatStepper) {
+    stepper.next();
   }
 
   // complete state

@@ -48,6 +48,12 @@ import {MatSelectModule} from "@angular/material/select";
     FontAwesomeModule,
   ],
     providers: [
+
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: ProjectInterceptor,
+        multi: true
+      },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
@@ -56,12 +62,6 @@ import {MatSelectModule} from "@angular/material/select";
         {
             provide: Window,
             useValue: window
-        },
-
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ProjectInterceptor,
-            multi: true
         },
       { provide: MAT_COLOR_FORMATS,
         useValue: NGX_MAT_COLOR_FORMATS }

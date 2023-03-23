@@ -1,30 +1,196 @@
-<h1>Projects List</h1>
-<div class="container">
-  <div class="prj-container">
-    <div class="project-container grid">
-      <div *ngFor="let project of projects; let i = index">
-        <div class="inner-container" [ngStyle]="{backgroundColor: project.color}" [routerLink]="['/application/setting/board',]
-        // project.id
-        ]">
-          <div class="add-project">
-            <p class="prj-title">project name: {{project.name}}</p>
-            <p class="prj-title">project abbreviation: {{project.abbreviation}}</p>
-            <p class="prj-title"><button [routerLink]="['/application/setting/info/description', project.id]">Description</button></p>
-            <button [routerLink]="['/application/setting/edit', project.id]">Edit</button>
-          </div>
+
+<div class="container" [ngClass]="view === 'table' ? 'table' : ''">
+  <ng-container *ngFor="let x of cardsCount">
+    <div class="card-container" *ngIf="view !== 'table'">
+      <h1>
+        <ngx-skeleton-loader count="1"
+                             [theme]="{background: '#BFC9CA', marginTop: '30px', width: '60%', marginLeft: '4%'}"></ngx-skeleton-loader>
+      </h1>
+      <p>
+        <ngx-skeleton-loader count="1"
+                             [theme]="{background: '#BFC9CA', height: '70px', width: '90%', marginLeft: '4%'}"></ngx-skeleton-loader>
+      </p>
+      <span style="position: absolute; bottom: 0; left: 0; width: 100%">
+        <ngx-skeleton-loader count="3"
+                             [theme]="{background: '#BFC9CA', width: '25%', marginLeft: '6.25%'}"></ngx-skeleton-loader>
+      </span>
+    </div>
+    <div class="card-container" style="display: flex; justify-content: space-between; align-items: center"
+         *ngIf="view === 'table'">
+      <h1 style="margin: 0">
+        <ngx-skeleton-loader count="1"
+                             [theme]="{background: '#BFC9CA', marginTop: '20px', width: '100px', marginLeft: '10px'}"></ngx-skeleton-loader>
+        <ngx-skeleton-loader count="1"
+                             [theme]="{background: '#BFC9CA', marginTop: '20px', width: '100px', marginLeft: '10px'}"></ngx-skeleton-loader>
+      </h1>
+      <p style="margin: 0">
+        <ngx-skeleton-loader count="1"
+                             [theme]="{background: '#BFC9CA', marginTop: '15px', width: '300px', marginLeft: 'auto'}"></ngx-skeleton-loader>
+      </p>
+      <span style="margin-right: 10px">
+        <ngx-skeleton-loader count="3"
+                             [theme]="{background: '#BFC9CA', marginTop: '10px', width: '50px', marginLeft: '10px'}"></ngx-skeleton-loader>
+      </span>
+    </div>
+  </ng-container>
+  <ng-container *ngFor="let project of projects; let i = index">
+    <!--[routerLink]="['/application/setting/board',]  // project.id]"-->
+    <div class="card-container">
+      <div class="bg" [ngStyle]="{'background': project.color}"></div>
+      <div class="project-card">
+        <!--      <h1 [ngStyle]="{'background': project.color}">{{project.abbreviation}}</h1>-->
+
+        <h1 [ngStyle]="{'color': project.color}">
+          {{project.name}} <span *ngIf="view === 'table'">- {{project.abbreviation}}</span>
+        </h1>
+        <h3 *ngIf="project.search">
+          Project with name <strong [ngStyle]="{'color': 'red'}">"{{project.search}}"</strong> does not exist!
+        </h3>
+        <p>
+          {{description(project.description)}}
+        </p>
+        <div *ngIf="!project.search">
+          <button mat-button (click)="openDialog(project.id)">Details</button>
+          <!--        <button [routerLink]="['/application/setting/description', project.id]">Description</button>-->
+          <button mat-button [routerLink]="['/application/setting/edit', project.id]">Edit</button>
+          <button mat-button [routerLink]="['/application/setting/board', project.id]">Enter</button>
+
         </div>
       </div>
-
     </div>
+  </ng-container>
+  <div class="card-container" style="cursor: pointer" [routerLink]="'../../../stepper'" >
+    <div class="bg" [ngStyle]="{'background': 'green'}"></div>
+    <div class="project-card create">
+      <!--      <h1 [ngStyle]="{'background': project.color}">{{project.abbreviation}}</h1>-->
 
+      <h1>
+        + Create New Project
+      </h1>
+    </div>
   </div>
-
+  <footer>
+    <mat-paginator [length]="projectsLength"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="settingsChanged($event)"
+                   aria-label="Select page"
+                   class="paginator"
+                   [disabled]="disabled">
+    </mat-paginator>
+  </footer>
 </div>
 
-<mat-paginator [length]="projectsLength"
-               [pageSize]="pageSize"
-               [pageSizeOptions]="[5, 10, 25, 100]"
-               (page)="settingsChanged($event)"
-               aria-label="Select page"
-               class="paginator">
-</mat-paginator>
+<ng-template #dialog>
+  <h2 mat-dialog-title>{{dialogProject?.name}} - <span
+    [ngStyle]="{'color': dialogProject.color}">{{dialogProject.abbreviation}}</span></h2>
+  <mat-dialog-content class="mat-typography">
+    <p>
+      {{dialogProject?.description}}
+    </p>
+    <div class="users">
+      <h1>Users :
+        <span>Total:
+        <ng-container *ngIf="dialogUsersLoaded">
+          {{dialogUsers.length}}
+        </ng-container>
+          <ng-container *ngIf="!dialogUsersLoaded">
+            <mat-spinner></mat-spinner>
+          </ng-container>
+        </span>
+      </h1>
+      <div *ngIf="dialogUsers">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Active</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+          </tr>
+          <tr  *ngIf="!dialogUsersLoaded">
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+            <td>
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </td>
+          </tr>
+          <ng-container *ngFor="let user of dialogUsers">
+            <tr>
+              <td>{{user.firstName}} {{user.lastName}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.mobileNumber ? user.mobileNumber : 'Not Selected'}}</td>
+              <td>{{user.isActive ? 'Active' : 'Inactive'}}</td>
+              <td>{{formatDate(user.createdAt!)}}</td>
+              <td>{{formatDate(user.updatedAt!)}}</td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
+    </div>
+    <div class="users">
+      <h1>Boards :
+        <span>Total:
+        <ng-container *ngIf="dialogBoardsLoaded">
+          {{dialogBoards.length}}
+        </ng-container>
+          <ng-container *ngIf="!dialogBoardsLoaded">
+            <mat-spinner></mat-spinner>
+          </ng-container>
+        </span>
+      </h1>
+      <ng-container *ngFor="let board of dialogBoards">
+      </ng-container>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Created at</th>
+          <th>Updated at</th>
+        </tr>
+        <tr  *ngIf="!dialogBoardsLoaded">
+          <td>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </td>
+          <td>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </td>
+          <td>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </td>
+          <td>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </td>
+        </tr>
+        <ng-container *ngFor="let board of dialogBoards">
+          <tr>
+            <td>{{board.name}}</td>
+            <td>{{description(board.description)}}</td>
+            <td>{{formatDate(board.createdAt!)}}</td>
+            <td>{{formatDate(board.updatedAt!)}}</td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close [routerLink]="['/application/setting/edit', id]">Edit</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Enter</button>
+  </mat-dialog-actions>
+</ng-template>
+
+

@@ -2,7 +2,7 @@ import {IRole} from "./role";
 
 export interface User {
   id: number;
-  createdAt: Date;
+  createdAt?: Date;
   firstName: string;
   lastName: string;
   email: string;

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -14,6 +14,8 @@ import {StepperNextService} from 'src/app/core/services/stepper.next.service';
 
 import { IssueTypesService } from 'src/app/core/services';
 import {ValidCounterService} from "../../../core/services/valid-counter.service";
+import {MatStepper} from "@angular/material/stepper";
+import {noWhitespaceValidator} from "../../../core/validators/whitespace.validator";
 
 @Component({
   selector: 'app-create-issue-types',
@@ -21,6 +23,8 @@ import {ValidCounterService} from "../../../core/services/valid-counter.service"
   styleUrls: ['./create-issue-types.component.scss'],
 })
 export class CreateIssueTypesComponent implements OnInit {
+  diameter: number = 30;
+  spinner: boolean = false;
   constructor(
     private _formBuilder: FormBuilder,
     private stepperService: StepperNextService,
@@ -30,8 +34,8 @@ export class CreateIssueTypesComponent implements OnInit {
   }
 
   issueFormGroup = this._formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(2)]],
-    description: ['', [Validators.required, Validators.minLength(4)]],
+    name: ['', [Validators.required, Validators.minLength(2), noWhitespaceValidator]],
+    description: ['', [Validators.required, Validators.minLength(4), noWhitespaceValidator]],
     icon: ['', Validators.required],
     color: ['#910D9B', Validators.required],
     status: ['', Validators.required],
@@ -110,30 +114,46 @@ export class CreateIssueTypesComponent implements OnInit {
     return <FormArray>this.issueFormGroup.get('columns');
   }
 
+  @ViewChild('issueForm') issueForm!: ElementRef;
+
   addCol() {
     this.colsArray.push(
       new FormGroup(
         {
-          name: new FormControl('', Validators.required),
-          filedName: new FormControl('', Validators.required),
-          isRequired: new FormControl('', Validators.required),
+          name: new FormControl('', [Validators.required, Validators.minLength(2), noWhitespaceValidator]),
+          filedName: new FormControl('', [Validators.required, Validators.minLength(2), noWhitespaceValidator]),
+        //  isRequired: new FormControl('', Validators.required),
         },
         Validators.required
       )
     );
+
+    setTimeout(()=>{
+      this.issueForm.nativeElement.scrollTop = this.issueForm.nativeElement.scrollHeight;
+    },100)
   }
 
+  deleteColumn(i: number) {
+    this.colsArray.removeAt(i);
+  }
+
+  @Input('stepper') stepper!: MatStepper;
+
   onSubmit() {
-    this.stepperService.changeFromLinear();
-
-    this.stepperService.openNextStep(3);
-
-    setTimeout(() => {
-      this.stepperService.changeToLinear();
-    }, 1000);
+    this.spinner = true;
 
     this.issueTypesService.setIssueType(this.issueFormGroup.value).subscribe({
-      next: (res) => console.log(res),
+      next: (res) => {
+        this.spinner = false;
+        this.stepperService.navigateToNextStep(this.stepper);
+        this.stepperService.changeFromLinear();
+
+        this.stepperService.openNextStep(3);
+
+        setTimeout(() => {
+          this.stepperService.changeToLinear();
+        }, 1000);
+      }
     });
   }
 

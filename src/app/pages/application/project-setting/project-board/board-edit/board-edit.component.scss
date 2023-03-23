@@ -1,3 +1,11 @@
+:root {
+
+}
+
+h1 {
+  text-align: center;
+}
+
 .columns {
   display: flex;
   flex-wrap: nowrap;
@@ -7,12 +15,23 @@
   overflow-x: auto;
   overflow-y: hidden;
   padding: 10px;
+
+  .column {
+    mat-form-field {
+      width: 100%;
+    }
+  }
 }
 
 .inputForm {
   display: flex;
   gap: 10px;
   padding: 10px;
+  align-items: center;
+
+  mat-form-field {
+    width: 260px;
+  }
 }
 
 .column {
@@ -25,13 +44,12 @@
   background-color: #fff;
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
-}
 .column-placeholder {
   width: 300px;
   min-height: 100%;
   background-color: #faf9f8;
   border-radius: 5px;
 
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 }
 

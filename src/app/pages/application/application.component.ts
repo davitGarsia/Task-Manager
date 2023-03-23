@@ -1,4 +1,6 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ComponentRef, OnInit, ViewChild} from '@angular/core';
+import {PaginatorService} from "../../core/services/paginator.service";
+import {ProjectInfoComponent} from "./project-setting/project-info/project-info.component";
 
 
 @Component({
@@ -6,26 +8,43 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
   templateUrl: './application.component.html',
   styleUrls: ['./application.component.scss']
 })
-export class ApplicationComponent implements OnInit, AfterViewInit {
-  scrolledTop: boolean = false;
-  scrolled: boolean= true;
+export class ApplicationComponent implements OnInit{
 
-  constructor() {
+  constructor(
+    public paginator: PaginatorService
+  ) {
   }
+  sorts: any[] = [
+    {value: 'ASC', viewValue: 'ASC'},
+    {value: 'DESC', viewValue: 'DESC'}
+  ];
 
-  ngOnInit(): void {
+  views: any[] = [
+    {value: 'card'},
+    {value: 'table'}
+  ];
 
-  }
+  value: string = 'DESC';
+  view: string = 'card';
 
-  @ViewChild('project') project!: ElementRef;
-
-  ngAfterViewInit() {
-    this.project.nativeElement.addEventListener('scroll', () => {
-      let firstElPos = this.project.nativeElement.firstChild.getBoundingClientRect().top;
-      firstElPos <= -10 ? this.scrolled = true : this.scrolled = false;
-      firstElPos <= -window.innerHeight ? this.scrolledTop = true : this.scrolledTop = false;
+  ngOnInit() {
+    this.paginator.sort.subscribe(value => {
+      this.value = value;
     })
   }
 
+  sortChanged() {
+    this.paginator.setSort(this.value);
+  }
 
+  search(event: any) {
+    setTimeout(()=>{
+      this.paginator.setSearch(event.target.value)
+      this.paginator.preventMultipleNext = event.target.value;
+    },1000)
+  }
+
+  changeView() {
+    this.paginator.view.next(this.view)
+  }
 }

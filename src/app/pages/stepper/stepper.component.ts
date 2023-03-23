@@ -132,7 +132,11 @@ export class StepperComponent implements OnInit, AfterViewInit {
           index = i;
         }
       })
-      customLine.style.height = height * index + 30 * index + 'px';
+      if(window.innerWidth < 450) {
+        customLine.style.height = height * index + 40 * index + 'px';
+      } else {
+        customLine.style.height = height * index + 30 * index + 'px';
+      }
     }, 100)
 
     this.activeComponent();
@@ -148,9 +152,6 @@ export class StepperComponent implements OnInit, AfterViewInit {
         break
       case 2:
         this.issue.issueComponent(2);
-        break
-      case 3:
-        this.users.usersComponent(3);
         break
     }
   }

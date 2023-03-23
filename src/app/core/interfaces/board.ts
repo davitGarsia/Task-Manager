@@ -11,9 +11,9 @@ export interface IBoard {
   description: string;
   position: number;
   projectId: number;
-  project:IProject;
-  columns: IColumn[];
-  tasks: ITask;
+  project?:IProject;
+  columns: Column[];
+  tasks?: ITask;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
@@ -33,20 +33,19 @@ export interface IColumn {
   deletedAt: Date;
 }
 
-
-  // export interface Column {
-  //   id: number;
-  //   name: string;
-  //   description: string;
-  //   position: number;
-  //   boardId: number;
-  //   board: string;
-  //   tasks: Task[];
-  //   taskStatus: TaskStatusEnum;
-  //   createdAt: Date;
-  //   updatedAt: Date;
-  //   deletedAt: Date;
-  // }
+  export interface Column {
+    id: number;
+    name: string;
+    description: string;
+    position: number;
+    boardId: number;
+    board?: string;
+    tasks?: Task[];
+    taskStatus: TaskStatusEnum;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: Date;
+  }
 
 
 

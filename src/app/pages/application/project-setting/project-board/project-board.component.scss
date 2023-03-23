@@ -1,50 +1,144 @@
-.cont{
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
+@import "src/mixins";
 
-.select{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  padding: 0 10px;
-  border-bottom: 1px solid #1e1d1d;
-  .select-title{
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .select-btn{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    .btn{
-      border-radius: 50%;
-      border: 1px solid #1e1d1d;
-      margin-left: 10px;
-      cursor: pointer;
-      &:hover{
-        background-color: #1e1d1d;
-        color: #fff;
-      }
-    }
-  }
-}
-}
 .container{
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 100vh;
   width: 100%;
   padding: 10px;
   background-color: #f17d7d;
   border-radius: 5px;
   box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+  position: relative;
+
+  footer {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    @include flex(flex-end, center);
+  }
 }
+
+mat-expansion-panel{
+  mat-expansion-panel-header{
+    mat-panel-title{
+      h1 {
+        font-weight: bold;
+        margin: 0;
+        padding: 10px 0;
+      }
+    }
+    mat-panel-description {
+      @include flex(space-between, center);
+      padding-right: 100px;
+
+      span {
+        @include flex(center, center);
+        padding: 10px;
+
+        span {
+          padding: 0;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  .mat-expansion-panel-content {
+    background: red;
+    .mat-expansion-panel-body {
+      background: red !important;
+    }
+  }
+}
+
+.no-boards {
+  width: 100%;
+  min-height: 200px;
+  @include flex(center,center);
+  flex-direction: column;
+  border: 1px solid #f17d7d;
+  border-radius: 10px;
+
+  h1 {
+    color: #f17d7d;
+    font-weight: bold;
+  }
+}
+
+.cards-container {
+  @include flex(flex-start, center);
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  .card-container {
+    width: 304px;
+    height: 207px;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    background: white;
+    box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, .2);
+    transition: .2s;
+
+    .bg {
+      width: 304px;
+      height: 5px;
+      background: red;
+      border-radius: 8px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%, 0 100%);
+      transition: 1s;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+
+      .bg {
+        height: 520px;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%, 0 100%);
+      }
+    }
+
+    .project-card {
+      width: 300px;
+      height: 200px;
+      padding: 30px 10px;
+      background: white;
+      position: absolute;
+      top: 5px;
+      left: 2px;
+      @include flex(center, flex-start);
+      flex-direction: column;
+      border-radius: 8px;
+
+
+      div {
+        width: 100%;
+        @include flex(space-between, center);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+      }
+
+      h1 {
+        font-weight: bold;
+        border-radius: 7px;
+        // filter: brightness(30%);
+        letter-spacing: 1px;
+      }
+
+      &.create {
+        color: green;
+
+        h1 {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+
+
+  }
+}
+
