@@ -8,6 +8,7 @@ import {FormsModule} from "@angular/forms";
 import { BoardComponent } from './board/board.component';
 import {CdkDropListGroup, DragDropModule} from "@angular/cdk/drag-drop";
 import {MatButtonModule} from "@angular/material/button";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import {MatButtonModule} from "@angular/material/button";
         HomeModule,
         FormsModule,
         DragDropModule,
-        MatButtonModule
+        MatButtonModule,
+      MatDialogModule
+
     ]
 })
 export class DashboardModule { }

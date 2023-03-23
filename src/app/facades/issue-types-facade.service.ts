@@ -26,8 +26,8 @@ export class IssueTypesFacadeService {
     return this.issueTypeService.getIssueTypeByID(id)
   }
 
-  updateIssueType(id: number, issueType: IssueType): Observable<any> {
-    return this.issueTypeService.updateIssueType(id, issueType);
+  updateIssueType(issueType: IssueType): Observable<any> {
+    return this.issueTypeService.updateIssueType(issueType);
   }
 
   deleteIssueType(id: number): Observable<any> {

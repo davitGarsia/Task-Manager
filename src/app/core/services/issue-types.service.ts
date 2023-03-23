@@ -20,6 +20,7 @@ export class IssueTypesService extends BaseService {
 
   getIssueType(): Observable<IssueType[]> {
     return this.get<IssueType[]>('issue-type');
+    console.log('issue-type');
   }
   getIssueTypes(): Observable<IssueType[]> {
     return this.get<IssueType[]>('issue-type');

@@ -18,12 +18,12 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 import { UserEditComponent } from './project-users/user/user-add-edit/user-edit.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatDividerModule} from "@angular/material/divider";
-import {UserModule} from "./project-users/user/user.module";
+
 import {CdkDrag, CdkDropList, DragDropModule} from "@angular/cdk/drag-drop";
 import { IssueTypesAddEditComponent } from './project-issue-type/issue-type-add-edit/issue-types-add-edit.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
@@ -35,6 +35,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatBadgeModule} from "@angular/material/badge";
+import {ApplicationModule} from "../application.module";
 
 
 
@@ -67,27 +68,29 @@ import {MatBadgeModule} from "@angular/material/badge";
     MatTableModule,
     MatInputModule,
     ReactiveFormsModule,
-    ApplicationModule,
     MatDialogModule,
     FontAwesomeModule,
     MatDividerModule,
-    UserModule,
     DragDropModule,
     MatCheckboxModule,
-          
-        MatDialogModule,
-        NgxSkeletonLoaderModule,
-        MatProgressSpinnerModule,
-        MatProgressBarModule,
-        MatExpansionModule,
-        MatBadgeModule,
+    NgxSkeletonLoaderModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatExpansionModule,
+    MatBadgeModule,
+
 
   ],
 
-  
-    exports: [
-        BoardEditComponent
-    ],
+
+  exports: [
+    BoardEditComponent,
+    UserEditComponent,
+    ProjectUsersComponent
+  ],
+    providers: [
+        {provide: MatDialogRef, useValue: {}},
+    ]
 
 })
 export class ProjectSettingModule {

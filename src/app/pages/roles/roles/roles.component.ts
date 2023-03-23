@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {RoleService} from "../../../core/services/role.service";
 import {IRole} from "../../../core/interfaces/role";
 import {MatTableDataSource} from "@angular/material/table";
-import {Subject} from "rxjs";
+import {filter, find, Subject} from "rxjs";
 import {PageEvent} from "@angular/material/paginator";
+import {UsersService} from "../../../core/services/users.service";
+import {User} from "../../../core/interfaces";
 
 @Component({
   selector: 'app-roles',
@@ -25,6 +27,7 @@ export class RolesComponent implements OnInit{
 
   constructor(
     private roleService: RoleService,
+    private userService: UsersService,
   ) {
 
   }
@@ -45,6 +48,7 @@ export class RolesComponent implements OnInit{
   }
 
   addRole(id?: number) {
+
 
   }
 

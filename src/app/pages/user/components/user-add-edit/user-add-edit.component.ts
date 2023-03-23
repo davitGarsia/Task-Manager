@@ -29,8 +29,8 @@ export class UserAddEditComponent implements OnInit{
   ngOnInit(): void {
     if (this.data.userId) {
       this.userService.getUserByID(this.data.userId)
-        .subscribe((res) => {
-          this.form.patchValue(res);
+        .subscribe((date) => {
+         this.form.patchValue(date as any)
         })
     }
   }

@@ -31,10 +31,10 @@ const routes: Routes = [
         path: 'setting',
         loadChildren: () => import('./project-setting/project-setting.module').then(m => m.ProjectSettingModule)
       },
-    /*  {
-        path: 'main',
-        loadChildren: () => import('src/app/pages/main-layout/main-layout.module').then(m => m.MainLayoutModule)
-      }*/
+      // {
+      //   path: 'main',
+      //   loadChildren: () => import('src/app/pages/main-layout/main-layout.module').then(m => m.MainLayoutModule)
+      // }
 
     ],
   }

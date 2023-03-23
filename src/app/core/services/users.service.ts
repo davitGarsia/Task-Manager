@@ -4,49 +4,55 @@ import { Observable } from 'rxjs';
 import {BaseService} from "./base.service";
 import {PaginationResponse} from "../interfaces/pagination-response";
 
+
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService extends BaseService {
-createUser(user: User){
+  createUser(user: User) {
     return this.post('users', user)
   }
 
 
-
   getUsers(params = {}): Observable<PaginationResponse<User>> {
     return this.get('users', params);
-
- // getUsers(): Observable<any> {
- //   return this.get('users') ;
+  }
+    // getUsers(): Observable<any> {
+    //   return this.get('users') ;
 //
- // }
+    // }
 
-  getUsersAll(): Observable<any> {
-    return this.get('users/all');
-  }
 
-  getUserByID(id: number) {
-    return this.get(`users/${id}`);
-  }
+    getUsersAll(): Observable < any > {
+      return this.get('users/all');
+    }
 
-  setUser(user: any) {
-    return this.post('users', user);
-  }
+    getUserByID(id: number)
+    {
+      return this.get(`users/${id}`);
+    };
 
-  setUserRoles(userRole: UsersRoles) {
-    return this.post('users/roles', userRole);
-  }
+    setUser(user
+  :
+    any
+  )
+    {
+      return this.post('users', user);
+    }
 
-  updateUserById(id: number, user: User) {
-    return this.put(`users/${id}`, user);
-  }
+    setUserRoles(userRole: UsersRoles) {
+      return this.post('users/roles', userRole);
+    };
 
-  deleteUserById(id: number) {
-    return this.delete(`users/${id}`);
-  }
+    updateUserById(id: number, user: User) {
+      return this.put(`users/${id}`, user);
+    };
 
-  updateUserRoles(params: { userId: number, roleIds: number[] }): Observable<User> {
-    return this.post(`users/roles`, params);
+    deleteUserById(id: number) {
+      return this.delete(`users/${id}`);
+    };
+
+    updateUserRoles(params: { userId: number, roleIds: number[] }): Observable < User > {
+      return this.post(`users/roles`, params);
+    }
   }
-}

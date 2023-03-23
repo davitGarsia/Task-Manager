@@ -15,7 +15,7 @@ export class BaseService {
     return this.http.post<T>(this.apiUrl + url, body)
   }
 
-  // get<T>(url: string, params?: any): Observable<T> {
+  // get1<T>(url: string, params?: any): Observable<T> {
   //   return this.http.get<T>(this.apiUrl + url,
   //     {params: new HttpParams({fromObject: params})})
   // }
@@ -25,7 +25,7 @@ export class BaseService {
   get<T>(url: string, header?: any, value?: string): Observable<T> {
 
     return this.http.get<T>(this.apiUrl + url, {
-      params: params
+      params: header
       })
   }
 

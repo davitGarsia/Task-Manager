@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {BoardService} from "../../../core/services/board.service";
 import {ActivatedRoute} from "@angular/router";
-import {IColumn, IBoard} from "../../../core/interfaces";
+import {IColumn, IBoard, Column} from "../../../core/interfaces";
 import {ITask} from "../../../core/interfaces/task";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {TaskService} from "../../../core/services/task.service";
 import {MatDialog} from "@angular/material/dialog";
 import * as _ from 'lodash';
+import {TaskAddEditComponent} from "../../../shared/task-add-edit/task-add-edit.component";
 
 @Component({
   selector: 'app-board',
@@ -17,18 +18,18 @@ export class BoardComponent implements OnInit {
 boardId!: number;
 board!: IBoard;
   tasks: any = {
-   // 25: [
-   //    {
-   //      id: 1,
-   //      title: 'Task 1',
-   //    },
-   //    {
-   //      id: 2,
-   //      title: 'Task 2',
-   //    }
-   //  ],
-   //  26: [],
-   //  27: []
+   25: [
+      {
+        id: 1,
+        title: 'Task 1',
+      },
+      {
+        id: 2,
+        title: 'Task 2',
+      }
+    ],
+    26: [],
+    27: []
   };
   constructor(
     private boardService: BoardService,
@@ -60,7 +61,7 @@ board!: IBoard;
     })
   }
 
-  drop(event: CdkDragDrop<any>, column: IColumn) {
+  drop(event: CdkDragDrop<any>, column: Column) {
     console.log(event);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -89,8 +90,15 @@ board!: IBoard;
 
   }
 
-  addTask(id: number) {
-
-
+  addTask(column: Column) {
+    this.dialog.open(TaskAddEditComponent, {
+      width: '500px',
+      data: {
+        boardId: this.boardId,
+        column: column,
+      }
+    })
   }
+
+
 }

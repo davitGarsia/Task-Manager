@@ -4,7 +4,7 @@
          (cdkDropListDropped)="drop($event, column)">
       <div class="head">
         <h3>Status: {{column.taskStatus}}</h3>
-        <button (click)="addTask(column.id)" mat-raised-button >Add Task</button>
+        <button (click)="addTask(column)" mat-raised-button >Add Task</button>
       </div>
 
       <div >

@@ -4,7 +4,7 @@ import {BoardService} from "../../../core/services/board.service";
 import {ProjectService} from "../../../core/services/project.service";
 import {MatDialog} from "@angular/material/dialog";
 import {TaskAddEditComponent} from "../../../shared/task-add-edit/task-add-edit.component";
-import {IBoard, IColumn} from "../../../core/interfaces";
+import {Column, IBoard, IColumn} from "../../../core/interfaces";
 import {ITask} from "../../../core/interfaces/task";
 import {TaskService} from "../../../core/services/task.service";
 
@@ -53,14 +53,14 @@ export class BoardComponent implements OnInit, AfterViewInit, OnDestroy{
     this.getTasks();
   }
 
-  // fetchTasks() {
-  //   this.taskService.getTasks({boardId: this.boardId})
-  //     .subscribe(tasks => {
-  //       this.tasks = tasks;
-  //     })
-  // }
+  fetchTasks() {
+    this.taskService.getTasks({boardId: this.boardId})
+      .subscribe(tasks => {
+        this.tasks = tasks;
+      })
+  }
 
-  addTask(column: IColumn) {
+  addTask(column: Column) {
   const dialogRef = this.dialog.open(TaskAddEditComponent, {
       width: '600px',
       data: {
@@ -84,7 +84,7 @@ private getTasks() {
     })
 }
 
-  drop(event: CdkDragDrop<any>, column: IColumn) {
+  drop(event: CdkDragDrop<any>, column: Column) {
     console.log(event.container)
 
     if (event.previousContainer === event.container) {

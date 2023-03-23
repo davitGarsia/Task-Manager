@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {IBoard, User} from "../../../../core/interfaces";
 import {Observable, Subject, takeUntil} from "rxjs";
@@ -16,6 +16,7 @@ import {UserEditComponent} from "./user/user-add-edit/user-edit.component";
   styleUrls: ['./project-users.component.scss']
 })
 export class ProjectUsersComponent implements OnInit, OnDestroy {
+  @Input('isInProjectEdit') isInProjectEdit!: boolean;
 
   displayedColumns = ['id', 'firstName', 'lastName', 'email', 'isActive', 'actions']
   dataSource = new MatTableDataSource<IBoard>();

@@ -2,7 +2,7 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TaskService} from "../../core/services/task.service";
-import {IColumn} from "../../core/interfaces";
+import {Column, IColumn, IssueType} from "../../core/interfaces";
 import {Observable, shareReplay, Subject, takeUntil} from "rxjs";
 import {IssueTypesService} from "../../core/services";
 import {EpicService} from "../../core/services/epic.service";
@@ -44,9 +44,10 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
   }
 
   sub$ = new Subject();
-  types$: Observable<any> = this.issueTypeService.getIssueType();
+  types$: Observable<IssueType[]> = this.issueTypeService.getIssueType();
   epics$: Observable<IEpic[]> = this.epicService.getEpics();
   users$: Observable<any> = this.projectService.getProjectUsers()
+
     .pipe(shareReplay(2));
   priorities: { id: 'LOW' | 'MEDIUM' | 'HIGH', name: string }[] = [
     {id: 'LOW', name: 'Low'},

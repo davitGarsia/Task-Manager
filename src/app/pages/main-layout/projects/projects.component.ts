@@ -50,7 +50,7 @@ export class ProjectsComponent implements OnInit{
   }
 
   saveProject(id: number) {
-    this.projectsService.getById(id).subscribe({
+    this.projectsService.getProjectById(id).subscribe({
       next: (res: any) => {
         this.projectFacade.setProject(res);
       }

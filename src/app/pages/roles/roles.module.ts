@@ -6,9 +6,14 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { RoleAddEditComponent } from './role-add-edit/role-add-edit.component';
 import { PermissionAddEditComponent } from './permission-add-edit/permission-add-edit.component';
-import {RouterModule} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 
-
+const routes: Routes = [
+  {
+    path: 'roles',
+    component: RolesComponent
+  }
+];
 
 @NgModule({
   declarations: [

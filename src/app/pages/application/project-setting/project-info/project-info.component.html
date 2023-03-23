@@ -52,7 +52,7 @@
         <div *ngIf="!project.search">
           <button mat-button (click)="openDialog(project.id)">Details</button>
           <!--        <button [routerLink]="['/application/setting/description', project.id]">Description</button>-->
-          <button mat-button [routerLink]="['/application/setting/edit', project.id]">Edit</button>
+          <button mat-button [routerLink]="['/application/setti ng/edit', project.id]">Edit</button>
           <button mat-button [routerLink]="['/application/setting/board', project.id]">Enter</button>
 
         </div>
@@ -136,7 +136,7 @@
               <td>{{user.mobileNumber ? user.mobileNumber : 'Not Selected'}}</td>
               <td>{{user.isActive ? 'Active' : 'Inactive'}}</td>
               <td>{{formatDate(user.createdAt!)}}</td>
-              <td>{{formatDate(user.updatedAt!)}}</td>
+<!--              <td>{{formatDate(user.updatedAt!)}}</td>-->
             </tr>
           </ng-container>
         </table>
@@ -188,7 +188,7 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close [routerLink]="['/application/setting/edit', id]">Edit</button>
+    <button mat-button mat-dialog-close [routerLink]="['/application/setting/edit/', id]">Edit</button>
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Enter</button>
   </mat-dialog-actions>
 </ng-template>

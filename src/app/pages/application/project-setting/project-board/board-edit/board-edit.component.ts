@@ -8,6 +8,7 @@ import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 
 import {ProjectService} from "../../../../../core/services/project.service";
 import {IBoard} from "../../../../../core/interfaces";
+import {drop} from "lodash";
 
 
 @Component({
@@ -91,18 +92,18 @@ export class BoardEditComponent implements OnInit {
   get columnsArray(): FormArray {
     return this.form.get('columns') as FormArray;
   }
-  addColumn() {
-    this.columnsArray.push(new FormGroup({
-      id: new FormControl(null),
-      name: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required),
-      position: new FormControl(this.columnsArray.length + 1, Validators.required),
-      taskStatus: new FormControl(TaskStatusEnum.ToDo, Validators.required),
-    },Validators.required));
-
-  columnsArrayFromFormsArray(index: number) {
-     console.log(this.formsArray[index].get('columns'))
-  }
+  // addColumn() {
+  //   this.columnsArray.push(new FormGroup({
+  //     id: new FormControl(null),
+  //     name: new FormControl(null, Validators.required),
+  //     description: new FormControl(null, Validators.required),
+  //     position: new FormControl(this.columnsArray.length + 1, Validators.required),
+  //     taskStatus: new FormControl(TaskStatusEnum.ToDo, Validators.required),
+  //   }, Validators.required));
+  // }
+  // columnsArrayFromFormsArray(index: number) {
+  //    console.log(this.formsArray[index].get('columns'))
+  // }
 
   addColumn(index?: number) {
     if(index! >= 0) {
