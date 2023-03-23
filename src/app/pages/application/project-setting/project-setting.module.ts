@@ -1,4 +1,4 @@
-import {Injectable, NgModule} from '@angular/core';
+import {ApplicationModule, Injectable, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {ProjectSettingRoutingModule} from './project-setting-routing.module';
@@ -52,7 +52,6 @@ import {MatBadgeModule} from "@angular/material/badge";
     IssueTypesAddEditComponent,
     ProjectEpicsComponent,
     EpicAddEditComponent,
-        UserEditComponent,
 
   ],
   imports: [
@@ -74,7 +73,7 @@ import {MatBadgeModule} from "@angular/material/badge";
     UserModule,
     DragDropModule,
     MatCheckboxModule,
-          
+
         MatDialogModule,
         NgxSkeletonLoaderModule,
         MatProgressSpinnerModule,
@@ -84,7 +83,7 @@ import {MatBadgeModule} from "@angular/material/badge";
 
   ],
 
-  
+
     exports: [
         BoardEditComponent
     ],

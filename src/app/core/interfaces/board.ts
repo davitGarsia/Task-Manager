@@ -12,7 +12,7 @@ export interface IBoard {
   position: number;
   projectId: number;
   project?:IProject;
-  columns: Column[];
+  columns: any[];
   tasks?: ITask;
   createdAt: Date;
   updatedAt: Date;

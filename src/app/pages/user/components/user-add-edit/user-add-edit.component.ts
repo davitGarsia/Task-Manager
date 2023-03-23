@@ -29,7 +29,7 @@ export class UserAddEditComponent implements OnInit{
   ngOnInit(): void {
     if (this.data.userId) {
       this.userService.getUserByID(this.data.userId)
-        .subscribe((res) => {
+        .subscribe((res: any) => {
           this.form.patchValue(res);
         })
     }

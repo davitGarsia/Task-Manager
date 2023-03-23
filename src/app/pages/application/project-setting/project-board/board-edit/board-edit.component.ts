@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {TaskStatusEnum} from "../../../../../core/enums/task-status.enum";
+import {TaskStatusEnum} from "../../../../../core/enums";
 import {BoardService} from "../../../../../core/services/board.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -91,18 +91,18 @@ export class BoardEditComponent implements OnInit {
   get columnsArray(): FormArray {
     return this.form.get('columns') as FormArray;
   }
-  addColumn() {
-    this.columnsArray.push(new FormGroup({
-      id: new FormControl(null),
-      name: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required),
-      position: new FormControl(this.columnsArray.length + 1, Validators.required),
-      taskStatus: new FormControl(TaskStatusEnum.ToDo, Validators.required),
-    },Validators.required));
-
-  columnsArrayFromFormsArray(index: number) {
-     console.log(this.formsArray[index].get('columns'))
-  }
+  // addColumn() {
+  //   this.columnsArray.push(new FormGroup({
+  //     id: new FormControl(null),
+  //     name: new FormControl(null, Validators.required),
+  //     description: new FormControl(null, Validators.required),
+  //     position: new FormControl(this.columnsArray.length + 1, Validators.required),
+  //     taskStatus: new FormControl(TaskStatusEnum.ToDo, Validators.required),
+  //   }, Validators.required));
+  // }
+  // columnsArrayFromFormsArray(index: number) {
+  //    console.log(this.formsArray[index].get('columns'))
+  // }
 
   addColumn(index?: number) {
     if(index! >= 0) {

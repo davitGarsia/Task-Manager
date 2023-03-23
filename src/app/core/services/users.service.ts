@@ -16,7 +16,7 @@ createUser(user: User){
 
   getUsers(params = {}): Observable<PaginationResponse<User>> {
     return this.get('users', params);
-
+  }
  // getUsers(): Observable<any> {
  //   return this.get('users') ;
 //

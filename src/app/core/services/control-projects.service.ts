@@ -46,4 +46,8 @@ export class ControlProjectsService extends BaseService {
     return this.get<any>('project/withBoards');
 
   }
+
+  getById(id: any):Observable<any> {
+    return this.get<any>('project/'+`${id}`)
+  }
 }

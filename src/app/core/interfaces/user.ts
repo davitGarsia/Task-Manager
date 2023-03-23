@@ -11,4 +11,5 @@ export interface User {
   userPermissions: string[];
   roles: IRole[];
   projects: string[];
+  updatedAt?: string
 }
