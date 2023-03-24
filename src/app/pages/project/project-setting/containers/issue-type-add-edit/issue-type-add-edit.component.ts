@@ -16,6 +16,7 @@ export class IssueTypeAddEditComponent {
     name: new FormControl(null, Validators.required),
     icon: new FormControl(null, Validators.required),
     color: new FormControl(1, Validators.required),
+    description: new FormControl(null, Validators.required),
     type: new FormControl(null, Validators.required),
     issueTypeColumns: new FormArray([], Validators.required),
   })

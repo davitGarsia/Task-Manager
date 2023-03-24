@@ -9,6 +9,8 @@ import { AuthService } from '../../../core/services';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import {CookieService} from "../../../core/services/cookie.service";
+import {ProjectService} from "../../../core/services/project.service";
+import {IProject} from "../../../core/interfaces/iproject";
 
 
 @Component({
@@ -31,7 +33,8 @@ export class LoginComponent implements AfterViewInit, OnInit {
     private authService: AuthService,
     private cookieService: CookieService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private projectsService: ProjectService,
   ) {}
 
   isRegistered: boolean = false;
@@ -39,10 +42,13 @@ export class LoginComponent implements AfterViewInit, OnInit {
   spinner: boolean = false;
   diameter: number = 30;
 
+  projects: IProject[] = [];
+
   @ViewChild('password') password!: ElementRef;
 
   ngOnInit() {
     window.innerWidth <= 1024 ? this.mobile = true : this.mobile = false;
+    this.getProjects();
   }
 
   ngAfterViewInit(): void {
@@ -60,10 +66,26 @@ export class LoginComponent implements AfterViewInit, OnInit {
       .login(this.form.value)
       .pipe(takeUntil(this.sub$))
       .subscribe((res) => {
-        if(res) {
+        this.getProjects();
+          if (this.projects.length > 0) {
+          this.router.navigate(['/main/projects']);
+        } else {
           this.router.navigate(['/stepper']);
         }
       });
 
   }
+
+  getProjects(){
+    this.projectsService.getProjects().subscribe({
+      next: res => res.data.forEach((project: any) => {
+        this.projects.push(project);
+      }),
+      error: err => console.log(err),
+    })
+  }
 }
+
+// if(res) {
+//   this.router.navigate(['/stepper']);
+// }

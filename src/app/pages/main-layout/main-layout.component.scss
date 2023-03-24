@@ -8,7 +8,7 @@
   display: flex;
   height: 100vh;
 
- // justify-content: center;
+  //justify-content: center;
 }
 
 .sidenav {
@@ -137,6 +137,7 @@ label {
   border-radius: 50%;
   background-color: #dbd8d8;
   cursor: pointer;
+
 }
 
 .toggle-sidenav:hover {
@@ -145,5 +146,20 @@ label {
 
 .toggle-sidenav:active {
   background-color: #c0b4b4;
+}
+
+.list {
+  list-style: none;
+  text-decoration: none;
+  margin-top: 100px;
+  font-size: 1.1rem;
+}
+
+.list a {
+  text-decoration: none;
+}
+
+.list-item {
+  margin-bottom: 5px;
 }
 

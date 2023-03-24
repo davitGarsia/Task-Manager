@@ -1,13 +1,13 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {TaskService} from "../../core/services/task.service";
 import {IColumn} from "../../core/interfaces";
 import {Observable, shareReplay, Subject, takeUntil} from "rxjs";
 import {IssueTypesService} from "../../core/services";
 import {EpicService} from "../../core/services/epic.service";
 import {IEpic} from "../../core/interfaces/epic";
 import {ProjectService} from "../../core/services/project.service";
+import {TaskService} from "../../core/services/task.service";
 
 
 @Component({
@@ -61,7 +61,7 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
 
 
   ngOnInit() {
-    this.getTask(this.data.taskId);
+    //this.getTask(this.data.taskId);
     if (this.data.taskId) {
       this.getTask(this.data.taskId);
     } else {
@@ -100,9 +100,9 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
   private getTask(taskId: number) {
     this.taskService.getTask(taskId)
       .pipe(takeUntil(this.sub$))
-      .subscribe(res => {
+      .subscribe((res: any) => {
         this.form.patchValue(res)
-        res.taskProperty.forEach(property => {
+        res.taskProperty.forEach((property: any) => {
           this.taskProperty.push(new FormGroup({
             id: new FormControl(property.id),
             name: new FormControl(property.name, Validators.required),
