@@ -16,6 +16,7 @@ import {CreateBoardComponent} from "./create-board/create-board.component";
 import {CreateProjectComponent} from "./create-project/create-project.component";
 import {CreateIssueTypesComponent} from "./create-issue-types/create-issue-types.component";
 import {AddUsersComponent} from "./add-users/add-users.component";
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-stepper',
@@ -31,10 +32,13 @@ export class StepperComponent implements OnInit, AfterViewInit {
 
   completed = this.stepperService.isCompleted$;
 
+  id = localStorage.getItem('boardId');
+
   constructor(
     private stepperService: StepperNextService,
     private viewContainer: ViewContainerRef,
     private elRef: ElementRef,
+    private router: Router,
     @Inject(DOCUMENT) private document: Document
   ) {
   }
@@ -156,4 +160,8 @@ export class StepperComponent implements OnInit, AfterViewInit {
   }
 
   stepperInfo = stepper;
+
+  // finish() {
+  //  this.router.navigate([`/main/board/${this.id}`])
+  // }
 }

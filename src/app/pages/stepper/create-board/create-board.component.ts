@@ -92,8 +92,11 @@ export class CreateBoardComponent implements OnInit, AfterViewInit {
 
     console.log(this.boardFormGroup.value);
     this.boardService.addBoard(this.boardFormGroup.value).subscribe({
-      next: (res) => console.log(res),
-    });
+      next: res => {
+        console.log(res)
+        //localStorage.setItem('boardId', JSON.stringify(res.id));
+      }
+    })
   }
 
   // Prev Btn

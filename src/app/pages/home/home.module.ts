@@ -57,7 +57,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatProgressSpinnerModule,
     ],
     exports: [
-        NavigationComponent
+        NavigationComponent,
+        HeaderComponent
     ]
 })
 export class HomeModule {
