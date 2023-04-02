@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -9,8 +9,8 @@ import {
 import { BoardService } from 'src/app/core/services/board.service';
 import { ControlProjectsService } from 'src/app/core/services/control-projects.service';
 import { StepperNextService } from 'src/app/core/services/stepper.next.service';
-import {ValidCounterService} from "../../../core/services/valid-counter.service";
-import {IProject} from "../../../core/interfaces/iproject";
+import { ValidCounterService } from '../../../core/services/valid-counter.service';
+import { IProject } from '../../../core/interfaces/iproject';
 
 @Component({
   selector: 'app-create-board',
@@ -25,22 +25,23 @@ export class CreateBoardComponent implements OnInit, AfterViewInit {
     private validCounter: ValidCounterService
   ) {}
 
-
   ngAfterViewInit() {
     this.boardFormGroup.get('name')?.setValue('ss');
-     this.boardComponent(1)
+    this.boardComponent(1);
     this.boardFormGroup.get('name')?.setValue('');
   }
 
   boardComponent(index: number) {
     this.validCounter.validCounter(this.boardFormGroup, index);
-    console.log('board')
+    console.log('board');
   }
   project: IProject = {} as IProject;
 
   ngOnInit(): void {
     this.project = JSON.parse(localStorage.getItem('board')!);
-    this.boardFormGroup.patchValue(this.project)
+    this.boardFormGroup.patchValue(this.project);
+
+    this.addCol();
   }
 
   boardFormGroup = this._formBuilder.group({
@@ -92,11 +93,11 @@ export class CreateBoardComponent implements OnInit, AfterViewInit {
 
     console.log(this.boardFormGroup.value);
     this.boardService.addBoard(this.boardFormGroup.value).subscribe({
-      next: res => {
-        console.log(res)
+      next: (res) => {
+        console.log(res);
         //localStorage.setItem('boardId', JSON.stringify(res.id));
-      }
-    })
+      },
+    });
   }
 
   // Prev Btn
