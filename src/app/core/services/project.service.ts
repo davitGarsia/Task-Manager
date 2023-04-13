@@ -13,6 +13,7 @@ export class ProjectService extends BaseService {
   getProjects():Observable<PaginationResponse<IProject>> {
 return this.get<PaginationResponse<IProject>>('project');
   }
+
   getAllProjects():Observable<IProject[]> {
     return this.get<IProject[]>('project/all');
   }

@@ -31,21 +31,29 @@ export class ProjectsComponent implements OnInit{
   @Input('pageSizeOptions') pageSizeOptions!: number;*/
 
   ngOnInit() {
-    this.getProjects('DESC', this.page, this.pageSize);
+    this.getProjects();
 
-    this.projectsService.getAllProjects()
-      .subscribe(res => {
-        this.projectsLength = res.length;
-      })
+    // this.projectsService.getAllProjects()
+    //   .subscribe(res => {
+    //     this.projectsLength = res.length;
+    //   })
   }
 
-  getProjects(order: string, page: number, pageSize: number){
-    this.projectsService.getProjects(order, page, pageSize).subscribe({
-      next: res => res.data.forEach((project: any) => {
-        console.log(project)
-        this.projects.push(project);
-      }),
-      error: err => console.log(err),
+  // getProjects(order: string, page: number, pageSize: number){
+  //   this.projectsService.getProjects(order, page, pageSize).subscribe({
+  //     next: res => res.data.forEach((project: any) => {
+  //       this.projects.push(project);
+  //     }),
+  //     error: err => console.log(err),
+  //   })
+  // }
+
+  getProjects() {
+    this.projectsService.getMyProjects().subscribe({
+      // next: res => res.forEach((project: any) => {
+      //   this.projects.push(project);
+      // })
+      next: res => this.projects = res,
     })
   }
 
@@ -58,11 +66,18 @@ export class ProjectsComponent implements OnInit{
   }
 
   settingsChanged(event: PageEvent) {
-    console.log(event)
     this.page = event.pageIndex + 1;
     this.pageSize = event.pageSize;
 
     this.projects = [];
-    this.getProjects('DESC', this.page, this.pageSize);
+    //this.getProjects(this.page, this.pageSize);
+  }
+
+  deleteProject(e: Event, id: number) {
+    e.stopPropagation();
+    this.projectsService.deleteProject(id).subscribe({
+      next: res => res,
+    })
+    this.getProjects();
   }
 }

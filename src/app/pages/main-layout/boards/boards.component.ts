@@ -16,8 +16,6 @@ import {ProjectFacade} from "../../../facades/project-facade.service";
 export class BoardsComponent implements OnInit{
 
   boards: IBoard[] = [];
-
-
   constructor(
               private route: ActivatedRoute,
               private boardService: BoardService,
@@ -27,8 +25,6 @@ export class BoardsComponent implements OnInit{
 
   ngOnInit(): void {
     this.route.data.subscribe(({projects}) => {
-      console.log(projects);
-
       if(projects['id']) {
         this.boardService.getBoards(projects['id']).subscribe({
           next: res => {

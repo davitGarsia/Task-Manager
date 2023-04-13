@@ -109,8 +109,6 @@ private getTasks() {
       const currentTask = tasks[event.currentIndex]
       console.log(currentTask)
       this.taskService.updateTask(currentTask.id, currentTask).subscribe(task => {
-
-        console.log(task)
         this.getTasks()
       })
     }

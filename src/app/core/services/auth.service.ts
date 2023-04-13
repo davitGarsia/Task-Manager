@@ -5,12 +5,17 @@ import {BaseService} from "./base.service";
 import * as http from "http";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "./cookie.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends BaseService {
   cookieService: CookieService = inject(CookieService);
+
+  constructor(private router: Router) {
+    super();
+  }
 
   // get token(): string | null {
   //   return localStorage.getItem('token');
@@ -64,6 +69,8 @@ export class AuthService extends BaseService {
 
   logout() {
     localStorage.clear();
+    this.router.navigate(['/']);
+
   }
 
   signOut() {
