@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .container {
@@ -41,4 +42,19 @@
 
 .desc {
   font-size: 1rem;
+}
+
+.delete {
+  width: 10px;
+  height: 14px;
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+  display: none;
+}
+
+.inner-container:hover {
+  .delete {
+    display: block;
+  }
 }

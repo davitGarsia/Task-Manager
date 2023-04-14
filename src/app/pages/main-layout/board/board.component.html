@@ -1,4 +1,4 @@
-
+<div class="page">
 <div class="head">
   <p class="name">{{projectName}}</p>
 </div>
@@ -26,18 +26,16 @@
       <h4 class="title">{{task.name}}</h4>
       <p class="desc">{{task.description}}</p>
 
-
         <button class="material-icons btn-delete" (click)="deleteTask(task.id)">delete</button>
-
-
     </div>
-
     <button type="button" class="add-task" (click)="addTask(column)">
       <span class="material-icons">add</span>
       <p class="p-add">Add Task</p>
     </button>
   </div>
   </div>
+  <button class="button-add" role="button">Add Column</button>
+</div>
 </div>
 
 <!--  <div class="column">-->
@@ -73,4 +71,8 @@
 <!-- *ngFor="let task of tasks[column.taskStatus]"
 (dblclick)="viewTask(task, column)"
  </div>-->
+
+
+<!-- HTML !-->
+
 

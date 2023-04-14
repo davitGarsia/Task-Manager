@@ -24,6 +24,10 @@ export class BoardsComponent implements OnInit{
              ) {}
 
   ngOnInit(): void {
+    this.getBoards();
+  }
+
+  getBoards() {
     this.route.data.subscribe(({projects}) => {
       if(projects['id']) {
         this.boardService.getBoards(projects['id']).subscribe({
@@ -33,5 +37,13 @@ export class BoardsComponent implements OnInit{
         })
       }
     })
+  }
+
+  deleteBoard(e: Event, id: number) {
+    e.stopPropagation();
+    this.boardService.deleteBoard(id).subscribe({
+      next: res => res,
+    })
+   this.getBoards();
   }
   }
