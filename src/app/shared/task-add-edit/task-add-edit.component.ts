@@ -58,8 +58,6 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
     return this.form.get('taskProperty') as FormArray;
   }
 
-
-
   ngOnInit() {
     //this.getTask(this.data.taskId);
     if (this.data.taskId) {

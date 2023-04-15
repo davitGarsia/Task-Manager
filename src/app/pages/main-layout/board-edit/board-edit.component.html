@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Add Column</h1>
+<form mat-dialog-content [formGroup]="injectForm" class="form">
+  <mat-form-field>
+    <input matInput placeholder="Column Name" formControlName="name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Column Description" formControlName="description">
+  </mat-form-field>
+  <mat-form-field class="step-form-field">
+    <mat-label>Task Status</mat-label>
+    <mat-select formControlName="taskStatus">
+      <mat-option value="ToDo">Todo</mat-option>
+      <mat-option value="InProgress">In Progress</mat-option>
+      <mat-option value="Done">Done</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="flex">
+    <button class="button-add" type="submit" (click)="addCol()">Add</button>
+  </div>
+
+</form>
+
+<!--
+<div formArrayName="columns">
+    <div *ngFor="let column of colsArray.controls; let i = index" class="form">
+      <div [formGroupName]="i">
+        <mat-form-field class="step-form-field">
+          <input
+            matInput
+            type="text"
+            formControlName="name"
+            placeholder="Column name"
+          />
+        </mat-form-field>
+        <mat-form-field matInput class="step-form-field">
+          <input
+            matInput
+            type="text"
+            formControlName="description"
+            placeholder="Column description"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="step-form-field">
+          <mat-label>Task Status</mat-label>
+          <mat-select formControlName="taskStatus">
+            <mat-option value="ToDo">Todo</mat-option>
+            <mat-option value="InProgress">In Progress</mat-option>
+            <mat-option value="Done">Done</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+-->

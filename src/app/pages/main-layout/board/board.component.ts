@@ -12,6 +12,7 @@ import * as _ from 'lodash';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {ConfirmDeleteComponent} from "../../../shared/confirm-delete/confirm-delete.component";
 import {of, Subject, switchMap, takeUntil} from "rxjs";
+import {BoardEditComponent} from "../board-edit/board-edit.component";
 
 @Component({
   selector: 'app-board',
@@ -20,6 +21,7 @@ import {of, Subject, switchMap, takeUntil} from "rxjs";
 })
 export class BoardComponent implements OnInit, AfterViewInit, OnDestroy{
   boardId!: number;
+  boardName!: string;
   sub$ = new Subject();
 
   constructor(
@@ -34,17 +36,17 @@ export class BoardComponent implements OnInit, AfterViewInit, OnDestroy{
   projectName = this.projectService.projectName;
 
   ngOnInit(): void {
+    this.getBoard();
+  }
+
+  getBoard() {
     this.route.params.subscribe(params => {
-      console.log(params)
       if(params) {
         this.boardId = +params['id'];
-        this.boardService.getBoardByID(params['id'], params['projectId']).subscribe(res => {
-         this.board = res;
-         console.log(this.board);
-
+        this.boardService.getBoardByID(params['id']).subscribe(res => {
+          this.board = res;
+          this.boardName = res.name;
         })
-        console.log(params['id'])
-
       }
     })
   }
@@ -52,13 +54,6 @@ export class BoardComponent implements OnInit, AfterViewInit, OnDestroy{
   ngAfterViewInit() {
     this.getTasks();
   }
-
-  // fetchTasks() {
-  //   this.taskService.getTasks({boardId: this.boardId})
-  //     .subscribe(tasks => {
-  //       this.tasks = tasks;
-  //     })
-  // }
 
   addTask(column: IColumn) {
   const dialogRef = this.dialog.open(TaskAddEditComponent, {
@@ -132,6 +127,24 @@ private getTasks() {
           this.getTasks();
         }
       })
+  }
+
+  editBoard() {
+    const addDialogRef = this.dialog.open(BoardEditComponent, {
+      data: {
+        boardId: this.boardId,
+        boardName: this.boardName,
+      }
+    });
+
+    addDialogRef.afterClosed().subscribe((form: any) => {
+      if (form) {
+        this.boardService.updateBoard(this.boardId, form.value).subscribe(() => {
+          this.getBoard();
+        })
+      }
+    })
+
   }
 
   ngOnDestroy(): void {
