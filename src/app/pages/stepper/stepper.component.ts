@@ -78,30 +78,18 @@ export class StepperComponent implements OnInit, AfterViewInit {
 
     this.stepsCount = this.document.getElementsByClassName('mat-horizontal-stepper-content').length;
     this.stepsCountArray.length = this.stepsCount;
-    // this.getSteps()
+
 
     this.activeComponent();
   }
 
-  /* steps$: HTMLElement[] | undefined;
-
-  getSteps() {
-   this.steps$ = Array.from(this.document.getElementsByClassName('mat-horizontal-stepper-content')) as HTMLElement[];
-
-    from(this.steps$)
-      .subscribe((step: any ) => {
-        if(!step.classList.contains('mat-horizontal-stepper-content-inactive')) {
-          console.log(step)
-        }
-      })
-  } */
 
   @ViewChild(CreateProjectComponent) project!: CreateProjectComponent;
   @ViewChild(CreateBoardComponent) board!: CreateBoardComponent;
   @ViewChild(CreateIssueTypesComponent) issue!: CreateIssueTypesComponent;
   @ViewChild(AddUsersComponent) users!: AddUsersComponent;
 
-  activeIndex = 1; // shesacvleli iqneba tu davimaxsovrebt actiur steps refreshamde // localStorage
+  activeIndex = 1;
   src: string[] = src;
   srcIndex: number = 0;
 
@@ -161,7 +149,4 @@ export class StepperComponent implements OnInit, AfterViewInit {
 
   stepperInfo = stepper;
 
-  // finish() {
-  //  this.router.navigate([`/main/board/${this.id}`])
-  // }
 }
