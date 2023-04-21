@@ -46,13 +46,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'application',
-        loadChildren: () =>
-          import('./pages/application/application.module').then(
-            (m) => m.ApplicationModule
-          ),
-      },
-      {
         path: 'projects',
         loadChildren: () => import('./pages/project/project.module').then(m => m.ProjectModule)
       },
