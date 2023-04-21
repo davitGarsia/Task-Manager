@@ -13,9 +13,13 @@ export class IssueTypesService extends BaseService {
 
   // constructor(private http: HttpClient) {}
 
-  setIssueType(issueType: any): Observable<IssueType> {
-    localStorage.setItem('issueType', JSON.stringify(issueType));
-    return this.http.post<IssueType>('issue-type', issueType);
+  // setIssueType(issueType: any): Observable<IssueType> {
+  //   localStorage.setItem('issueType', JSON.stringify(issueType));
+  //   return this.http.post<IssueType>('issue-type', issueType);
+  // }
+
+  setIssueType(data: any): Observable<IssueType> {
+    return this.post<IssueType>('issue-type', data);
   }
 
   getIssueType(): Observable<IssueType[]> {

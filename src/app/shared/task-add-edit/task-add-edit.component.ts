@@ -100,15 +100,15 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
       .pipe(takeUntil(this.sub$))
       .subscribe((res: any) => {
         this.form.patchValue(res)
-        res.taskProperty.forEach((property: any) => {
-          this.taskProperty.push(new FormGroup({
-            id: new FormControl(property.id),
-            name: new FormControl(property.name, Validators.required),
-            filedName: new FormControl(property.filedName, Validators.required),
-            value: new FormControl(property.value, Validators.required),
-            isRequired: new FormControl(property.isRequired, Validators.required),
-          }))
-        })
+        // res.taskProperty.forEach((property: any) => {
+        //   this.taskProperty.push(new FormGroup({
+        //     id: new FormControl(property.id),
+        //     name: new FormControl(property.name, Validators.required),
+        //     filedName: new FormControl(property.filedName, Validators.required),
+        //     value: new FormControl(property.value, Validators.required),
+        //     isRequired: new FormControl(property.isRequired, Validators.required),
+        //   }))
+        // })
       })
   }
 

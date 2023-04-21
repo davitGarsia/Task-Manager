@@ -34,7 +34,7 @@ createUser(user: User){
   }
 
   setUser(user: any) {
-    return this.http.post(this.apiUrl, user);
+    return this.http.post(this.apiUrl + 'users', user);
   }
 
   setUserRoles(userRole: UsersRoles) {

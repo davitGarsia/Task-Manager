@@ -35,6 +35,7 @@ export class IssueTypeAddEditComponent {
   ) { }
 
   ngOnInit(): void {
+    this.addColumn();
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.issueTypeId = +params['id'];
@@ -74,12 +75,15 @@ export class IssueTypeAddEditComponent {
     if (this.issueTypeId) {
       this.issueTypeService.updateIssueType(this.form.value)
         .subscribe( res => {
-          this.router.navigate(['/projects/setting/issue-types']).then()
+          this.router.navigate(['/projects/setting/issue-types']).then();
+
         })
     } else {
       this.issueTypeService.setIssueType(this.form.value)
         .subscribe( res => {
-          this.router.navigate(['/projects/setting/issue-types']).then()
+          this.router.navigate(['/projects/setting/issue-types']).then();
+          console.log(res);
+          console.log(this.form.value);
         })
     }
 
