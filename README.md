@@ -4,6 +4,8 @@ Start by filling out project details in the stepper section, after which you can
 At least 1 board column should be added to the project in the 'stepper' section.
 The tasks can dragged and dropped in different columns.
 
+![Alt text] (https://drive.google.com/file/d/1WqLMyxo64QxpKMMXH7ZgL-r9_oywa2GK/view?usp=sharing)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
 
 ## Development server
