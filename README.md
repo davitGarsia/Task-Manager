@@ -38,9 +38,4 @@ What's more, you can add users to your project and also give them certain roles 
 
 ![](https://user-images.githubusercontent.com/107862005/233787457-efda3782-7cc5-4c2c-a6dc-9638af63ce16.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
