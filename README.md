@@ -1,8 +1,7 @@
-# Project Manager App
+# Project Management Application
 
-Start by filling out project details in the stepper section, after which you can add tasks and manage tasks.
-At least 1 board column should be added to the project in the 'stepper' section.
-The tasks can dragged and dropped in different columns.
+The application lets any individual or group optimize their workflow. Create any number of projects, add tasks
+and manage tasks easily.
 
 Get started and Sign Up buttons lets users register in the system.
 ![Home Screen](https://user-images.githubusercontent.com/107862005/233786484-1da05d9a-1b16-41ba-8961-197a6d326f78.png)
