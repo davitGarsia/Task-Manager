@@ -62,36 +62,36 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
     //this.getTask(this.data.taskId);
     if (this.data.taskId) {
       this.getTask(this.data.taskId);
-    } else {
-      this.form.get('issueTypeId')?.valueChanges.pipe(takeUntil(this.sub$))
-        .subscribe((issueTypeId: number) => {
-          this.getIssueTypeProperties(issueTypeId)
-        })
-     }
-    if (this.data.boardId) {
-      this.form.patchValue({boardId: this.data.boardId})
+      } else {
+        this.form.get('issueTypeId')?.valueChanges.pipe(takeUntil(this.sub$))
+          .subscribe((issueTypeId: number) => {
+            this.getIssueTypeProperties(issueTypeId)
+          })
+       }
+      if (this.data.boardId) {
+        this.form.patchValue({boardId: this.data.boardId})
+      }
+      if (this.data.column) {
+        this.form.patchValue({boardColumnId: this.data.column.id})
+      }
+      console.log(this.types$);
     }
-    if (this.data.column) {
-      this.form.patchValue({boardColumnId: this.data.column.id})
-    }
-    console.log(this.types$);
-  }
 
-  getIssueTypeProperties(issueTypeId: number) {
-    this.issueTypeService.getIssueTypeByID(issueTypeId)
-      .pipe(takeUntil(this.sub$))
-      .subscribe(res => {
-        this.taskProperty.clear();
-        res.issueTypeColumns.forEach((property: any) => {
-          this.taskProperty.push(new FormGroup({
-            id: new FormControl(null),
-            name: new FormControl(property.name),
-            filedName: new FormControl(property.filedName),
-            value: new FormControl(null, property.isRequired ? Validators.required : null),
-            isRequired: new FormControl(property.isRequired),
-          }))
+    getIssueTypeProperties(issueTypeId: number) {
+      this.issueTypeService.getIssueTypeByID(issueTypeId)
+        .pipe(takeUntil(this.sub$))
+        .subscribe(res => {
+          this.taskProperty.clear();
+          res.issueTypeColumns.forEach((property: any) => {
+            this.taskProperty.push(new FormGroup({
+              id: new FormControl(null),
+              name: new FormControl(property.name),
+              filedName: new FormControl(property.filedName),
+              value: new FormControl(null, property.isRequired ? Validators.required : null),
+              isRequired: new FormControl(property.isRequired),
+            }))
+          })
         })
-      })
   }
 
 
@@ -100,15 +100,15 @@ export class TaskAddEditComponent implements OnInit, OnDestroy{
       .pipe(takeUntil(this.sub$))
       .subscribe((res: any) => {
         this.form.patchValue(res)
-        // res.taskProperty.forEach((property: any) => {
-        //   this.taskProperty.push(new FormGroup({
-        //     id: new FormControl(property.id),
-        //     name: new FormControl(property.name, Validators.required),
-        //     filedName: new FormControl(property.filedName, Validators.required),
-        //     value: new FormControl(property.value, Validators.required),
-        //     isRequired: new FormControl(property.isRequired, Validators.required),
-        //   }))
-        // })
+        res.taskProperty.forEach((property: any) => {
+          this.taskProperty.push(new FormGroup({
+            id: new FormControl(property.id),
+            name: new FormControl(property.name, Validators.required),
+            filedName: new FormControl(property.filedName, Validators.required),
+            value: new FormControl(property.value, Validators.required),
+            isRequired: new FormControl(property.isRequired, Validators.required),
+          }))
+        })
       })
   }
 
