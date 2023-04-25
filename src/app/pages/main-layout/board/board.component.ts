@@ -144,13 +144,29 @@ private getTasks() {
         })
       }
     })
+  }
 
+  editTask(id: any) {
+    const editDialogRef = this.dialog.open(TaskAddEditComponent, {
+      width: '600px',
+      data: {
+        taskId: id,
+      }
+    })
+
+    editDialogRef.afterClosed().subscribe((task: any) => {
+      if (task) {
+        this.taskService.updateTask(id, task).subscribe();
+        this.getTasks();
+      }
+    })
   }
 
   ngOnDestroy(): void {
     this.sub$.next(null);
     this.sub$.complete();
   }
+
 }
 
 
